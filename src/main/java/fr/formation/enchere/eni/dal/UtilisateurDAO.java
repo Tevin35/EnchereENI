@@ -13,7 +13,7 @@ import fr.formation.enchere.eni.bo.Utilisateur;
 import fr.formation.enchere.eni.dal.util.ConnectionProvider;
 
 /**
- * Classe en charge de
+ * Classe en charge de communiquer avec la base de donnée
  * 
  * @author msorin2022
  * @date 29 mars 2022
@@ -67,7 +67,7 @@ public class UtilisateurDAO implements IUtilisateurDAO {
 	 * @throws DALException 
 	 */
 	@Override
-	public void update(Utilisateur utilisateur) throws DALException {
+	public void update(Utilisateur utilisateur, Integer id) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
 			PreparedStatement stmt = cnx.prepareStatement(UPDATE);
@@ -82,7 +82,7 @@ public class UtilisateurDAO implements IUtilisateurDAO {
 			stmt.setString(8, utilisateur.getVille());
 			stmt.setString(9, utilisateur.getMotDePasse());
 			
-			stmt.setInt(10, utilisateur.getNoUtilisateur());
+			stmt.setInt(10, id);
 
 			stmt.executeUpdate();
 

@@ -42,7 +42,7 @@ public class UtilisateurManager implements IUtilisateurManager{
 	@Override
 	public void update(Utilisateur utilisateur) throws BLLException {
 		try {
-			dao.update(utilisateur);
+			dao.update(utilisateur, utilisateur.getNoUtilisateur());
 		} catch (DALException e) {
 			throw new BLLException("BLL - erreur dans la fonction update : " + e.getMessage());
 		}
