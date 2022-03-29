@@ -3,6 +3,8 @@
  */
 package fr.formation.enchere.eni.dal;
 
+import fr.formation.enchere.eni.bo.Utilisateur;
+
 /**
  * Classe en charge de
  * @author msorin2022
@@ -12,5 +14,9 @@ package fr.formation.enchere.eni.dal;
  *
  */
 public interface IUtilisateurDAO {
+	
+	public void insert(Utilisateur utilisateur) throws DALException;
+	
+	public void update(Utilisateur utilisateur, Integer id) throws DALException;
 
 }
