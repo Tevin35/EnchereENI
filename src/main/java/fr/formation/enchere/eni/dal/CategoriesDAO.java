@@ -9,13 +9,12 @@ import fr.formation.enchere.eni.bo.Categorie;
 
 /**
  * Classe en charge de
- * @author msorin2022
+ * @author cmounier2022
  * @date 29 mars 2022
  * @version EnchereENI- V0.1
- * @since  29 mars 2022 - 11:30:28
+ * @since  29 mars 2022 - 15:22:22
  *
  */
-public interface ICategoriesDAO {
+public class CategoriesDAO implements ICategoriesDAO {
 
-	
 }

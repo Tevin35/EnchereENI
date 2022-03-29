@@ -3,6 +3,10 @@
  */
 package fr.formation.enchere.eni.bll;
 
+import java.util.List;
+
+import fr.formation.enchere.eni.bo.Utilisateur;
+
 /**
  * Classe en charge de
  * @author msorin2022
@@ -13,4 +17,6 @@ package fr.formation.enchere.eni.bll;
  */
 public interface IUtilisateurManager {
 
+	public List<Utilisateur> selelctAll() throws BLLException;
+	
 }

@@ -3,6 +3,10 @@
  */
 package fr.formation.enchere.eni.dal;
 
+import java.util.List;
+
+import fr.formation.enchere.eni.bo.Utilisateur;
+
 /**
  * Classe en charge de
  * @author msorin2022
@@ -13,4 +17,5 @@ package fr.formation.enchere.eni.dal;
  */
 public interface IUtilisateurDAO {
 
+	public List<Utilisateur>selectAll() throws DALException; 
 }
