@@ -25,7 +25,7 @@ public class UtilisateurDAO implements IUtilisateurDAO {
 
 	private final String INSERT = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private final String UPDATE = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?, mot_de_passe = ? WHERE no_utilisateur = ?";
-	private final String DELETE =  "DELETE INTO UTILISATEURS (pseudo, nom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administateur) WHERE no_utilisateur = ?";
+	private final String DELETE = "DELETE INTO UTILISATEURS (pseudo, nom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administateur) WHERE no_utilisateur = ?";
 
 	/**
 	 * {@inheriteDoc}
@@ -49,7 +49,7 @@ public class UtilisateurDAO implements IUtilisateurDAO {
 			stmt.setString(9, utilisateur.getMotDePasse());
 			stmt.setInt(10, utilisateur.getCredit());
 			stmt.setBoolean(11, utilisateur.isAdministrateur());
-			
+
 			Integer nb = stmt.executeUpdate();
 			if (nb > 0) {
 				ResultSet rs = stmt.getGeneratedKeys();
@@ -63,13 +63,12 @@ public class UtilisateurDAO implements IUtilisateurDAO {
 		}
 	}
 
-	
 	@Override
-	public void delete(Utilisateur utilisateur) throws DALException{
-		try (Connection cnx = ConnectionProvider.getConnection()){
-			
+	public void delete(Utilisateur utilisateur) throws DALException {
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+
 			PreparedStatement stmt = cnx.prepareStatement(DELETE, Statement.RETURN_GENERATED_KEYS);
-			
+
 			stmt.setString(1, utilisateur.getPseudo());
 			stmt.setString(2, utilisateur.getNom());
 			stmt.setString(3, utilisateur.getPrenom());
@@ -82,17 +81,18 @@ public class UtilisateurDAO implements IUtilisateurDAO {
 			stmt.setInt(10, utilisateur.getCredit());
 			stmt.setBoolean(11, utilisateur.isAdministrateur());
 			stmt.setInt(12, utilisateur.getNoUtilisateur());
-			
+
 			stmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			throw new DALException("Erreur dans la fonction delete : " + e.getMessage());
 		}
-
+	}
 
 	/**
 	 * {@inheriteDoc}
-	 * @throws DALException 
+	 * 
+	 * @throws DALException
 	 */
 	@Override
 	public void update(Utilisateur utilisateur, Integer id) throws DALException {
@@ -109,7 +109,7 @@ public class UtilisateurDAO implements IUtilisateurDAO {
 			stmt.setString(7, utilisateur.getCodePostal());
 			stmt.setString(8, utilisateur.getVille());
 			stmt.setString(9, utilisateur.getMotDePasse());
-			
+
 			stmt.setInt(10, id);
 
 			stmt.executeUpdate();
@@ -117,7 +117,6 @@ public class UtilisateurDAO implements IUtilisateurDAO {
 		} catch (SQLException e) {
 			throw new DALException("DAL - Erreur dans la fonction update : " + e.getMessage());
 		}
-	}
-	
+
 	}
 }

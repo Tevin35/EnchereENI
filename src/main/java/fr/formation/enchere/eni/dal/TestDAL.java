@@ -32,16 +32,20 @@ public class TestDAL {
 		
 		try {
 			dao.update(utilisateurModif, utilisateur.getNoUtilisateur());
-		IUtilisateurDAO dao = DAOFact.getUtilisateurDAO();
-		
-		Utilisateur utilisateur = utilisateur.getNoUtilisateur(2);
-		
-		
-		try {
-			dao.delete(utilisateur);
-		} catch (DALException e) {
+		}catch (Exception e) {
 			e.getMessage();
 		}
+		
+		Integer id;
+		if (utilisateur.getNom().equals("nom") && utilisateur.getPrenom().equals("prenom")) {
+			id = utilisateur.getNoUtilisateur();
+		}
+		
+//		try {
+//			dao.delete(id);
+//		} catch (DALException e) {
+//			e.getMessage();
+//		}
 	}
 	
 }
