@@ -20,7 +20,7 @@ import fr.formation.enchere.eni.dal.util.ConnectionProvider;
  *
  */
 public class UtilisateurDAO implements IUtilisateurDAO {
-	private final String DELETE =  "DELETE INTO UTILISATEURS (pseudo, nom, email, telephone, rue, code_postal, ville, credit, administateur";
+	private final String DELETE =  "DELETE INTO UTILISATEURS (pseudo, nom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administateur) WHERE no_utilisateur = ?";
 	
 	@Override
 	public void delete(Utilisateur utilisateur) throws DALException{
@@ -39,9 +39,14 @@ public class UtilisateurDAO implements IUtilisateurDAO {
 			stmt.setString(9, utilisateur.getMotDePasse());
 			stmt.setInt(10, utilisateur.getCredit());
 			stmt.setBoolean(11, utilisateur.isAdministrateur());
+			stmt.setInt(12, utilisateur.getNoUtilisateur());
+			
+			stmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			throw new DALException("Erreur dans la fonction delete : " + e.getMessage());
 		}
+		
+	
 	}
 }
