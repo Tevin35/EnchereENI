@@ -16,7 +16,12 @@ import fr.formation.enchere.eni.bo.Utilisateur;
  *
  */
 public interface IUtilisateurManager {
+	
+	public void insert(Utilisateur utilisateur) throws BLLException;
+	
+	public void update(Utilisateur utilisateur) throws BLLException;
 
 	public List<Utilisateur> selelctAll() throws BLLException;
 	
+	public void delete(Utilisateur utilisateur) throws BLLException;
 }

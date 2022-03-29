@@ -30,5 +30,4 @@ public class DALException extends Exception {
 		// TODO Auto-generated constructor stub
 	}
 
-	
 }
