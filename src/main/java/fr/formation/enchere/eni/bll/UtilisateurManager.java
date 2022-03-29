@@ -31,6 +31,15 @@ public class UtilisateurManager implements IUtilisateurManager{
 			dao.insert(utilisateur);
 		} catch (DALException e) {
 			throw new BLLException("BLL - erreur dans la fonction insert : " + e.getMessage());
+	*{@inheritedDoc}
+	*/
+	@Override
+	public void delete(Utilisateur utilisateur) throws BLLException {
+		
+		try {
+			dao.delete(utilisateur);
+		} catch (DALException e) {
+			throw new BLLException("BLL - erreur dans la fonction delete : " + e.getMessage());
 		}
 		
 	}

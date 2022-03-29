@@ -19,4 +19,5 @@ public interface IUtilisateurManager {
 	
 	public void update(Utilisateur utilisateur) throws BLLException;
 
+	public void delete(Utilisateur utilisateur) throws BLLException;
 }

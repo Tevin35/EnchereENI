@@ -19,4 +19,5 @@ public interface IUtilisateurDAO {
 	
 	public void update(Utilisateur utilisateur, Integer id) throws DALException;
 
+	public void delete(Utilisateur utilisateur) throws DALException;
 }
