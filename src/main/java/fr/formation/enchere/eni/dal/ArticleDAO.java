@@ -13,15 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.formation.enchere.eni.bo.ArticleVendu;
-import fr.formation.enchere.eni.bo.Utilisateur;
 import fr.formation.enchere.eni.dal.util.ConnectionProvider;
 
 /**
  * Classe en charge de
- * @author cmounier2022
- * @date 29 mars 2022
+ * @author tevin
+ * @date 30 mars 2022
  * @version EnchereENI- V0.1
- * @since  29 mars 2022 - 15:21:14
+ * @since  30 mars 2022 - 14:35:14
  *
  */
 public class ArticleDAO implements IArticleDAO{

@@ -33,8 +33,6 @@ public class ArticleVendu {
 	private Utilisateur noUtilisateur;
 	private Categorie noCategorie;
 	
-	
-
 	/**
 	 * Constructeur pour le SELECT ArticleDAO
 	 * @param noArticle
