@@ -18,23 +18,25 @@ import fr.formation.enchere.eni.bo.Utilisateur;
 @WebServlet("/UtilisateurInscriptionServlet")
 public class UtilisateurInscriptionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	private IUtilisateurManager manager = UtilisateurManagerSing.getInstance();
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UtilisateurInscriptionServlet() {
-        super();
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	public UtilisateurInscriptionServlet() {
+		super();
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		UtilisateurModel model = new UtilisateurModel();
-		
+
 		if (request.getParameter("valider") != null) {
 			String pseudo = request.getParameter("pseudo");
 			String nom = request.getParameter("nom");
@@ -45,27 +47,30 @@ public class UtilisateurInscriptionServlet extends HttpServlet {
 			String codePostal = request.getParameter("codePostal");
 			String ville = request.getParameter("ville");
 			String motDePasse = request.getParameter("motDePasse");
-			
-			Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, 1000, false);
-			
+
+			Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
+					motDePasse, 1000, false);
+
 			model.setUtilisateur(utilisateur);
-			
+
 			try {
 				manager.insert(utilisateur);
+				model.setMessage("Inscription réussi");
 			} catch (BLLException e) {
 				model.setMessage("Erreur à l'inscription");
 			}
 		}
 		
-		
-		
+		request.getSession().setAttribute("model", model);
 		request.getRequestDispatcher("/WEB-INF/UtilisateurInscription.jsp").forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

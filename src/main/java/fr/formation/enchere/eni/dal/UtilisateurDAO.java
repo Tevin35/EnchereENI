@@ -116,7 +116,7 @@ public class UtilisateurDAO implements IUtilisateurDAO {
 	public void delete(Integer id) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
-			PreparedStatement stmt = cnx.prepareStatement(DELETE, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement stmt = cnx.prepareStatement(DELETE);
 
 			stmt.setInt(1, id);
 
