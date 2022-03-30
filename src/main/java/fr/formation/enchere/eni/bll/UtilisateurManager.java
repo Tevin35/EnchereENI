@@ -44,8 +44,11 @@ public class UtilisateurManager implements IUtilisateurManager {
 	@Override
 	public void delete(Utilisateur utilisateur) throws BLLException {
 
+		
+		Integer id = utilisateur.getNoUtilisateur();
+		
 		try {
-			dao.delete(utilisateur);
+			dao.delete(id);
 		} catch (DALException e) {
 			throw new BLLException("BLL - erreur dans la fonction delete : " + e.getMessage());
 		}
@@ -65,12 +68,11 @@ public class UtilisateurManager implements IUtilisateurManager {
 			throw new BLLException("BLL - erreur dans la fonction update : " + e.getMessage());
 		}
 	}
-
+	
 	/**
-	 * {@inheritedDoc}
-	 * 
-	 * @throws BLLException
-	 */
+	*{@inheritedDoc}
+	 * @throws BLLException 
+	*/
 	@Override
 	public List<Utilisateur> selelctAll() throws BLLException {
 		try {
@@ -79,4 +81,6 @@ public class UtilisateurManager implements IUtilisateurManager {
 			throw new BLLException("BLL - ERREUR DANS LA FONCTION SELECT : " + e.getMessage());
 		}
 	}
+
+	
 }
