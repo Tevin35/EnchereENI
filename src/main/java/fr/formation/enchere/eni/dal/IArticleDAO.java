@@ -23,6 +23,8 @@ public interface IArticleDAO  {
 
 	public List<ArticleVendu> selectAll() throws DALException;
 	
+	public ArticleVendu selectById(Integer id) throws DALException;
+	
 	public void delete(Integer id) throws DALException;
 	
 }

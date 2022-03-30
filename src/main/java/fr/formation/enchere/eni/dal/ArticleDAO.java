@@ -29,6 +29,8 @@ public class ArticleDAO implements IArticleDAO{
 	private final String INSERT = "INSERT INTO ARTICLES_VENDUS (no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private final String UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article = ?, description = ?, date_debut_encheres = ?, date_fin_encheres = ?, prix_initial = ?, prix_vente = ?, no_utilisateur = ?, no_categorie = ? WHERE no_article = ?";
 	private final String DELETE = "DELETE INTO ARTICLES_VENDUS WHERE no_article = ?";
+	private final String SelectbyId = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie FROM ARTICLES_VENDUS WHERE no_article = ?";
+
 
 	/**
 	*{@inheritedDoc}
@@ -42,7 +44,7 @@ public class ArticleDAO implements IArticleDAO{
 			while (rs.next()) {
 				ArticleVendu articleVendu = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),
 						rs.getString("description"), rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("prix_initial"),
-						rs.getInt("prix_vente"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie");
+						rs.getInt("prix_vente"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie"));
 				articleVendu.setNoArticle(rs.getInt("no_article"));
 				result.add(articleVendu);
 			}
@@ -117,6 +119,27 @@ public class ArticleDAO implements IArticleDAO{
 			throw new DALException("DAL - Erreur dans la fonction update : " + e.getMessage());
 		}
 		
+	}
+
+	/**
+	*{@inheritedDoc}
+	*/
+	@Override
+	public ArticleVendu selectById(Integer id) throws DALException {
+		try (Connection con = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = con.prepareStatement(SELECT);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				ArticleVendu articleVendu = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),
+						rs.getString("description"), rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("prix_initial"),
+						rs.getInt("prix_vente"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie"));
+				articleVendu.setNoArticle(rs.getInt("no_article"));
+				result.add(articleVendu);
+			}
+		} catch (SQLException e) {
+			throw new DALException("Probleme de select : " + e.getMessage());
+		}
+		return articleVendu;
 	}
 	
 }

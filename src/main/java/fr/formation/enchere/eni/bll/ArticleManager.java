@@ -77,4 +77,19 @@ public class ArticleManager implements IArticleManager {
 		}
 	}
 
+	/**
+	*{@inheritedDoc}
+	*/
+	@Override
+	public ArticleVendu selectById(ArticleVendu articleVendu) throws BLLException {
+		
+		Integer id = articleVendu.getNoArticle();
+		
+		try {
+			return dao.selectById(id);
+		} catch (DALException e) {
+			throw new BLLException("BLL - erreur dans la fonction selectById  : " + e.getMessage());
+		}
+	}
+
 }
