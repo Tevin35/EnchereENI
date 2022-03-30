@@ -3,6 +3,8 @@
  */
 package fr.formation.enchere.eni.bll;
 
+import java.util.List;
+
 import fr.formation.enchere.eni.bo.Utilisateur;
 import fr.formation.enchere.eni.dal.DALException;
 import fr.formation.enchere.eni.dal.DAOFact;
@@ -40,8 +42,10 @@ public class UtilisateurManager implements IUtilisateurManager{
 	@Override
 	public void delete(Utilisateur utilisateur) throws BLLException {
 		
+		Integer id = utilisateur.getNoUtilisateur();
+		
 		try {
-			dao.delete(utilisateur);
+			dao.delete(id);
 		} catch (DALException e) {
 			throw new BLLException("BLL - erreur dans la fonction delete : " + e.getMessage());
 		}
@@ -58,6 +62,19 @@ public class UtilisateurManager implements IUtilisateurManager{
 			dao.update(utilisateur, utilisateur.getNoUtilisateur());
 		} catch (DALException e) {
 			throw new BLLException("BLL - erreur dans la fonction update : " + e.getMessage());
+		}
+	}
+	
+	/**
+	*{@inheritedDoc}
+	 * @throws BLLException 
+	*/
+	@Override
+	public List<Utilisateur> selelctAll() throws BLLException {
+		try {
+			return dao.selectAll();
+		} catch (DALException e) {
+			throw new BLLException("BLL - ERREUR DANS LA FONCTION SELECT : " + e.getMessage());
 		}
 	}
 
