@@ -17,6 +17,12 @@ import fr.formation.enchere.eni.bo.ArticleVendu;
  */
 public interface IArticleDAO  {
 
-	public List<ArticleVendu>selectAll();
+	public void insert(ArticleVendu articleVendu) throws DALException;
+	
+	public void update(ArticleVendu articleVendu, Integer id) throws DALException;
+
+	public List<ArticleVendu> selectAll() throws DALException;
+	
+	public void delete(Integer id) throws DALException;
 	
 }

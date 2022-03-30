@@ -21,7 +21,9 @@ public interface IUtilisateurManager {
 	
 	public void update(Utilisateur utilisateur) throws BLLException;
 
-	public List<Utilisateur> selelctAll() throws BLLException;
+	public List<Utilisateur> selectAll() throws BLLException;
+	
+	public Utilisateur selectById(Utilisateur utilisateur) throws BLLException;
 	
 	public void delete(Utilisateur utilisateur) throws BLLException;
 }

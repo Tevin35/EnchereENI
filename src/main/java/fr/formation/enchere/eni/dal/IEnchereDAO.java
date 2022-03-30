@@ -3,6 +3,10 @@
  */
 package fr.formation.enchere.eni.dal;
 
+import java.util.List;
+
+import fr.formation.enchere.eni.bo.Enchere;
+
 /**
  * Classe en charge de
  * @author msorin2022
@@ -13,5 +17,14 @@ package fr.formation.enchere.eni.dal;
  */
 public interface IEnchereDAO {
 
+	public void insert(Enchere enchere) throws DALException;
+	
+	public void update(Enchere enchere, Integer id) throws DALException;
+	
+	public void delete(Integer id) throws DALException;
+	
+	public List<Enchere> selectAll() throws DALException;
+	
+	public Enchere selectById(Integer id);
 	
 }

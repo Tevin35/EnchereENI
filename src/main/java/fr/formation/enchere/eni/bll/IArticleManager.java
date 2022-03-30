@@ -3,6 +3,10 @@
  */
 package fr.formation.enchere.eni.bll;
 
+import java.util.List;
+
+import fr.formation.enchere.eni.bo.ArticleVendu;
+
 /**
  * Classe en charge de
  * @author msorin2022
@@ -12,5 +16,13 @@ package fr.formation.enchere.eni.bll;
  *
  */
 public interface IArticleManager {
+
+	public void insert(ArticleVendu articleVendu) throws BLLException;
+	
+	public void update(ArticleVendu articleVendu) throws BLLException;
+
+	public List<ArticleVendu> selectAll() throws BLLException;
+	
+	public void delete(ArticleVendu articleVendu) throws BLLException;
 
 }

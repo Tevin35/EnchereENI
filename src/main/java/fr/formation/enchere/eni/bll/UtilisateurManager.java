@@ -74,13 +74,29 @@ public class UtilisateurManager implements IUtilisateurManager {
 	 * @throws BLLException 
 	*/
 	@Override
-	public List<Utilisateur> selelctAll() throws BLLException {
+	public List<Utilisateur> selectAll() throws BLLException {
 		try {
 			return dao.selectAll();
 		} catch (DALException e) {
-			throw new BLLException("BLL - ERREUR DANS LA FONCTION SELECT : " + e.getMessage());
+			throw new BLLException("BLL - erreur dans la fonction selectAll : " + e.getMessage());
 		}
 	}
 
+	/**
+	*{@inheriteDoc}
+	*/
+	@Override
+	public Utilisateur selectById(Utilisateur utilisateur) throws BLLException {
+		
+		Integer id = utilisateur.getNoUtilisateur();
+		
+		try {
+			return dao.selectById(id);
+		} catch (DALException e) {
+			throw new BLLException("BLL - erreur dans la fonction selectById  : " + e.getMessage());
+		}
+	}
 	
+	
+
 }
