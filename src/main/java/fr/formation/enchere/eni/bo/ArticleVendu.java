@@ -30,6 +30,34 @@ public class ArticleVendu {
 	private Enchere concerne;
 	private List<Categorie> lstCategorie = new ArrayList<Categorie>();
 	private Retrait lieuRetrait;
+	private Utilisateur noUtilisateur;
+	private Categorie noCategorie;
+	
+	/**
+	 * Constructeur pour le SELECT ArticleDAO
+	 * @param noArticle
+	 * @param nomArticle
+	 * @param description
+	 * @param dateDebutEncheres
+	 * @param dateFinEncheres
+	 * @param miseAPrix
+	 * @param prixVente
+	 * @param noUtilisateur
+	 * @param noCategorie
+	 */
+	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
+			LocalDate dateFinEncheres, Integer miseAPrix, Integer prixVente, Utilisateur noUtilisateur,
+			Categorie noCategorie) {
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
+	}
 
 	/**
 	 * Constructeur.
@@ -312,6 +340,8 @@ public class ArticleVendu {
 	public void setLieuRetrait(Retrait lieuRetrait) {
 		this.lieuRetrait = lieuRetrait;
 	}
+	
+	
 
 	/**
 	 * {@inheritedDoc}
