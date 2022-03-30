@@ -26,6 +26,7 @@ import fr.formation.enchere.eni.dal.util.ConnectionProvider;
 public class UtilisateurDAO implements IUtilisateurDAO {
 
 	private final String SELECT = "SELECT  no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS";
+	private final String SELECTBYID = "SELECT  no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE no_utilisateur = ?";
 	private final String INSERT = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private final String UPDATE = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?, mot_de_passe = ? WHERE no_utilisateur = ?";
 	private final String DELETE = "DELETE INTO UTILISATEURS WHERE no_utilisateur = ?";
@@ -44,7 +45,6 @@ public class UtilisateurDAO implements IUtilisateurDAO {
 						rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"),
 						rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"),
 						rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getBoolean("administrateur"));
-				utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
 				result.add(utilisateur);
 			}
 		} catch (SQLException e) {
@@ -53,7 +53,28 @@ public class UtilisateurDAO implements IUtilisateurDAO {
 		return result;
 	}
 	
-	
+	/**
+	 * {@inheritedDoc}
+	 */
+	@Override
+	public Utilisateur selectById(Integer id) throws DALException {
+		
+		Utilisateur utilisateur = null;
+		
+		try (Connection con = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = con.prepareStatement(SELECTBYID);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				utilisateur = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"),
+						rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"),
+						rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"),
+						rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getBoolean("administrateur"));
+			}
+		} catch (SQLException e) {
+			throw new DALException("Probleme de select : " + e.getMessage());
+		}
+		return utilisateur;
+	}
 
 	/**
 	 * {@inheriteDoc}
