@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.formation.enchere.eni.bll.ArticleManagerSing;
 import fr.formation.enchere.eni.bll.BLLException;
+import fr.formation.enchere.eni.bll.CategorieManagerSing;
 import fr.formation.enchere.eni.bll.IArticleManager;
 import fr.formation.enchere.eni.bll.ICategorieManager;
 import fr.formation.enchere.eni.bll.IUtilisateurManager;
@@ -52,8 +53,20 @@ public class ArticleCreationServlet extends HttpServlet {
 			Integer prixVente = Integer.parseInt(request.getParameter("prixVente"));
 			Integer noUtilisateur = Integer.parseInt(request.getParameter("noUtilisateur"));
 			Integer noCategorie = Integer.parseInt(request.getParameter("noCategorie"));
-			Utilisateur utilisateur = managerUtilisateur.selectById(noUtilisateur);
-			Categorie categorie = managerCategorie.selectById(noCategorie);
+			Utilisateur utilisateur = null;
+			try {
+				utilisateur = managerUtilisateur.selectById(noUtilisateur);
+			} catch (BLLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			Categorie categorie = null;
+			try {
+				categorie = managerCategorie.selectById(noCategorie);
+			} catch (BLLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			ArticleVendu articleVendu = new ArticleVendu(nomArticle, description, dateDebutEncheres,
 					dateFinEncheres, miseAPrix, prixVente, utilisateur, categorie);
 
