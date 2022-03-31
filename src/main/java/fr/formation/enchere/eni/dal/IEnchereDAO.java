@@ -25,6 +25,6 @@ public interface IEnchereDAO {
 	
 	public List<Enchere> selectAll() throws DALException;
 	
-	public Enchere selectById(Integer id);
+	public Enchere selectById(Integer id) throws DALException;
 	
 }
