@@ -26,11 +26,11 @@ import fr.formation.enchere.eni.dal.util.ConnectionProvider;
  */
 public class CategorieDAO implements ICategorieDAO {
 
-	private final String SELECT = "SELECT no_categorie, libelle FROM CATEGORIES";
+	private final String SELECTALL = "SELECT no_categorie, libelle FROM CATEGORIES";
 	private final String INSERT = "INSERT INTO CATEGORIES (libelle) VALUES (?)";
 	private final String UPDATE = "UPDATE CATEGORIES SET libelle = ?, WHERE no_categorie = ?";
 	private final String DELETE = "DELETE INTO CATEGORIES WHERE no_categorie = ?";
-	private final String SELECT_BY_ID = "SELECT no_categorie, libelle FROM CATEGORIES WHERE no_categorie = ?";
+	private final String SELECTBYID = "SELECT no_categorie, libelle FROM CATEGORIES WHERE no_categorie = ?";
 
 	/**
 	 * {@inheritedDoc}
@@ -39,10 +39,10 @@ public class CategorieDAO implements ICategorieDAO {
 	public List<Categorie> selectAll() throws DALException {
 		List<Categorie> result = new ArrayList<Categorie>();
 		try (Connection con = ConnectionProvider.getConnection()) {
-			PreparedStatement stmt = con.prepareStatement(SELECT);
+			PreparedStatement stmt = con.prepareStatement(SELECTALL);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				Categorie categorie = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle")), rs.getString("categorie_article"));
+				Categorie categorie = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
 				result.add(categorie);
 			}
 		} catch (SQLException e) {
@@ -62,15 +62,6 @@ public class CategorieDAO implements ICategorieDAO {
 			PreparedStatement stmt = cnx.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
 
 			stmt.setString(1, categorie.getLibelle());
-			stmt.setString(2, categorie.getCategorie_article());
-
-			Integer nb = stmt.executeUpdate();
-			if (nb > 0) {
-				ResultSet rs = stmt.getGeneratedKeys();
-				if (rs.next()) {
-					categorie.setNoCategorie((rs.getInt(1)));
-				}
-			}
 
 			Integer nb = stmt.executeUpdate();
 			if (nb > 0) {
@@ -114,7 +105,7 @@ public class CategorieDAO implements ICategorieDAO {
 			PreparedStatement stmt = cnx.prepareStatement(UPDATE);
 
 			stmt.setString(1, categorie.getLibelle());
-			stmt.setString(2, categorie.getCategorie_article());
+			
 
 			stmt.setInt(3, id);
 
@@ -127,15 +118,17 @@ public class CategorieDAO implements ICategorieDAO {
 
 	/**
 	 * {@inheritedDoc}
+	 * @return 
 	 */
 	@Override
-	public void selectById(Integer id) throws DALException {
-		Retrait result = null;
+	public Categorie selectById(Integer id) throws DALException {
+		Categorie result = null;
 		try (Connection con = ConnectionProvider.getConnection()) {
-			PreparedStatement stmt = con.prepareStatement(SELECT_BY_ID);
+			PreparedStatement stmt = con.prepareStatement(SELECTBYID);
+			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
-				result = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"), rs.getString("categorie_article"));
+				result = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
 
 			}
 		} catch (SQLException e) {

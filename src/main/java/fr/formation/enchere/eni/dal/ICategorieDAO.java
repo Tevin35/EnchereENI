@@ -27,6 +27,6 @@ public interface ICategorieDAO {
 
 	public void delete(Integer id) throws DALException;
 
-	public void selectById(Integer id) throws DALException;
+	public Categorie selectById(Integer id) throws DALException;
 
 }

@@ -13,4 +13,5 @@ package fr.formation.enchere.eni.bll;
  */
 public interface ICategorieManager {
 
+	
 }

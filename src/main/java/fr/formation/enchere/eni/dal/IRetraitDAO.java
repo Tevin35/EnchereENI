@@ -21,11 +21,11 @@ public interface IRetraitDAO {
 	
 	public void update(Retrait retrait, Integer id) throws DALException;
 	
-	public List<Retrait>selectAll() throws DALException;
+	public List<Retrait> selectAll() throws DALException;
 	
 	public void delete(Integer id) throws DALException;
 	
-	public void selectById(Integer id) throws DALException;
+	public Retrait selectById(Integer id) throws DALException;
 	
 	
 }

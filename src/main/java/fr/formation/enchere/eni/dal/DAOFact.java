@@ -7,4 +7,10 @@ public class DAOFact{
 	public static IArticleDAO getArticleDAO() {
 		return new ArticleDAO();
 	}
+	public static IRetraitDAO getRetraitDAO() {
+		return new RetraitDAO();
+	}
+	public static ICategorieDAO getCategorieDAO () {
+		return new CategorieDAO();
+	}
 }

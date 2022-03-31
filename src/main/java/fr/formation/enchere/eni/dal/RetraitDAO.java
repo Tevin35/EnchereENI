@@ -25,11 +25,11 @@ import fr.formation.enchere.eni.dal.util.ConnectionProvider;
  */
 public class RetraitDAO implements IRetraitDAO {
 
-	private final String SELECT = "SELECT no_article, rue, code_postal, ville FROM RETRAITS";
+	private final String SELECTALL = "SELECT no_article, rue, code_postal, ville FROM RETRAITS";
 	private final String INSERT = "INSERT INTO RETRAITS (rue, code_postal, ville) VALUES (?, ?, ?)";
 	private final String UPDATE = "UPDATE RETRAITS SET rue = ?, code_postal = ?, ville = ? WHERE no_article = ?";
 	private final String DELETE = "DELETE INTO RETRAITS WHERE no_article = ?";
-	private final String SELECT_BY_ID = "SELECT no_article, rue, code_postal, ville FROM RETRAITS WHERE no_article = ?";
+	private final String SELECTBYID = "SELECT no_article, rue, code_postal, ville FROM RETRAITS WHERE no_article = ?";
 
 	/**
 	 * {@inheritedDoc}
@@ -38,7 +38,7 @@ public class RetraitDAO implements IRetraitDAO {
 	public List<Retrait> selectAll() throws DALException {
 		List<Retrait> result = new ArrayList<Retrait>();
 		try (Connection con = ConnectionProvider.getConnection()) {
-			PreparedStatement stmt = con.prepareStatement(SELECT);
+			PreparedStatement stmt = con.prepareStatement(SELECTALL);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Retrait retrait = new Retrait(rs.getInt("no_article"), rs.getString("rue"), rs.getString("code_postal"),
@@ -69,15 +69,7 @@ public class RetraitDAO implements IRetraitDAO {
 			if (nb > 0) {
 				ResultSet rs = stmt.getGeneratedKeys();
 				if (rs.next()) {
-					retrait.setNoArticle((rs.getInt(1)));
-				}
-			}
-
-			Integer nb = stmt.executeUpdate();
-			if (nb > 0) {
-				ResultSet rs = stmt.getGeneratedKeys();
-				if (rs.next()) {
-					retrait.setNoArticle((rs.getInt(1)));
+					retrait.setArticleVendu((rs.getInt(1)));
 				}
 			}
 
@@ -131,10 +123,10 @@ public class RetraitDAO implements IRetraitDAO {
 	 * {@inheritedDoc}
 	 */
 	@Override
-	public void selectById(Integer id) throws DALException {
+	public Retrait selectById(Integer id) throws DALException {
 		Retrait result = null;
 		try (Connection con = ConnectionProvider.getConnection()) {
-			PreparedStatement stmt = con.prepareStatement(SELECT_BY_ID);
+			PreparedStatement stmt = con.prepareStatement(SELECTBYID);
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
 				result = new Retrait(rs.getInt("no_article"), rs.getString("rue"), rs.getString("code_postal"),
