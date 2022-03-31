@@ -12,4 +12,8 @@ public class DAOFact {
 	public static IEnchereDAO getEnchereDAO() {
 		return new EnchereDAO();
 	}
+
+	public static ICategorieDAO getCategorieDAO() {
+		return new CategorieDAO();
+	}
 }
