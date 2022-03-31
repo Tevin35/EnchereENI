@@ -1,6 +1,6 @@
- /**
- * 
- */
+/**
+* 
+*/
 package fr.formation.enchere.eni.bll;
 
 import java.util.List;
@@ -88,6 +88,6 @@ public class CategorieManager implements ICategorieManager {
 		} catch (DALException e) {
 			throw new BLLException("BLL - erreur dans la fonction selectById : " + e.getMessage());
 		}
-	}	
+	}
 
 }

@@ -9,8 +9,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import fr.formation.enchere.eni.bo.ArticleVendu;
 import fr.formation.enchere.eni.bo.Retrait;
 import fr.formation.enchere.eni.dal.util.ConnectionProvider;
 
@@ -26,23 +28,33 @@ import fr.formation.enchere.eni.dal.util.ConnectionProvider;
 public class RetraitDAO implements IRetraitDAO {
 
 	private final String SELECTALL = "SELECT no_article, rue, code_postal, ville FROM RETRAITS";
-	private final String INSERT = "INSERT INTO RETRAITS (rue, code_postal, ville) VALUES (?, ?, ?)";
+	private final String INSERT = "INSERT INTO RETRAITS (no_article, rue, code_postal, ville) VALUES (? ,? ,? , ?)";
 	private final String UPDATE = "UPDATE RETRAITS SET rue = ?, code_postal = ?, ville = ? WHERE no_article = ?";
 	private final String DELETE = "DELETE INTO RETRAITS WHERE no_article = ?";
 	private final String SELECTBYID = "SELECT no_article, rue, code_postal, ville FROM RETRAITS WHERE no_article = ?";
+
+	private IArticleDAO daoA = DAOFact.getArticleDAO();
 
 	/**
 	 * {@inheritedDoc}
 	 */
 	@Override
 	public List<Retrait> selectAll() throws DALException {
+
+		ArticleVendu[] articleVendus = new ArticleVendu[1];
 		List<Retrait> result = new ArrayList<Retrait>();
+
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECTALL);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				Retrait retrait = new Retrait(rs.getInt("no_article"), rs.getString("rue"), rs.getString("code_postal"),
-						rs.getString("ville"));
+
+				ArticleVendu article = daoA.selectById(rs.getInt("no_article"));
+				for (int i = 0; i < articleVendus.length; i++) {
+					articleVendus[i] = article;
+				}
+				Retrait retrait = new Retrait(rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"),
+						articleVendus);
 				result.add(retrait);
 			}
 		} catch (SQLException e) {
@@ -56,22 +68,53 @@ public class RetraitDAO implements IRetraitDAO {
 	 * {@inheritedDoc}
 	 */
 	@Override
+	public Retrait selectById(Integer id) throws DALException {
+
+		ArticleVendu[] articleVendus = new ArticleVendu[1];
+
+		Retrait result = null;
+		try (Connection con = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = con.prepareStatement(SELECTBYID);
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				ArticleVendu article = daoA.selectById(rs.getInt("no_article"));
+				for (int i = 0; i < articleVendus.length; i++) {
+					articleVendus[i] = article;
+				}
+				result = new Retrait(rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"),
+						articleVendus);
+
+			}
+		} catch (SQLException e) {
+			throw new DALException("Probleme de select : " + e.getMessage());
+
+		}
+		return result;
+
+	}
+
+	/**
+	 * {@inheritedDoc}
+	 */
+	@Override
+
 	public void insert(Retrait retrait) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
-
-			PreparedStatement stmt = cnx.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
-
-			stmt.setString(1, retrait.getRue());
-			stmt.setString(2, retrait.getCodePostal());
-			stmt.setString(3, retrait.getVille());
-
-			Integer nb = stmt.executeUpdate();
-			if (nb > 0) {
-				ResultSet rs = stmt.getGeneratedKeys();
-				if (rs.next()) {
-					retrait.setArticleVendu((rs.getInt(1)));
-				}
+			ArticleVendu[] articleVendus = new ArticleVendu[1];
+			Integer id = null;
+			ArticleVendu[] article = retrait.getArticleVendu();
+			for (ArticleVendu articleVendu : article) {
+				id = articleVendu.getNoArticle();
 			}
+			PreparedStatement stmt = cnx.prepareStatement(INSERT);
+
+			stmt.setInt(1, id);
+			stmt.setString(2, retrait.getRue());
+			stmt.setString(3, retrait.getCodePostal());
+			stmt.setString(4, retrait.getVille());
+
+			stmt.executeUpdate();
 
 		} catch (SQLException e) {
 			throw new DALException("DAL - Erreur dans la fonction insert : " + e.getMessage());
@@ -85,7 +128,7 @@ public class RetraitDAO implements IRetraitDAO {
 	public void delete(Integer id) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
-			PreparedStatement stmt = cnx.prepareStatement(DELETE, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement stmt = cnx.prepareStatement(DELETE);
 
 			stmt.setInt(1, id);
 
@@ -116,28 +159,6 @@ public class RetraitDAO implements IRetraitDAO {
 		} catch (SQLException e) {
 			throw new DALException("DAL - Erreur dans la fonction update : " + e.getMessage());
 		}
-
-	}
-
-	/**
-	 * {@inheritedDoc}
-	 */
-	@Override
-	public Retrait selectById(Integer id) throws DALException {
-		Retrait result = null;
-		try (Connection con = ConnectionProvider.getConnection()) {
-			PreparedStatement stmt = con.prepareStatement(SELECTBYID);
-			ResultSet rs = stmt.executeQuery();
-			if (rs.next()) {
-				result = new Retrait(rs.getInt("no_article"), rs.getString("rue"), rs.getString("code_postal"),
-						rs.getString("ville"));
-
-			}
-		} catch (SQLException e) {
-			throw new DALException("Probleme de select : " + e.getMessage());
-
-		}
-		return result;
 
 	}
 
