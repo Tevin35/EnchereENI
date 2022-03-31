@@ -12,6 +12,7 @@ package fr.formation.enchere.eni.bll;
  *
  */
 public class RetraitManagerSing {
+	
 	private static IRetraitManager instance;
 	public static IRetraitManager getInstance() {
 		if(instance==null) {

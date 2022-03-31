@@ -18,8 +18,14 @@ import fr.formation.enchere.eni.bo.Retrait;
  */
 public interface IRetraitManager {
 
-	public void addRetrait(Retrait retrait) throws BLLException;
+	public void insert(Retrait retrait) throws BLLException;
+	
+	public void update(Retrait retrait) throws BLLException;
 
-	public List<Retrait> getAllRetraits() throws BLLException;
+	public List<Retrait> selectAll() throws BLLException;
+	
+	public Retrait selectById(Retrait retrait) throws BLLException;
+	
+	public void delete (Retrait retrait) throws BLLException;
 
 }

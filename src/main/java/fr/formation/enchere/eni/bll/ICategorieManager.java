@@ -3,6 +3,10 @@
  */
 package fr.formation.enchere.eni.bll;
 
+import java.util.List;
+
+import fr.formation.enchere.eni.bo.Categorie;
+
 /**
  * Classe en charge de
  * @author msorin2022
@@ -13,5 +17,14 @@ package fr.formation.enchere.eni.bll;
  */
 public interface ICategorieManager {
 
+	public void insert(Categorie categorie) throws BLLException;
+	
+	public void update (Categorie categorie) throws BLLException;
+	
+	public List<Categorie> selectAll() throws BLLException;
+	
+	public Categorie selectById(Categorie categorie) throws BLLException;
+	
+	public void delete (Categorie categorie) throws BLLException;
 	
 }
