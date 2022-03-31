@@ -86,9 +86,7 @@ public class UtilisateurManager implements IUtilisateurManager {
 	*{@inheriteDoc}
 	*/
 	@Override
-	public Utilisateur selectById(Utilisateur utilisateur) throws BLLException {
-		
-		Integer id = utilisateur.getNoUtilisateur();
+	public Utilisateur selectById(Integer id) throws BLLException {
 		
 		try {
 			return dao.selectById(id);

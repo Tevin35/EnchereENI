@@ -22,6 +22,7 @@ public class UtilisateurModel {
 	private Utilisateur utilisateur;
 	private List<Utilisateur> lstUtilisateurs = new ArrayList<>();
 	private String message;
+	private boolean connecter;
 
 	/**
 	 * Constructeur.
@@ -99,6 +100,24 @@ public class UtilisateurModel {
 	}
 
 	/**
+	 * Getter pour connecter.
+	 * 
+	 * @return the connecter
+	 */
+	public boolean isConnecter() {
+		return connecter;
+	}
+
+	/**
+	 * Setter pour connecter.
+	 * 
+	 * @param connecter the connecter to set
+	 */
+	public void setConnecter(boolean connecter) {
+		this.connecter = connecter;
+	}
+
+	/**
 	 * {@inheriteDoc}
 	 */
 	@Override
@@ -118,7 +137,10 @@ public class UtilisateurModel {
 		if (message != null) {
 			builder.append("message=");
 			builder.append(message);
+			builder.append(", ");
 		}
+		builder.append("connecter=");
+		builder.append(connecter);
 		builder.append("]");
 		return builder.toString();
 	}
