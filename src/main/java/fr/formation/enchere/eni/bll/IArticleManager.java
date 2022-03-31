@@ -23,7 +23,7 @@ public interface IArticleManager {
 
 	public List<ArticleVendu> selectAll() throws BLLException;
 	
-	public ArticleVendu selectById(ArticleVendu articlevendu) throws BLLException;
+	public ArticleVendu selectById(Integer id) throws BLLException;
 	
 	public void delete(ArticleVendu articleVendu) throws BLLException;
 

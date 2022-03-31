@@ -55,8 +55,8 @@ public class ArticleVendu {
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
-		this.noUtilisateur = noUtilisateur;
-		this.noCategorie = noCategorie;
+		this.setNoUtilisateur(noUtilisateur);
+		this.setNoCategorie(noCategorie);
 	}
 
 	/**
@@ -123,6 +123,31 @@ public class ArticleVendu {
 		this.concerne = concerne;
 		this.lstCategorie = lstCategorie;
 		this.lieuRetrait = lieuRetrait;
+	}
+	
+	
+
+	/**
+	 * Constructeur.
+	 * @param nomArticle
+	 * @param description
+	 * @param dateDebutEncheres
+	 * @param dateFinEncheres
+	 * @param miseAPrix
+	 * @param prixVente
+	 * @param noUtilisateur
+	 * @param noCategorie
+	 */
+	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
+			Integer miseAPrix, Integer prixVente, Utilisateur noUtilisateur, Categorie noCategorie) {
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
 	}
 
 	/**
@@ -411,6 +436,22 @@ public class ArticleVendu {
 		}
 		builder.append("]");
 		return builder.toString();
+	}
+
+	public Utilisateur getNoUtilisateur() {
+		return noUtilisateur;
+	}
+
+	public void setNoUtilisateur(Utilisateur noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
+	}
+
+	public Categorie getNoCategorie() {
+		return noCategorie;
+	}
+
+	public void setNoCategorie(Categorie noCategorie) {
+		this.noCategorie = noCategorie;
 	}
 
 }
