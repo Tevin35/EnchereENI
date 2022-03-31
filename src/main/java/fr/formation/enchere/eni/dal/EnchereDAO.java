@@ -33,7 +33,7 @@ public class EnchereDAO implements IEnchereDAO {
 	private String DELETE = "DELETE INTO ENCHERES WHERE no_enchere = ?";
 	private String SELECTALL = "SELECT date_enchere, montant_enchere, no_articles, no_utilisateur FROM ENCHERES";
 	private String SELECTBYID = "SELECT date_enchere, montant_enchere, no_articles, no_utilisateur FROM ENCHERES WHERE no_enchere = ?";
-	
+
 	private IUtilisateurDAO daoU = DAOFact.getUtilisateurDAO();
 	private IArticleDAO daoA = DAOFact.getArticleDAO();
 
@@ -50,9 +50,8 @@ public class EnchereDAO implements IEnchereDAO {
 
 			stmt.setDate(1, Date.valueOf(enchere.getDateEnchere()));
 			stmt.setInt(2, enchere.getMontantEnchere());
-			// TODO ajouter utlisateur et article
-			// stmt.setInt(3, article);
-			// stmt.setInt(4, utlisateur);
+			stmt.setInt(3, enchere.getLstArticleVendus().get(0).getNoArticle());
+			stmt.setInt(4, enchere.getLstUtilisateurs().get(0).getNoUtilisateur());
 
 			Integer nb = stmt.executeUpdate();
 			if (nb > 0) {
@@ -81,11 +80,10 @@ public class EnchereDAO implements IEnchereDAO {
 
 			stmt.setDate(1, Date.valueOf(enchere.getDateEnchere()));
 			stmt.setInt(2, enchere.getMontantEnchere());
-			// TODO ajouter utlisateur et article
-			// stmt.setInt(3, article);
-			// stmt.setInt(4, utlisateur);
+			stmt.setInt(3, enchere.getLstArticleVendus().get(0).getNoArticle());
+			stmt.setInt(4, enchere.getLstUtilisateurs().get(0).getNoUtilisateur());
 
-			stmt.setInt(10, id);
+			stmt.setInt(5, id);
 
 			stmt.executeUpdate();
 
@@ -124,25 +122,23 @@ public class EnchereDAO implements IEnchereDAO {
 		List<Enchere> result = new ArrayList<Enchere>();
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECTALL);
+
 			ResultSet rs = stmt.executeQuery();
 
-			ArticleVendu articles = null;
-
 			while (rs.next()) {
-				
+
 				List<Utilisateur> lstUtilisateurs = new ArrayList<>();
 				List<ArticleVendu> lstArticleVendus = new ArrayList<>();
-				
+
 				lstUtilisateurs.add(daoU.selectById(rs.getInt("no_utilisateur")));
 				lstArticleVendus.add(daoA.selectById(rs.getInt("no_article")));
-				
+
 				Enchere enchere = new Enchere(rs.getInt("no_enchere"), rs.getDate("date_enchere").toLocalDate(),
-						rs.getInt("montant_enchere"), enchere.setLstArticleVendus(lstArticleVendus),
-						enchere.setLstUtilisateurs(lstUtilisateurs));
+						rs.getInt("montant_enchere"), lstUtilisateurs, lstArticleVendus);
 				result.add(enchere);
 			}
 		} catch (SQLException e) {
-			throw new DALException("Probleme de select : " + e.getMessage());
+			throw new DALException("Probleme dans la fonction selectAll : " + e.getMessage());
 		}
 		return result;
 	}
@@ -151,28 +147,32 @@ public class EnchereDAO implements IEnchereDAO {
 	 * {@inheriteDoc}
 	 */
 	@Override
-	public Enchere selectById(Integer id) {
-		
+	public Enchere selectById(Integer id) throws DALException {
+
 		Enchere enchere = null;
-		
+		List<Utilisateur> lstUtilisateurs = new ArrayList<Utilisateur>();
+		List<ArticleVendu> lstArticleVendus = new ArrayList<ArticleVendu>();
+
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECTBYID);
+
+			stmt.setInt(1, id);
+
 			ResultSet rs = stmt.executeQuery();
-			
+
 			if (rs.next()) {
-				
-				List<Utilisateur> lstUtilisateurs = new ArrayList<>();
-				List<ArticleVendu> lstArticleVendus = new ArrayList<>();
-				
-				lstUtilisateurs.add(daoU.selectById(rs.getInt("no_utilisateur")));
-				lstArticleVendus.add(daoA.selectById(rs.getInt("no_article")));
-				
+
+				Utilisateur utilisateur = daoU.selectById(rs.getInt("no_utilisateur"));
+				ArticleVendu article = daoA.selectById(rs.getInt("no_article"));
+
+				lstUtilisateurs.add(utilisateur);
+				lstArticleVendus.add(article);
+
 				enchere = new Enchere(rs.getInt("no_enchere"), rs.getDate("date_enchere").toLocalDate(),
-						rs.getInt("montant_enchere"), enchere.setLstArticleVendus(lstArticleVendus),
-						enchere.setLstUtilisateurs(lstUtilisateurs));
+						rs.getInt("montant_enchere"), lstUtilisateurs, lstArticleVendus);
 			}
 		} catch (SQLException e) {
-			throw new DALException("Probleme de select : " + e.getMessage());
+			throw new DALException("Probleme dans la fonction selectById : " + e.getMessage());
 		}
 		return enchere;
 	}
