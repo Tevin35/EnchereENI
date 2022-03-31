@@ -11,6 +11,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.formation.enchere.eni.bo.ArticleVendu;
 import fr.formation.enchere.eni.bo.Retrait;
 import fr.formation.enchere.eni.dal.util.ConnectionProvider;
 
@@ -58,20 +59,21 @@ public class RetraitDAO implements IRetraitDAO {
 	@Override
 	public void insert(Retrait retrait) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
+			Integer id = null;
+			ArticleVendu[] article = retrait.getArticleVendu();
+			for (ArticleVendu articleVendu : article) {
+				id = articleVendu.getNoArticle();
+			}
 
-			PreparedStatement stmt = cnx.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement stmt = cnx.prepareStatement(INSERT);
 
 			stmt.setString(1, retrait.getRue());
 			stmt.setString(2, retrait.getCodePostal());
 			stmt.setString(3, retrait.getVille());
+			stmt.setInt(4, id);
 
-			Integer nb = stmt.executeUpdate();
-			if (nb > 0) {
-				ResultSet rs = stmt.getGeneratedKeys();
-				if (rs.next()) {
-					retrait.setArticleVendu((rs.getInt(1)));
-				}
-			}
+			stmt.executeUpdate();
+			
 
 		} catch (SQLException e) {
 			throw new DALException("DAL - Erreur dans la fonction insert : " + e.getMessage());
