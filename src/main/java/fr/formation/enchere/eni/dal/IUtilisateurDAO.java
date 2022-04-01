@@ -23,6 +23,8 @@ public interface IUtilisateurDAO {
 
 	public List<Utilisateur>selectAll() throws DALException; 
 	
+	public Utilisateur selectLogin(String pseudo, String mdp) throws DALException;
+	
 	public Utilisateur selectById(Integer id) throws DALException;
 	
 	public void delete(Integer id) throws DALException;
