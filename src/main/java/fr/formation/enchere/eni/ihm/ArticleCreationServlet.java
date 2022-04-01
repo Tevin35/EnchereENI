@@ -68,7 +68,7 @@ public class ArticleCreationServlet extends HttpServlet {
 				e1.printStackTrace();
 			}
 			ArticleVendu articleVendu = new ArticleVendu(nomArticle, description, dateDebutEncheres,
-					dateFinEncheres, miseAPrix, prixVente, utilisateur, categorie);
+					dateFinEncheres, miseAPrix, prixVente);
 
 			model.setArticleVendu(articleVendu);
 			System.out.println(articleVendu);
@@ -87,7 +87,6 @@ public class ArticleCreationServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
