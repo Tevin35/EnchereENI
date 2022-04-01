@@ -16,36 +16,21 @@ import fr.formation.enchere.eni.bo.Utilisateur;
  */
 public class TestDAL {
 	public static void main(String[] args) {
-		Utilisateur utilisateur = new Utilisateur("Lubulul", "Hut", "Laurent", "laurent.hut@mail.com", "0202130405",
-				"6 rue de Paris", "01000", "Paris", "0000", 1000, false);
-
-		IUtilisateurDAO dao = DAOFact.getUtilisateurDAO();
 		
+		IArticleDAO dao = DAOFact.getArticleDAO();
 		try {
-			dao.insert(utilisateur);
+			System.out.println(dao.selectAll());
 		} catch (DALException e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 		
-		Utilisateur utilisateurModif = new Utilisateur("Lubulul", "Hut", "Laurent", "laurent.hut@mail.com", "0450700119",
-				"6 rue de Paris", "01000", "Paris", "0000", 1000, false);
 		
-		try {
-			dao.update(utilisateurModif, utilisateur.getNoUtilisateur());
-		}catch (Exception e) {
-			e.getMessage();
-		}
 		
-		Integer id;
-		if (utilisateur.getNom().equals("nom") && utilisateur.getPrenom().equals("prenom")) {
-			id = utilisateur.getNoUtilisateur();
-		}
 		
-//		try {
-//			dao.delete(id);
-//		} catch (DALException e) {
-//			e.getMessage();
-//		}
-	}
-	
+		
+		
+		
+		
+		
+	}	
 }

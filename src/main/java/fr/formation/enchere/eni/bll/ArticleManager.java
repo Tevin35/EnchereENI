@@ -81,9 +81,8 @@ public class ArticleManager implements IArticleManager {
 	*{@inheritedDoc}
 	*/
 	@Override
-	public ArticleVendu selectById(ArticleVendu articleVendu) throws BLLException {
+	public ArticleVendu selectById(Integer id) throws BLLException {
 		
-		Integer id = articleVendu.getNoArticle();
 		
 		try {
 			return dao.selectById(id);
