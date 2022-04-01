@@ -94,7 +94,5 @@ public class UtilisateurManager implements IUtilisateurManager {
 			throw new BLLException("BLL - erreur dans la fonction selectById  : " + e.getMessage());
 		}
 	}
-	
-	
 
 }

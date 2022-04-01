@@ -56,25 +56,24 @@ public class ArticleCreationServlet extends HttpServlet {
 			Utilisateur utilisateur = null;
 			try {
 				utilisateur = managerUtilisateur.selectById(noUtilisateur);
+				System.out.println(utilisateur);
 			} catch (BLLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			Categorie categorie = null;
 			try {
 				categorie = managerCategorie.selectById(noCategorie);
 			} catch (BLLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			ArticleVendu articleVendu = new ArticleVendu(nomArticle, description, dateDebutEncheres,
 					dateFinEncheres, miseAPrix, prixVente, utilisateur, categorie);
 
 			model.setArticleVendu(articleVendu);
-			
+			System.out.println(articleVendu);
 			try {
 				managerArticle.insert(articleVendu);
-				model.setMessage("Création d'article réussie");
+				model.setMessage("Création d'article réussi");
 			} catch (BLLException e) {
 				model.setMessage("Erreur à la création d'article");
 			}
