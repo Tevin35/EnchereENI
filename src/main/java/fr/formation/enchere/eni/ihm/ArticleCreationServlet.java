@@ -63,6 +63,7 @@ public class ArticleCreationServlet extends HttpServlet {
 			Categorie categorie = null;
 			try {
 				categorie = managerCategorie.selectById(noCategorie);
+				System.out.println(categorie);
 			} catch (BLLException e1) {
 				e1.printStackTrace();
 			}
