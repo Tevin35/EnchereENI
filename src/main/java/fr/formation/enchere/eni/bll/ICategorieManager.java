@@ -26,5 +26,13 @@ public interface ICategorieManager {
 	public Categorie selectById(Integer id) throws BLLException;
 	
 	public void delete (Categorie categorie) throws BLLException;
+
+	/**
+	 * Méthode en charge de 
+	 * @param categorie
+	 * @return
+	 * @throws BLLException
+	 */
+	public Categorie selectById(Categorie categorie) throws BLLException;
 	
 }

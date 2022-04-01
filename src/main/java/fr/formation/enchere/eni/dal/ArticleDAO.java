@@ -67,6 +67,8 @@ public class ArticleDAO implements IArticleDAO{
 	@Override
 	public void insert(ArticleVendu articleVendu) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
+			articleVendu.setLstUtilisateur(daoU.selectAll());
+			articleVendu.setLstCategorie(daoC.selectAll());
 		PreparedStatement stmt = cnx.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
 
 		stmt.setString(1, articleVendu.getNomArticle());
@@ -75,8 +77,8 @@ public class ArticleDAO implements IArticleDAO{
 		stmt.setDate(4, Date.valueOf(articleVendu.getDateFinEncheres()));
 		stmt.setInt(5, articleVendu.getMiseAPrix());
 		stmt.setInt(6, articleVendu.getPrixVente());
-		stmt.setInt(7, articleVendu.getLstUtilisateur().get(0).getNoUtilisateur());
-		stmt.setInt(8, articleVendu.getLstCategorie().get(0).getNoCategorie());
+		stmt.setInt(7, articleVendu.getLstUtilisateur().get(1).getNoUtilisateur());
+		stmt.setInt(8, articleVendu.getLstCategorie().get(1).getNoCategorie());
 		Integer nb = stmt.executeUpdate();
 		if (nb > 0) {
 			ResultSet rs = stmt.getGeneratedKeys();
