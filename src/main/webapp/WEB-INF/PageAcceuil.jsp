@@ -23,8 +23,8 @@
 		<p>
 			<a href="http://localhost:8080/EnchereENI/EnchereServlet">Enchère</a>
 			<a href="http://localhost:8080/EnchereENI/ArticleCreationServlet">Vendre un article</a>
-			<a href="http://localhost:8080/EnchereENI/UtilisateurInformationServlet">Mon compte</a>
-			<a href="http://localhost:8080/EnchereENI/UtilisateurInformationServlet">Déconnexion</a>
+			<a href="http://localhost:8080/EnchereENI/UtilisateurInformationServlet">Mon profil</a>
+			<a href="http://localhost:8080/EnchereENI/PageAcceuilServlet">Déconnexion</a>
 		</p>
 		</c:if>
 	</header>
@@ -38,10 +38,9 @@
 				name="submit" value="Rechercher"> Categories : <select
 				name="categories" id="categories-select">
 				<option value="">--choisir une catégorie--</option>
-				<option value="informatique">Informatique</option>
-				<option value="ameublement">Ameublement</option>
-				<option value="vetement">Vêtement</option>
-				<option value="sport">Sport & Loisir</option>
+				<c:forEach items="${modelCat.lstCategories}" var="cat">
+					<option value="${cat.libelle}">${cat.libelle}</option>
+				</c:forEach>
 
 			</select>
 		</form>

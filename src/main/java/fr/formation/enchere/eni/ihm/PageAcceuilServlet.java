@@ -7,12 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.formation.enchere.eni.dal.DALException;
+import fr.formation.enchere.eni.dal.DAOFact;
+import fr.formation.enchere.eni.dal.ICategorieDAO;
+
 /**
  * Servlet implementation class PageAcceuilServlet
  */
 @WebServlet("/PageAcceuilServlet")
 public class PageAcceuilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	ICategorieDAO daoC = DAOFact.getCategorieDAO();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -26,9 +32,17 @@ public class PageAcceuilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		UtilisateurModel model = (UtilisateurModel) request.getSession().getAttribute("model");
-		System.out.println(request.getSession().getAttribute("model").toString());
-		request.setAttribute("model", model);
+		UtilisateurModel modelU = (UtilisateurModel) request.getSession().getAttribute("model");
+		CategorieModel modelCat = new CategorieModel();
+		
+		try {
+			modelCat.setLstCategories(daoC.selectAll());
+		} catch (DALException e) {
+			modelCat.setMessage("Impossible de récupérer les categories");
+		}
+		
+		request.setAttribute("modelCat", modelCat);
+		request.setAttribute("model", modelU);
 		request.getRequestDispatcher("/WEB-INF/PageAcceuil.jsp").forward(request, response);
 	}
 

@@ -36,30 +36,27 @@ public class UtilisateurConnexionServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		UtilisateurModel model = new UtilisateurModel();
-		
+
 		if (request.getParameter("connexion") != null) {
 			// verification que l'utlisateur existe sinon lui demander de s'inscrire
 			String pseudo = request.getParameter("pseudo");
 			String password = request.getParameter("password");
 
 			try {
-				for (Utilisateur utilisateur : manager.selectAll()) {
+				if (manager.selectLogin(pseudo, password) != null) {
+					// Connexion reussi garder l'utlisateur connecter
+					model.setUtilisateur(manager.selectLogin(pseudo, password));
+					model.setConnecter(true);
+					// retour page d'acceuil
+					request.getSession().setAttribute("model", model);
+					request.getRequestDispatcher("PageAcceuilServlet").forward(request, response);
 
-					if (utilisateur.getPseudo().trim().equalsIgnoreCase(pseudo)
-							&& utilisateur.getMotDePasse().equals(password)) {
-						// Connexion reussi garder l'utlisateur connecter
-						model.setUtilisateur(utilisateur);
-						model.setConnecter(true);
-						// retour page d'acceuil
-						request.getSession().setAttribute("model", model);
-						request.getRequestDispatcher("PageAcceuilServlet").forward(request, response);
-						break;
-					} else {
-						model.setMessage("Compte inexistant, veuillez en créer un.");
-						request.getSession().setAttribute("model", model);
-						request.getRequestDispatcher("/WEB-INF/UtilisateurConnexion.jsp").forward(request, response);
-					}
+				} else {
+					model.setMessage("Mot de passe incorrecte ou compte inexistant.");
+					request.getSession().setAttribute("model", model);
+					request.getRequestDispatcher("/WEB-INF/UtilisateurConnexion.jsp").forward(request, response);
 				}
+
 			} catch (BLLException e) {
 				model.setMessage("Erreur Select");
 			}

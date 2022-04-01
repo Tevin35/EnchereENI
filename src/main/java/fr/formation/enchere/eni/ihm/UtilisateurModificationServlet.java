@@ -13,18 +13,18 @@ import fr.formation.enchere.eni.bll.UtilisateurManagerSing;
 import fr.formation.enchere.eni.bo.Utilisateur;
 
 /**
- * Servlet implementation class UtilisateurInscriptionServlet
+ * Servlet implementation class UtilisateurModificationServlet
  */
-@WebServlet("/UtilisateurInscriptionServlet")
-public class UtilisateurInscriptionServlet extends HttpServlet {
+@WebServlet("/UtilisateurModificationServlet")
+public class UtilisateurModificationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private IUtilisateurManager manager = UtilisateurManagerSing.getInstance();
+	IUtilisateurManager manager = UtilisateurManagerSing.getInstance();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public UtilisateurInscriptionServlet() {
+	public UtilisateurModificationServlet() {
 		super();
 	}
 
@@ -34,10 +34,11 @@ public class UtilisateurInscriptionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		UtilisateurModel model = (UtilisateurModel) request.getSession().getAttribute("model");
 
-		if (request.getParameter("creer") != null) {
+		// update
+		if (request.getParameter("modifier") != null) {
+
 			String pseudo = request.getParameter("pseudo");
 			String nom = request.getParameter("nom");
 			String prenom = request.getParameter("prenom");
@@ -46,30 +47,42 @@ public class UtilisateurInscriptionServlet extends HttpServlet {
 			String rue = request.getParameter("rue");
 			String codePostal = request.getParameter("codePostal");
 			String ville = request.getParameter("ville");
-			String motDePasse = request.getParameter("motDePasse");
+			String motDePasse = request.getParameter("newMotDePasse");
 
-			Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
-					motDePasse, 1000, false);
-
-			model.setUtilisateur(utilisateur);
-			model.setConnecter(true);
-			if (model.isConnecter()) {
-				request.getSession().setAttribute("model", model);
-				request.getRequestDispatcher("PageAcceuilServlet").forward(request, response);
-			}
+			Utilisateur utilisateur = new Utilisateur(model.getUtilisateur().getNoUtilisateur(), pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
+					motDePasse, model.getUtilisateur().getCredit(), model.getUtilisateur().isAdministrateur());
 
 			try {
-				manager.insert(utilisateur);
-				model.setMessage("Inscription réussi");
+				manager.update(utilisateur);
 			} catch (BLLException e) {
-				model.setMessage("Erreur à l'inscription");
+
 			}
 		}
 
-		if (request.getParameter("annuler") != null) {
-			request.getRequestDispatcher("PageAcceuilServlet").forward(request, response);
+		// delete
+		if (request.getParameter("supprimer") != null) {
+
+			String pseudo = request.getParameter("pseudo");
+			String nom = request.getParameter("nom");
+			String prenom = request.getParameter("prenom");
+			String email = request.getParameter("email");
+			String telephone = request.getParameter("telephone");
+			String rue = request.getParameter("rue");
+			String codePostal = request.getParameter("codePostal");
+			String ville = request.getParameter("ville");
+			String motDePasse = request.getParameter("newPassword");
+
+			Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
+					motDePasse, model.getUtilisateur().getCredit(), model.getUtilisateur().isAdministrateur());
+
+			try {
+				manager.delete(utilisateur);
+			} catch (BLLException e) {
+
+			}
 		}
-		request.getRequestDispatcher("/WEB-INF/UtilisateurInscription.jsp").forward(request, response);
+
+		request.getRequestDispatcher("/WEB-INF/UtilisateurModification.jsp").forward(request, response);
 	}
 
 	/**

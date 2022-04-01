@@ -12,17 +12,10 @@
 		<h1>
 			<a href="http://localhost:8080/EnchereENI/PageAcceuilServlet">ENI-Encheres</a>
 		</h1>
-		<a href="http://localhost:8080/EnchereENI/UtilisateurInformationServlet">
-		Mon Compte</a>
-
-
 	</header>
 	<br>
 	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	
 
 	<form action="UtilisateurInscriptionServlet" method="post">
 		Pseudo : <input type="text" name="pseudo"><br>
