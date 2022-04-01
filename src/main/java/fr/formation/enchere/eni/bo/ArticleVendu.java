@@ -117,6 +117,9 @@ public class ArticleVendu {
 		this.noUtilisateur = noUtilisateur;
 		this.noCategorie = noCategorie;
 	}
+	
+	
+	
 	public Integer getNoArticle() {
 		return noArticle;
 	}

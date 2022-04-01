@@ -26,5 +26,7 @@ public interface IUtilisateurManager {
 	public Utilisateur selectById(Integer id) throws BLLException;
 	
 	public void delete(Utilisateur utilisateur) throws BLLException;
+	
+	public Utilisateur selectById(Utilisateur utilisateur) throws BLLException;
 
 }
