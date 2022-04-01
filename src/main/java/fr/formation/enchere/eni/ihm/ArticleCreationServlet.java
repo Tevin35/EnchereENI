@@ -51,16 +51,16 @@ public class ArticleCreationServlet extends HttpServlet {
 			LocalDate dateFinEncheres = LocalDate.parse(request.getParameter("dateFinEncheres"));
 			Integer miseAPrix = Integer.parseInt(request.getParameter("miseAPrix"));
 			Integer prixVente = Integer.parseInt(request.getParameter("prixVente"));
-			Integer noUtilisateur = Integer.parseInt(request.getParameter("noUtilisateur"));
 			Utilisateur utilisateur = null;
+			Integer noUtilisateur = Integer.parseInt(request.getParameter("noUtilisateur"));
 			try {
 				utilisateur = managerUtilisateur.selectById(noUtilisateur);
 				System.out.println(utilisateur);
 			} catch (BLLException e1) {
 				e1.printStackTrace();
 			}
-			Integer noCategorie = Integer.parseInt(request.getParameter("noCategorie"));
 			Categorie categorie = null;
+			Integer noCategorie = Integer.parseInt(request.getParameter("noCategorie"));
 			try {
 				categorie = managerCategorie.selectById(noCategorie);
 				System.out.println(categorie);

@@ -26,15 +26,14 @@ public class ArticleVendu {
 	private Integer miseAPrix;
 	private Integer prixVente;
 	private String etatVente;
-	private List<Utilisateur> lstUtilisateur = new ArrayList<Utilisateur>();
+	private List<Utilisateur> lstUtilisateurs = new ArrayList<Utilisateur>();
 	private Enchere concerne;
-	private List<Categorie> lstCategorie = new ArrayList<Categorie>();
+	private List<Categorie> lstCategories = new ArrayList<Categorie>();
 	private Retrait lieuRetrait;
 	private Utilisateur noUtilisateur;
 	private Categorie noCategorie;
-	
 	/**
-	 * Constructeur pour le SELECT ArticleDAO
+	 * Constructeur.
 	 * @param noArticle
 	 * @param nomArticle
 	 * @param description
@@ -42,43 +41,18 @@ public class ArticleVendu {
 	 * @param dateFinEncheres
 	 * @param miseAPrix
 	 * @param prixVente
+	 * @param etatVente
+	 * @param lstUtilisateurs
+	 * @param concerne
+	 * @param lstCategories
+	 * @param lieuRetrait
 	 * @param noUtilisateur
 	 * @param noCategorie
 	 */
 	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, Integer miseAPrix, Integer prixVente, Utilisateur noUtilisateur,
-			Categorie noCategorie) {
-		this.noArticle = noArticle;
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.miseAPrix = miseAPrix;
-		this.prixVente = prixVente;
-		this.setNoUtilisateur(noUtilisateur);
-		this.setNoCategorie(noCategorie);
-	}
-
-	/**
-	 * Constructeur.
-	 * 
-	 * @param noArticle
-	 * @param nomArticle
-	 * @param description
-	 * @param dateDebutEncheres
-	 * @param dateFinEncheres
-	 * @param miseAPrix
-	 * @param prixVente
-	 * @param etatVente
-	 * @param lstUtilisateur
-	 * @param concerne
-	 * @param lstCategorie
-	 * @param lieuRetrait
-	 */
-	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
 			LocalDate dateFinEncheres, Integer miseAPrix, Integer prixVente, String etatVente,
-			List<Utilisateur> lstUtilisateur, Enchere concerne, List<Categorie> lstCategorie, Retrait lieuRetrait) {
-		super();
+			List<Utilisateur> lstUtilisateurs, Enchere concerne, List<Categorie> lstCategories, Retrait lieuRetrait,
+			Utilisateur noUtilisateur, Categorie noCategorie) {
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -87,46 +61,13 @@ public class ArticleVendu {
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
 		this.etatVente = etatVente;
-		this.lstUtilisateur = lstUtilisateur;
+		this.lstUtilisateurs = lstUtilisateurs;
 		this.concerne = concerne;
-		this.lstCategorie = lstCategorie;
+		this.lstCategories = lstCategories;
 		this.lieuRetrait = lieuRetrait;
+		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
 	}
-
-	/**
-	 * Constructeur.
-	 * 
-	 * @param nomArticle
-	 * @param description
-	 * @param dateDebutEncheres
-	 * @param dateFinEncheres
-	 * @param miseAPrix
-	 * @param prixVente
-	 * @param etatVente
-	 * @param lstUtilisateur
-	 * @param concerne
-	 * @param lstCategorie
-	 * @param lieuRetrait
-	 */
-	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
-			Integer miseAPrix, Integer prixVente, String etatVente, List<Utilisateur> lstUtilisateur, Enchere concerne,
-			List<Categorie> lstCategorie, Retrait lieuRetrait) {
-		super();
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.miseAPrix = miseAPrix;
-		this.prixVente = prixVente;
-		this.etatVente = etatVente;
-		this.lstUtilisateur = lstUtilisateur;
-		this.concerne = concerne;
-		this.lstCategorie = lstCategorie;
-		this.lieuRetrait = lieuRetrait;
-	}
-	
-	
-
 	/**
 	 * Constructeur.
 	 * @param nomArticle
@@ -150,257 +91,116 @@ public class ArticleVendu {
 		this.noCategorie = noCategorie;
 	}
 	
+	
 	/**
 	 * Constructeur.
+	 * @param noArticle
 	 * @param nomArticle
 	 * @param description
 	 * @param dateDebutEncheres
 	 * @param dateFinEncheres
 	 * @param miseAPrix
 	 * @param prixVente
+	 * @param noUtilisateur
+	 * @param noCategorie
 	 */
-	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
-			Integer miseAPrix, Integer prixVente) {
+	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
+			LocalDate dateFinEncheres, Integer miseAPrix, Integer prixVente, Utilisateur noUtilisateur,
+			Categorie noCategorie) {
+		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
 		this.dateDebutEncheres = dateDebutEncheres;
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
+		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
 	}
-
-	/**
-	 * Getter pour noArticle.
-	 * 
-	 * @return the noArticle
-	 */
 	public Integer getNoArticle() {
 		return noArticle;
 	}
-
-	/**
-	 * Setter pour noArticle.
-	 * 
-	 * @param noArticle the noArticle to set
-	 */
 	public void setNoArticle(Integer noArticle) {
 		this.noArticle = noArticle;
 	}
-
-	/**
-	 * Getter pour nomArticle.
-	 * 
-	 * @return the nomArticle
-	 */
 	public String getNomArticle() {
 		return nomArticle;
 	}
-
-	/**
-	 * Setter pour nomArticle.
-	 * 
-	 * @param nomArticle the nomArticle to set
-	 */
 	public void setNomArticle(String nomArticle) {
 		this.nomArticle = nomArticle;
 	}
-
-	/**
-	 * Getter pour description.
-	 * 
-	 * @return the description
-	 */
 	public String getDescription() {
 		return description;
 	}
-
-	/**
-	 * Setter pour description.
-	 * 
-	 * @param description the description to set
-	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	/**
-	 * Getter pour dateDebutEncheres.
-	 * 
-	 * @return the dateDebutEncheres
-	 */
 	public LocalDate getDateDebutEncheres() {
 		return dateDebutEncheres;
 	}
-
-	/**
-	 * Setter pour dateDebutEncheres.
-	 * 
-	 * @param dateDebutEncheres the dateDebutEncheres to set
-	 */
 	public void setDateDebutEncheres(LocalDate dateDebutEncheres) {
 		this.dateDebutEncheres = dateDebutEncheres;
 	}
-
-	/**
-	 * Getter pour dateFinEncheres.
-	 * 
-	 * @return the dateFinEncheres
-	 */
 	public LocalDate getDateFinEncheres() {
 		return dateFinEncheres;
 	}
-
-	/**
-	 * Setter pour dateFinEncheres.
-	 * 
-	 * @param dateFinEncheres the dateFinEncheres to set
-	 */
 	public void setDateFinEncheres(LocalDate dateFinEncheres) {
 		this.dateFinEncheres = dateFinEncheres;
 	}
-
-	/**
-	 * Getter pour miseAPrix.
-	 * 
-	 * @return the miseAPrix
-	 */
 	public Integer getMiseAPrix() {
 		return miseAPrix;
 	}
-
-	/**
-	 * Setter pour miseAPrix.
-	 * 
-	 * @param miseAPrix the miseAPrix to set
-	 */
 	public void setMiseAPrix(Integer miseAPrix) {
 		this.miseAPrix = miseAPrix;
 	}
-
-	/**
-	 * Getter pour prixVente.
-	 * 
-	 * @return the prixVente
-	 */
 	public Integer getPrixVente() {
 		return prixVente;
 	}
-
-	/**
-	 * Setter pour prixVente.
-	 * 
-	 * @param prixVente the prixVente to set
-	 */
 	public void setPrixVente(Integer prixVente) {
 		this.prixVente = prixVente;
 	}
-
-	/**
-	 * Getter pour etatVente.
-	 * 
-	 * @return the etatVente
-	 */
 	public String getEtatVente() {
 		return etatVente;
 	}
-
-	/**
-	 * Setter pour etatVente.
-	 * 
-	 * @param etatVente the etatVente to set
-	 */
 	public void setEtatVente(String etatVente) {
 		this.etatVente = etatVente;
 	}
-
-	/**
-	 * Getter pour lstUtilisateur.
-	 * 
-	 * @return the lstUtilisateur
-	 */
-	public List<Utilisateur> getLstUtilisateur() {
-		return lstUtilisateur;
+	public List<Utilisateur> getLstUtilisateurs() {
+		return lstUtilisateurs;
 	}
-
-	/**
-	 * Setter pour lstUtilisateur.
-	 * 
-	 * @param lstUtilisateur the lstUtilisateur to set
-	 */
-	public void setLstUtilisateur(List<Utilisateur> lstUtilisateur) {
-		this.lstUtilisateur = lstUtilisateur;
+	public void setLstUtilisateurs(List<Utilisateur> lstUtilisateurs) {
+		this.lstUtilisateurs = lstUtilisateurs;
 	}
-
-	/**
-	 * Getter pour concerne.
-	 * 
-	 * @return the concerne
-	 */
 	public Enchere getConcerne() {
 		return concerne;
 	}
-
-	/**
-	 * Setter pour concerne.
-	 * 
-	 * @param concerne the concerne to set
-	 */
 	public void setConcerne(Enchere concerne) {
 		this.concerne = concerne;
 	}
-
-	/**
-	 * Getter pour lstCategorie.
-	 * 
-	 * @return the lstCategorie
-	 */
-	public List<Categorie> getLstCategorie() {
-		return lstCategorie;
+	public List<Categorie> getLstCategories() {
+		return lstCategories;
 	}
-
-	/**
-	 * Setter pour lstCategorie.
-	 * 
-	 * @param lstCategorie the lstCategorie to set
-	 */
-	public void setLstCategorie(List<Categorie> lstCategorie) {
-		this.lstCategorie = lstCategorie;
+	public void setLstCategories(List<Categorie> lstCategories) {
+		this.lstCategories = lstCategories;
 	}
-
-	/**
-	 * Getter pour lieuRetrait.
-	 * 
-	 * @return the lieuRetrait
-	 */
 	public Retrait getLieuRetrait() {
 		return lieuRetrait;
 	}
-
-	/**
-	 * Setter pour lieuRetrait.
-	 * 
-	 * @param lieuRetrait the lieuRetrait to set
-	 */
 	public void setLieuRetrait(Retrait lieuRetrait) {
 		this.lieuRetrait = lieuRetrait;
 	}
-	
 	public Utilisateur getNoUtilisateur() {
 		return noUtilisateur;
 	}
-
 	public void setNoUtilisateur(Utilisateur noUtilisateur) {
 		this.noUtilisateur = noUtilisateur;
 	}
-
 	public Categorie getNoCategorie() {
 		return noCategorie;
 	}
-
 	public void setNoCategorie(Categorie noCategorie) {
 		this.noCategorie = noCategorie;
 	}
-
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -445,9 +245,9 @@ public class ArticleVendu {
 			builder.append(etatVente);
 			builder.append(", ");
 		}
-		if (lstUtilisateur != null) {
-			builder.append("lstUtilisateur=");
-			builder.append(lstUtilisateur);
+		if (lstUtilisateurs != null) {
+			builder.append("lstUtilisateurs=");
+			builder.append(lstUtilisateurs);
 			builder.append(", ");
 		}
 		if (concerne != null) {
@@ -455,9 +255,9 @@ public class ArticleVendu {
 			builder.append(concerne);
 			builder.append(", ");
 		}
-		if (lstCategorie != null) {
-			builder.append("lstCategorie=");
-			builder.append(lstCategorie);
+		if (lstCategories != null) {
+			builder.append("lstCategories=");
+			builder.append(lstCategories);
 			builder.append(", ");
 		}
 		if (lieuRetrait != null) {
@@ -477,5 +277,6 @@ public class ArticleVendu {
 		builder.append("]");
 		return builder.toString();
 	}
+	
+	
 }
-
