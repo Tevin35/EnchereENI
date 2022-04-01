@@ -52,7 +52,6 @@ public class ArticleCreationServlet extends HttpServlet {
 			Integer miseAPrix = Integer.parseInt(request.getParameter("miseAPrix"));
 			Integer prixVente = Integer.parseInt(request.getParameter("prixVente"));
 			Integer noUtilisateur = Integer.parseInt(request.getParameter("noUtilisateur"));
-			Integer noCategorie = Integer.parseInt(request.getParameter("noCategorie"));
 			Utilisateur utilisateur = null;
 			try {
 				utilisateur = managerUtilisateur.selectById(noUtilisateur);
@@ -60,6 +59,7 @@ public class ArticleCreationServlet extends HttpServlet {
 			} catch (BLLException e1) {
 				e1.printStackTrace();
 			}
+			Integer noCategorie = Integer.parseInt(request.getParameter("noCategorie"));
 			Categorie categorie = null;
 			try {
 				categorie = managerCategorie.selectById(noCategorie);
