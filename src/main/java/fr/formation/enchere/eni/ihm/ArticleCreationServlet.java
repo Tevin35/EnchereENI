@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.formation.enchere.eni.bll.ArticleManagerSing;
 import fr.formation.enchere.eni.bll.BLLException;
+import fr.formation.enchere.eni.bll.CategorieManagerSing;
 import fr.formation.enchere.eni.bll.IArticleManager;
 import fr.formation.enchere.eni.bll.ICategorieManager;
 import fr.formation.enchere.eni.bll.IUtilisateurManager;
@@ -51,17 +52,30 @@ public class ArticleCreationServlet extends HttpServlet {
 			Integer miseAPrix = Integer.parseInt(request.getParameter("miseAPrix"));
 			Integer prixVente = Integer.parseInt(request.getParameter("prixVente"));
 			Integer noUtilisateur = Integer.parseInt(request.getParameter("noUtilisateur"));
+			Utilisateur utilisateur = null;
+			try {
+				utilisateur = managerUtilisateur.selectById(noUtilisateur);
+				System.out.println(utilisateur);
+			} catch (BLLException e1) {
+				e1.printStackTrace();
+			}
 			Integer noCategorie = Integer.parseInt(request.getParameter("noCategorie"));
-			Utilisateur utilisateur = managerUtilisateur.selectById(noUtilisateur);
-			Categorie categorie = managerCategorie.selectById(noCategorie);
+			Categorie categorie = null;
+			try {
+				categorie = managerCategorie.selectById(noCategorie);
+				System.out.println(categorie);
+			} catch (BLLException e1) {
+				e1.printStackTrace();
+			}
+
 			ArticleVendu articleVendu = new ArticleVendu(nomArticle, description, dateDebutEncheres,
 					dateFinEncheres, miseAPrix, prixVente, utilisateur, categorie);
 
 			model.setArticleVendu(articleVendu);
-			
+			System.out.println(articleVendu);
 			try {
 				managerArticle.insert(articleVendu);
-				model.setMessage("Création d'article réussie");
+				model.setMessage("Création d'article réussi");
 			} catch (BLLException e) {
 				model.setMessage("Erreur à la création d'article");
 			}
@@ -74,7 +88,6 @@ public class ArticleCreationServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

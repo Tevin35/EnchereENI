@@ -70,22 +70,22 @@ public class ArticleDAO implements IArticleDAO {
 	@Override
 	public void insert(ArticleVendu articleVendu) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
-			PreparedStatement stmt = cnx.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
+			
+		PreparedStatement stmt = cnx.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
 
-			stmt.setString(1, articleVendu.getNomArticle());
-			stmt.setString(2, articleVendu.getDescription());
-			stmt.setDate(3, Date.valueOf(articleVendu.getDateDebutEncheres()));
-			stmt.setDate(4, Date.valueOf(articleVendu.getDateFinEncheres()));
-			stmt.setInt(5, articleVendu.getMiseAPrix());
-			stmt.setInt(6, articleVendu.getPrixVente());
-			stmt.setInt(7, articleVendu.getLstUtilisateur().get(0).getNoUtilisateur());
-			stmt.setInt(8, articleVendu.getLstCategorie().get(0).getNoCategorie());
-			Integer nb = stmt.executeUpdate();
-			if (nb > 0) {
-				ResultSet rs = stmt.getGeneratedKeys();
-				if (rs.next()) {
-					articleVendu.setNoArticle((rs.getInt(1)));
-				}
+		stmt.setString(1, articleVendu.getNomArticle());
+		stmt.setString(2, articleVendu.getDescription());
+		stmt.setDate(3, Date.valueOf(articleVendu.getDateDebutEncheres()));
+		stmt.setDate(4, Date.valueOf(articleVendu.getDateFinEncheres()));
+		stmt.setInt(5, articleVendu.getMiseAPrix());
+		stmt.setInt(6, articleVendu.getPrixVente());
+		stmt.setObject(7, articleVendu.getNoUtilisateur().getNoUtilisateur());
+		stmt.setObject(8, articleVendu.getNoCategorie().getNoCategorie());
+		Integer nb = stmt.executeUpdate();
+		if (nb > 0) {
+			ResultSet rs = stmt.getGeneratedKeys();
+			if (rs.next()) {
+				articleVendu.setNoArticle((rs.getInt(1)));
 			}
 
 		} catch (SQLException e) {
@@ -121,8 +121,8 @@ public class ArticleDAO implements IArticleDAO {
 			stmt.setDate(4, Date.valueOf(articleVendu.getDateFinEncheres()));
 			stmt.setInt(5, articleVendu.getMiseAPrix());
 			stmt.setInt(6, articleVendu.getPrixVente());
-			stmt.setInt(7, articleVendu.getLstUtilisateur().get(0).getNoUtilisateur());
-			stmt.setInt(8, articleVendu.getLstCategorie().get(0).getNoCategorie());
+			stmt.setInt(7, articleVendu.getNoUtilisateur().getNoUtilisateur());
+			stmt.setInt(8, articleVendu.getNoCategorie().getNoCategorie());
 			stmt.setInt(9, id);
 
 			stmt.executeUpdate();

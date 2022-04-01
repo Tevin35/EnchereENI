@@ -27,4 +27,12 @@ public interface IArticleManager {
 	
 	public void delete(ArticleVendu articleVendu) throws BLLException;
 
+	/**
+	 * Méthode en charge de 
+	 * @param articleVendu
+	 * @return
+	 * @throws BLLException
+	 */
+	public ArticleVendu selectById(ArticleVendu articleVendu) throws BLLException;
+
 }

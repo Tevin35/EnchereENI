@@ -149,6 +149,25 @@ public class ArticleVendu {
 		this.noUtilisateur = noUtilisateur;
 		this.noCategorie = noCategorie;
 	}
+	
+	/**
+	 * Constructeur.
+	 * @param nomArticle
+	 * @param description
+	 * @param dateDebutEncheres
+	 * @param dateFinEncheres
+	 * @param miseAPrix
+	 * @param prixVente
+	 */
+	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
+			Integer miseAPrix, Integer prixVente) {
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+	}
 
 	/**
 	 * Getter pour noArticle.
@@ -366,11 +385,22 @@ public class ArticleVendu {
 		this.lieuRetrait = lieuRetrait;
 	}
 	
-	
+	public Utilisateur getNoUtilisateur() {
+		return noUtilisateur;
+	}
 
-	/**
-	 * {@inheritedDoc}
-	 */
+	public void setNoUtilisateur(Utilisateur noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
+	}
+
+	public Categorie getNoCategorie() {
+		return noCategorie;
+	}
+
+	public void setNoCategorie(Categorie noCategorie) {
+		this.noCategorie = noCategorie;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -433,25 +463,19 @@ public class ArticleVendu {
 		if (lieuRetrait != null) {
 			builder.append("lieuRetrait=");
 			builder.append(lieuRetrait);
+			builder.append(", ");
+		}
+		if (noUtilisateur != null) {
+			builder.append("noUtilisateur=");
+			builder.append(noUtilisateur);
+			builder.append(", ");
+		}
+		if (noCategorie != null) {
+			builder.append("noCategorie=");
+			builder.append(noCategorie);
 		}
 		builder.append("]");
 		return builder.toString();
 	}
-
-	public Utilisateur getNoUtilisateur() {
-		return noUtilisateur;
-	}
-
-	public void setNoUtilisateur(Utilisateur noUtilisateur) {
-		this.noUtilisateur = noUtilisateur;
-	}
-
-	public Categorie getNoCategorie() {
-		return noCategorie;
-	}
-
-	public void setNoCategorie(Categorie noCategorie) {
-		this.noCategorie = noCategorie;
-	}
-
 }
+
