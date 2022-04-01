@@ -150,8 +150,6 @@ public class ArticleVendu {
 		this.noCategorie = noCategorie;
 	}
 	
-	
-
 	/**
 	 * Constructeur.
 	 * @param nomArticle
@@ -387,11 +385,22 @@ public class ArticleVendu {
 		this.lieuRetrait = lieuRetrait;
 	}
 	
-	
+	public Utilisateur getNoUtilisateur() {
+		return noUtilisateur;
+	}
 
-	/**
-	 * {@inheritedDoc}
-	 */
+	public void setNoUtilisateur(Utilisateur noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
+	}
+
+	public Categorie getNoCategorie() {
+		return noCategorie;
+	}
+
+	public void setNoCategorie(Categorie noCategorie) {
+		this.noCategorie = noCategorie;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -454,25 +463,19 @@ public class ArticleVendu {
 		if (lieuRetrait != null) {
 			builder.append("lieuRetrait=");
 			builder.append(lieuRetrait);
+			builder.append(", ");
+		}
+		if (noUtilisateur != null) {
+			builder.append("noUtilisateur=");
+			builder.append(noUtilisateur);
+			builder.append(", ");
+		}
+		if (noCategorie != null) {
+			builder.append("noCategorie=");
+			builder.append(noCategorie);
 		}
 		builder.append("]");
 		return builder.toString();
 	}
-
-	public Utilisateur getNoUtilisateur() {
-		return noUtilisateur;
-	}
-
-	public void setNoUtilisateur(Utilisateur noUtilisateur) {
-		this.noUtilisateur = noUtilisateur;
-	}
-
-	public Categorie getNoCategorie() {
-		return noCategorie;
-	}
-
-	public void setNoCategorie(Categorie noCategorie) {
-		this.noCategorie = noCategorie;
-	}
-
 }
+

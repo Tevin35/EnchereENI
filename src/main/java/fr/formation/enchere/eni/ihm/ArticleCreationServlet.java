@@ -67,8 +67,9 @@ public class ArticleCreationServlet extends HttpServlet {
 			} catch (BLLException e1) {
 				e1.printStackTrace();
 			}
+
 			ArticleVendu articleVendu = new ArticleVendu(nomArticle, description, dateDebutEncheres,
-					dateFinEncheres, miseAPrix, prixVente);
+					dateFinEncheres, miseAPrix, prixVente, utilisateur, categorie);
 
 			model.setArticleVendu(articleVendu);
 			System.out.println(articleVendu);

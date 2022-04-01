@@ -76,8 +76,8 @@ public class ArticleDAO implements IArticleDAO{
 		stmt.setDate(4, Date.valueOf(articleVendu.getDateFinEncheres()));
 		stmt.setInt(5, articleVendu.getMiseAPrix());
 		stmt.setInt(6, articleVendu.getPrixVente());
-		stmt.setInt(7, articleVendu.getNoUtilisateur().getNoUtilisateur());
-		stmt.setInt(8, articleVendu.getNoCategorie().getNoCategorie());
+		stmt.setObject(7, articleVendu.getNoUtilisateur().getNoUtilisateur());
+		stmt.setObject(8, articleVendu.getNoCategorie().getNoCategorie());
 		Integer nb = stmt.executeUpdate();
 		if (nb > 0) {
 			ResultSet rs = stmt.getGeneratedKeys();
