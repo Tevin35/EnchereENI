@@ -154,10 +154,6 @@ public class ArticleDAO implements IArticleDAO {
 						rs.getString("description"), rs.getDate("date_debut_encheres").toLocalDate(),
 						rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("prix_initial"),
 						rs.getInt("prix_vente"), utilisateur, categorie);
-<<<<<<< HEAD
-				System.out.println(articleVendu);
-=======
->>>>>>> 9eedb40ccefcbfc39e855f590fccf0d243c6ea44
 			}
 		} catch (SQLException e) {
 			throw new DALException("Probleme de select : " + e.getMessage());
