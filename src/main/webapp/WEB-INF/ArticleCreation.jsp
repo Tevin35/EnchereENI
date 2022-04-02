@@ -14,8 +14,9 @@
 	Date de fin de l'enchère :  <input type="date" name="dateFinEncheres"><br><br>
 	Prix du début de l'enchère : <input type="number" name="miseAPrix"><br><br>
 	Prix de la fin de l'enchère : <input type="number" name="prixVente"><br><br>
-	Numéro de l'utilisateur : <input type="number" name="noUtilisateur"><br><br>
+	<!--  Numéro de l'utilisateur : <input type="number" name="noUtilisateur"><br><br>
 	Numéro de la catégorie (1 à 4) : <input type="number" name="noCategorie"><br><br>
+	-->
 	
 	<input type="submit" name="valider" value="Valider">
 	

@@ -120,6 +120,25 @@ public class ArticleVendu {
 	
 	
 	
+	
+	/**
+	 * Constructeur.
+	 * @param nomArticle
+	 * @param description
+	 * @param dateDebutEncheres
+	 * @param dateFinEncheres
+	 * @param miseAPrix
+	 * @param prixVente
+	 */
+	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
+			Integer miseAPrix, Integer prixVente) {
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+	}
 	public Integer getNoArticle() {
 		return noArticle;
 	}
@@ -280,6 +299,7 @@ public class ArticleVendu {
 		builder.append("]");
 		return builder.toString();
 	}
+
 	
 	
 }
