@@ -92,16 +92,12 @@ public class ArticleManager implements IArticleManager {
 	}
 
 	/**
-	*{@inheritedDoc}
+	*{@inheriteDoc}
 	*/
 	@Override
-	public ArticleVendu selectById(Integer id) throws BLLException {
-		
-		try {
-			return dao.selectById(id);
-		} catch (DALException e) {
-			throw new BLLException("BLL - erreur dans la fonction selectById  : " + e.getMessage());
-		}
+	public ArticleVendu selectById(ArticleVendu articleVendu) throws BLLException {
+		//TODO 
+		return null;
 	}
 
 }
