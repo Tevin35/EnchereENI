@@ -26,7 +26,7 @@ import fr.formation.enchere.eni.dal.util.ConnectionProvider;
 public class UtilisateurDAO implements IUtilisateurDAO {
 
 	private final String SELECT = "SELECT  no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS";
-	private final String SELECTLOGIN = "SELECT  no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE pseudo = ? OR email = ? AND mot_de_passe = ?";
+	private final String SELECTLOGIN = "SELECT  no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE (pseudo = ? OR email = ?) AND mot_de_passe = ?";
 	private final String SELECTBYID = "SELECT  no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE no_utilisateur = ?";
 	private final String INSERT = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private final String UPDATE = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?, mot_de_passe = ? WHERE no_utilisateur = ?";
@@ -66,7 +66,8 @@ public class UtilisateurDAO implements IUtilisateurDAO {
 			PreparedStatement stmt = con.prepareStatement(SELECTLOGIN);
 			
 			stmt.setString(1, pseudo);
-			stmt.setString(2, mdp);
+			stmt.setString(2, pseudo);
+			stmt.setString(3, mdp);
 			
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
