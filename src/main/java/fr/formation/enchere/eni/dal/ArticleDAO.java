@@ -48,10 +48,6 @@ public class ArticleDAO implements IArticleDAO {
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECT);
 			ResultSet rs = stmt.executeQuery();
-<<<<<<< HEAD
-			
-=======
->>>>>>> 131797588a461367f8a514f48dae57c21c46715c
 			while (rs.next()) {
 				Utilisateur utilisateur = daoU.selectById(rs.getInt("no_utilisateur"));
 				Categorie categorie = daoC.selectById(rs.getInt("no_categorie"));
@@ -83,23 +79,16 @@ public class ArticleDAO implements IArticleDAO {
 			stmt.setDate(4, Date.valueOf(articleVendu.getDateFinEncheres()));
 			stmt.setInt(5, articleVendu.getMiseAPrix());
 			stmt.setInt(6, articleVendu.getPrixVente());
-<<<<<<< HEAD
-			stmt.setObject(7, articleVendu.getNoUtilisateur().getNoUtilisateur());
-			stmt.setObject(8, articleVendu.getNoCategorie().getNoCategorie());
-=======
 			stmt.setInt(7, articleVendu.getNoUtilisateur().getNoUtilisateur());
 			stmt.setInt(8, articleVendu.getNoCategorie().getNoCategorie());
->>>>>>> 131797588a461367f8a514f48dae57c21c46715c
+
 			Integer nb = stmt.executeUpdate();
 			if (nb > 0) {
 				ResultSet rs = stmt.getGeneratedKeys();
 				if (rs.next()) {
 					articleVendu.setNoArticle((rs.getInt(1)));
 				}
-<<<<<<< HEAD
 
-=======
->>>>>>> 131797588a461367f8a514f48dae57c21c46715c
 			}
 		} catch (SQLException e) {
 			throw new DALException("DAL - Erreur dans la fonction insert : " + e.getMessage());

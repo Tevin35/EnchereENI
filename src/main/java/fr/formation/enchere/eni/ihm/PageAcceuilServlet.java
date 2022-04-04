@@ -1,6 +1,7 @@
 package fr.formation.enchere.eni.ihm;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,15 +36,24 @@ public class PageAcceuilServlet extends HttpServlet {
 		UtilisateurModel modelU = (UtilisateurModel) request.getSession().getAttribute("model");
 		CategorieModel modelCat = new CategorieModel();
 		
+		
+		
 		try {
 			modelCat.setLstCategories(daoC.selectAll());
 		} catch (DALException e) {
 			modelCat.setMessage("Impossible de récupérer les categories");
 		}
+		if (request.getParameter("deco") != null) {
+			request.getSession().invalidate();
+			modelU.setConnecter(false);
+			request.setAttribute("model", modelU);
+			request.getRequestDispatcher("/WEB-INF/PageAcceuil.jsp").forward(request, response);
+		}else {
+			request.setAttribute("modelCat", modelCat);
+			request.setAttribute("model", modelU);
+			request.getRequestDispatcher("/WEB-INF/PageAcceuil.jsp").forward(request, response);
+		}
 		
-		request.setAttribute("modelCat", modelCat);
-		request.setAttribute("model", modelU);
-		request.getRequestDispatcher("/WEB-INF/PageAcceuil.jsp").forward(request, response);
 	}
 
 	/**

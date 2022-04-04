@@ -24,7 +24,9 @@
 			<a href="http://localhost:8080/EnchereENI/EnchereServlet">Enchère</a>
 			<a href="http://localhost:8080/EnchereENI/ArticleCreationServlet">Vendre un article</a>
 			<a href="http://localhost:8080/EnchereENI/UtilisateurInformationServlet">Mon profil</a>
-			<a href="http://localhost:8080/EnchereENI/PageAcceuilServlet">Déconnexion</a>
+			<form action="PageAcceuilServlet" method="post">
+				<input type="submit" name="deco" value="Déconnexion">
+			</form>
 		</p>
 		</c:if>
 	</header>
