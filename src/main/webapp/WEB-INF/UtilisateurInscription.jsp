@@ -18,7 +18,7 @@
 	
 
 	<form action="UtilisateurInscriptionServlet" method="post">
-		Pseudo : <input type="text" name="pseudo"><br>
+		Pseudo : <input type="text" name="pseudo" pattern="[a-zA-Z0-9]+"><br>
 		<br> Nom : <input type="text" name="nom"><br>
 		<br> Prenom : <input type="text" name="prenom"><br>
 		<br> Email : <input type="email" name="email"><br>
