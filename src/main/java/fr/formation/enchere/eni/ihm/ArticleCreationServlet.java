@@ -49,7 +49,7 @@ public class ArticleCreationServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArticleModel model = new ArticleModel();
-	//	UtilisateurModel modelU = (UtilisateurModel) request.getSession().getAttribute("model");
+		UtilisateurModel modelU = (UtilisateurModel) request.getSession().getAttribute("model");
 		CategorieModel modelCat = new CategorieModel();
 		
 		try {
@@ -68,7 +68,7 @@ public class ArticleCreationServlet extends HttpServlet {
 			Integer prixVente = Integer.parseInt(request.getParameter("prixVente"));
 			Utilisateur utilisateur = null;
 			Categorie categorie = null;
-			Integer noUtilisateur = Integer.parseInt(request.getParameter("noUtilisateur"));
+			Integer noUtilisateur = modelU.getUtilisateur().getNoUtilisateur();
 			Integer noCategorie = Integer.parseInt(request.getParameter("categories"));
 			try {
 				utilisateur = managerUtilisateur.selectById(noUtilisateur);
@@ -93,7 +93,7 @@ public class ArticleCreationServlet extends HttpServlet {
 		}
 		request.getSession().setAttribute("model", model);
 		request.setAttribute("modelCat", modelCat);
-		//request.setAttribute("model", modelU);
+		request.setAttribute("model", modelU);
 		request.getRequestDispatcher("/WEB-INF/ArticleCreation.jsp").forward(request, response);
 	}
 

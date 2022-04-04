@@ -35,7 +35,7 @@ public class UtilisateurInscriptionServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		UtilisateurModel model = (UtilisateurModel) request.getSession().getAttribute("model");
+		UtilisateurModel model = new UtilisateurModel();
 
 		if (request.getParameter("creer") != null) {
 			String pseudo = request.getParameter("pseudo");
@@ -54,7 +54,7 @@ public class UtilisateurInscriptionServlet extends HttpServlet {
 			model.setUtilisateur(utilisateur);
 			model.setConnecter(true);
 			if (model.isConnecter()) {
-				request.getSession().setAttribute("model", model);
+				request.getSession().setAttribute("modelU", model);
 				request.getRequestDispatcher("PageAcceuilServlet").forward(request, response);
 			}
 
