@@ -157,11 +157,6 @@ public class ArticleDAO implements IArticleDAO {
 			PreparedStatement stmt = con.prepareStatement(SELECTBYID);
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
-<<<<<<< HEAD
-			
-			
-=======
->>>>>>> 131797588a461367f8a514f48dae57c21c46715c
 			if (rs.next()) {
 				Utilisateur utilisateur = daoU.selectById(rs.getInt("no_utilisateur"));
 				Categorie categorie = daoC.selectById(rs.getInt("no_categorie"));
