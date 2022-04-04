@@ -41,8 +41,8 @@ public class UtilisateurConnexionServlet extends HttpServlet {
 			// verification que l'utlisateur existe sinon lui demander de s'inscrire
 			String pseudo = request.getParameter("pseudo");
 			String password = request.getParameter("password");
-
 			try {
+				System.out.println(manager.selectLogin(pseudo, password));
 				if (manager.selectLogin(pseudo, password) != null) {
 					// Connexion reussi garder l'utlisateur connecter
 					model.setUtilisateur(manager.selectLogin(pseudo, password));
@@ -64,7 +64,7 @@ public class UtilisateurConnexionServlet extends HttpServlet {
 		} else if (request.getParameter("inscription") != null) {
 			request.getRequestDispatcher("UtilisateurInscriptionServlet").forward(request, response);
 		} else {
-			request.getSession().setAttribute("model", model);
+			request.getSession().setAttribute("modelU", model);
 			request.getRequestDispatcher("/WEB-INF/UtilisateurConnexion.jsp").forward(request, response);
 		}
 

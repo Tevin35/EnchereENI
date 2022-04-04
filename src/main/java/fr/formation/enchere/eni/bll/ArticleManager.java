@@ -92,7 +92,7 @@ public class ArticleManager implements IArticleManager {
 	}
 
 	/**
-	*{@inheritedDoc}
+	*{@inheriteDoc}
 	*/
 	@Override
 	public ArticleVendu selectById(ArticleVendu articleVendu) throws BLLException {
