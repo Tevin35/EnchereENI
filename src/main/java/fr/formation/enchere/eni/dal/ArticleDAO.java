@@ -48,9 +48,10 @@ public class ArticleDAO implements IArticleDAO {
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECT);
 			ResultSet rs = stmt.executeQuery();
-			Utilisateur utilisateur = daoU.selectById(rs.getInt("no_utilisateur"));
-			Categorie categorie = daoC.selectById(rs.getInt("no_categorie"));
+			
 			while (rs.next()) {
+				Utilisateur utilisateur = daoU.selectById(rs.getInt("no_utilisateur"));
+				Categorie categorie = daoC.selectById(rs.getInt("no_categorie"));
 				ArticleVendu articleVendu = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),
 						rs.getString("description"), rs.getDate("date_debut_encheres").toLocalDate(),
 						rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("prix_initial"),
@@ -145,16 +146,15 @@ public class ArticleDAO implements IArticleDAO {
 			PreparedStatement stmt = con.prepareStatement(SELECTBYID);
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
-//			Utilisateur utilisateur = daoU.selectById(rs.getInt("no_utilisateur"));
-//
-//			Categorie categorie = daoC.selectById(rs.getInt("no_categorie"));
-//			System.out.println(categorie);
-//			System.out.println(utilisateur);
+			
+			
 			if (rs.next()) {
+				Utilisateur utilisateur = daoU.selectById(rs.getInt("no_utilisateur"));
+				Categorie categorie = daoC.selectById(rs.getInt("no_categorie"));
 				articleVendu = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),
 						rs.getString("description"), rs.getDate("date_debut_encheres").toLocalDate(),
 						rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("prix_initial"),
-						rs.getInt("prix_vente"), null, null);
+						rs.getInt("prix_vente"), utilisateur, categorie);
 			}
 		} catch (SQLException e) {
 			throw new DALException("Probleme de select : " + e.getMessage());

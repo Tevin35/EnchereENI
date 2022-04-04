@@ -16,11 +16,11 @@
 	Description : ${model.articleVendu.description}</p>
 	Categorie : ${model.articleVendu.noCategorie.libelle }</p>
 	
-	Meilleure offre : </p>
+	Meilleure offre :  </p>
 	Mise à prix : ${model.articleVendu.miseAPrix }</p>
 	Fin de l'enchère : ${model.articleVendu.dateFinEncheres }</p>
 	Retrait : ${model.articleVendu.lieuRetrait.rue} ${model.articleVendu.lieuRetrait.codePostal } ${model.articleVendu.lieuRetrait.ville }</p>
-	Vendeur : ${model.articleVendu.noUtilisateur.noUtilisateur}</p>
+	Vendeur : ${model.articleVendu.noUtilisateur.nom} ${model.articleVendu.noUtilisateur.prenom}</p>
 	Ma proposition :
 	<li>
 	

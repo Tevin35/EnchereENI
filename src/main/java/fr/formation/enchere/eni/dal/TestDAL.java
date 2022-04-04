@@ -19,7 +19,7 @@ public class TestDAL {
 		
 		IArticleDAO dao = DAOFact.getArticleDAO();
 		try {
-			System.out.println(dao.selectAll());
+			System.out.println(dao.selectById(1));
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
