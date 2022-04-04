@@ -81,10 +81,10 @@ public class CategorieManager implements ICategorieManager {
 	@Override
 	public Categorie selectById(Categorie categorie) throws BLLException {
 
-		Integer id1 = categorie.getNoCategorie();
+		Integer id = categorie.getNoCategorie();
 
 		try {
-			return dao.selectById(id1);
+			return dao.selectById(id);
 		} catch (DALException e) {
 			throw new BLLException("BLL - erreur dans la fonction selectById : " + e.getMessage());
 		}

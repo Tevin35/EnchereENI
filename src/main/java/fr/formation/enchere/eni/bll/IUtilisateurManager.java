@@ -28,5 +28,7 @@ public interface IUtilisateurManager {
 	public Utilisateur selectLogin(String pseudo, String mdp) throws BLLException;
 	
 	public void delete(Utilisateur utilisateur) throws BLLException;
+	
+	public Utilisateur selectById(Utilisateur utilisateur) throws BLLException;
 
 }

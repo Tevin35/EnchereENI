@@ -108,4 +108,17 @@ public class UtilisateurManager implements IUtilisateurManager {
 		}
 	}
 
+	/**
+	*{@inheritedDoc}
+	*/
+	@Override
+	public Utilisateur selectById(Utilisateur utilisateur) throws BLLException {
+		
+		try {
+			return dao.selectById(utilisateur);
+		} catch (DALException e) {
+			throw new BLLException("BLL - erreur dans la fonction selectById  : " + e.getMessage());
+		}
+	}
+
 }

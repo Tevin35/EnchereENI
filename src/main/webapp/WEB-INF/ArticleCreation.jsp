@@ -17,6 +17,7 @@
 	Numéro de l'utilisateur : <input type="number" name="noUtilisateur"><br><br>
 	Numéro de la catégorie (1 à 4) : <input type="number" name="noCategorie"><br><br>
 	
+	
 	<input type="submit" name="valider" value="Valider">
 	
 	</form>
