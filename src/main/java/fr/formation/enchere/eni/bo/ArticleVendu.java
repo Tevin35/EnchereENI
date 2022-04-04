@@ -139,6 +139,7 @@ public class ArticleVendu {
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
 	}
+	
 	public Integer getNoArticle() {
 		return noArticle;
 	}
