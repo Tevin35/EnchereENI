@@ -70,24 +70,25 @@ public class ArticleDAO implements IArticleDAO {
 	@Override
 	public void insert(ArticleVendu articleVendu) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
-			
-		PreparedStatement stmt = cnx.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
 
-		stmt.setString(1, articleVendu.getNomArticle());
-		stmt.setString(2, articleVendu.getDescription());
-		stmt.setDate(3, Date.valueOf(articleVendu.getDateDebutEncheres()));
-		stmt.setDate(4, Date.valueOf(articleVendu.getDateFinEncheres()));
-		stmt.setInt(5, articleVendu.getMiseAPrix());
-		stmt.setInt(6, articleVendu.getPrixVente());
-		stmt.setObject(7, articleVendu.getNoUtilisateur().getNoUtilisateur());
-		stmt.setObject(8, articleVendu.getNoCategorie().getNoCategorie());
-		Integer nb = stmt.executeUpdate();
-		if (nb > 0) {
-			ResultSet rs = stmt.getGeneratedKeys();
-			if (rs.next()) {
-				articleVendu.setNoArticle((rs.getInt(1)));
+			PreparedStatement stmt = cnx.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
+
+			stmt.setString(1, articleVendu.getNomArticle());
+			stmt.setString(2, articleVendu.getDescription());
+			stmt.setDate(3, Date.valueOf(articleVendu.getDateDebutEncheres()));
+			stmt.setDate(4, Date.valueOf(articleVendu.getDateFinEncheres()));
+			stmt.setInt(5, articleVendu.getMiseAPrix());
+			stmt.setInt(6, articleVendu.getPrixVente());
+			stmt.setObject(7, articleVendu.getNoUtilisateur().getNoUtilisateur());
+			stmt.setObject(8, articleVendu.getNoCategorie().getNoCategorie());
+			Integer nb = stmt.executeUpdate();
+			if (nb > 0) {
+				ResultSet rs = stmt.getGeneratedKeys();
+				if (rs.next()) {
+					articleVendu.setNoArticle((rs.getInt(1)));
+				}
+
 			}
-
 		} catch (SQLException e) {
 			throw new DALException("DAL - Erreur dans la fonction insert : " + e.getMessage());
 		}
@@ -144,16 +145,16 @@ public class ArticleDAO implements IArticleDAO {
 			PreparedStatement stmt = con.prepareStatement(SELECTBYID);
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
-			Utilisateur utilisateur = daoU.selectById(rs.getInt("no_utilisateur"));
-
-			Categorie categorie = daoC.selectById(rs.getInt("no_categorie"));
-			System.out.println(categorie);
-			System.out.println(utilisateur);
+//			Utilisateur utilisateur = daoU.selectById(rs.getInt("no_utilisateur"));
+//
+//			Categorie categorie = daoC.selectById(rs.getInt("no_categorie"));
+//			System.out.println(categorie);
+//			System.out.println(utilisateur);
 			if (rs.next()) {
 				articleVendu = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),
 						rs.getString("description"), rs.getDate("date_debut_encheres").toLocalDate(),
 						rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("prix_initial"),
-						rs.getInt("prix_vente"), utilisateur, categorie);
+						rs.getInt("prix_vente"), null, null);
 			}
 		} catch (SQLException e) {
 			throw new DALException("Probleme de select : " + e.getMessage());
