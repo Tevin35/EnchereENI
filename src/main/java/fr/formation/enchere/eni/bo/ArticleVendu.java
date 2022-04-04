@@ -140,6 +140,27 @@ public class ArticleVendu {
 		this.prixVente = prixVente;
 	}
 	
+	
+	/**
+	 * Constructeur.
+	 * @param nomArticle
+	 * @param description
+	 * @param dateDebutEncheres
+	 * @param dateFinEncheres
+	 * @param miseAPrix
+	 * @param noUtilisateur
+	 * @param noCategorie
+	 */
+	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
+			Integer miseAPrix, Utilisateur noUtilisateur, Categorie noCategorie) {
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
+	}
 	public Integer getNoArticle() {
 		return noArticle;
 	}

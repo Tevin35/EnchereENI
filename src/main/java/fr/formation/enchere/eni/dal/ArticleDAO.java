@@ -29,7 +29,7 @@ import fr.formation.enchere.eni.dal.util.ConnectionProvider;
 public class ArticleDAO implements IArticleDAO {
 
 	private final String SELECT = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie FROM ARTICLES_VENDUS";
-	private final String INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	private final String INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie) VALUES (?, ?, ?, ?, ?, ?, ?)";
 	private final String UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article = ?, description = ?, date_debut_encheres = ?, date_fin_encheres = ?, prix_initial = ?, prix_vente = ?, no_utilisateur = ?, no_categorie = ? WHERE no_article = ?";
 	private final String DELETE = "DELETE INTO ARTICLES_VENDUS WHERE no_article = ?";
 	private final String SELECTBYID = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie FROM ARTICLES_VENDUS WHERE no_article = ?";
@@ -79,9 +79,8 @@ public class ArticleDAO implements IArticleDAO {
 			stmt.setDate(3, Date.valueOf(articleVendu.getDateDebutEncheres()));
 			stmt.setDate(4, Date.valueOf(articleVendu.getDateFinEncheres()));
 			stmt.setInt(5, articleVendu.getMiseAPrix());
-			stmt.setInt(6, articleVendu.getPrixVente());
-			stmt.setInt(7, articleVendu.getNoUtilisateur().getNoUtilisateur());
-			stmt.setInt(8, articleVendu.getNoCategorie().getNoCategorie());
+			stmt.setInt(6, articleVendu.getNoUtilisateur().getNoUtilisateur());
+			stmt.setInt(7, articleVendu.getNoCategorie().getNoCategorie());
 			Integer nb = stmt.executeUpdate();
 			if (nb > 0) {
 				ResultSet rs = stmt.getGeneratedKeys();

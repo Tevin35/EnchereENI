@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import fr.formation.enchere.eni.bll.BLLException;
 import fr.formation.enchere.eni.bll.IUtilisateurManager;
 import fr.formation.enchere.eni.bll.UtilisateurManagerSing;
-import fr.formation.enchere.eni.bo.Utilisateur;
 
 /**
  * Servlet implementation class UtilisateurConnexionServlet
