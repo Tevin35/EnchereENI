@@ -20,6 +20,8 @@ public class ArticleModel {
 	private ArticleVendu articleVendu;
 	private List<ArticleVendu> lstArticles = new ArrayList<>();
 	private String message;
+	private boolean connecter;
+
 
 	/**
 	 * Constructeur.
@@ -63,6 +65,14 @@ public class ArticleModel {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+	
+	public boolean isConnecter() {
+		return connecter;
+	}
+
+	public void setConnecter(boolean connecter) {
+		this.connecter = connecter;
+	}
 
 	@Override
 	public String toString() {
@@ -81,9 +91,12 @@ public class ArticleModel {
 		if (message != null) {
 			builder.append("message=");
 			builder.append(message);
+			builder.append(", ");
 		}
+		builder.append("connecter=");
+		builder.append(connecter);
 		builder.append("]");
 		return builder.toString();
 	}
-	
+
 }
