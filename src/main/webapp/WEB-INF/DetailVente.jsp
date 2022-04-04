@@ -26,7 +26,7 @@
 	
 	</li>
 	<form>
-		<input type ="button" value="Encherir"> 
+		<input type ="button" name ="Encherir" value="Encherir"> 
 	</form>
 	
 	
