@@ -3,6 +3,7 @@
  */
 package fr.formation.enchere.eni.dal;
 
+import java.sql.Timestamp;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -50,11 +51,13 @@ public class ArticleDAO implements IArticleDAO {
 			PreparedStatement stmt = con.prepareStatement(SELECT);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
+				Timestamp dateDebutEnchere = rs.getTimestamp("date_debut_encheres");
+				Timestamp dateFinEnchere = rs.getTimestamp("date_fin_encheres");
 				Utilisateur utilisateur = daoU.selectById(rs.getInt("no_utilisateur"));
 				Categorie categorie = daoC.selectById(rs.getInt("no_categorie"));
 				ArticleVendu articleVendu = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),
-						rs.getString("description"), rs.getDate("date_debut_encheres").toLocalDate().format(DateTimeFormatter.ofPattern("dd MMMM yyyy")),
-						rs.getDate("date_fin_encheres").toLocalDate().format(DateTimeFormatter.ofPattern("dd MMMM yyyy")), rs.getInt("prix_initial"),
+						rs.getString("description"), dateDebutEnchere.toLocalDateTime().format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm")),
+						dateFinEnchere.toLocalDateTime().format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm")), rs.getInt("prix_initial"),
 						rs.getInt("prix_vente"), utilisateur, categorie);
 				articleVendu.setNoArticle(rs.getInt("no_article"));
 				result.add(articleVendu);
@@ -147,11 +150,13 @@ public class ArticleDAO implements IArticleDAO {
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
+				Timestamp dateDebutEnchere = rs.getTimestamp("date_debut_encheres");
+				Timestamp dateFinEnchere = rs.getTimestamp("date_fin_encheres");
 				Utilisateur utilisateur = daoU.selectById(rs.getInt("no_utilisateur"));
 				Categorie categorie = daoC.selectById(rs.getInt("no_categorie"));
 				articleVendu = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),
-						rs.getString("description"), rs.getDate("date_debut_encheres").toLocalDate(),
-						rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("prix_initial"),
+						rs.getString("description"), dateDebutEnchere.toLocalDateTime().format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm")),
+						dateFinEnchere.toLocalDateTime().format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm")), rs.getInt("prix_initial"),
 						rs.getInt("prix_vente"), utilisateur, categorie);
 			}
 		} catch (SQLException e) {
