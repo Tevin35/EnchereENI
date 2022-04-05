@@ -29,11 +29,11 @@
 			value="${model.utilisateur.codePostal}"><br> <br>
 		Ville : <input type="text" name="ville"
 			value="${model.utilisateur.ville}"><br> <br> Mot de
-		passe : <input type="password" name="password" value="${model.utilisateur.motDePasse}"><br>
-		<br> Nouveau mot de passe : <input type="password"
-			name="newMotDePasse" required><br> <br> Confirmation
-		mot de passe : <input type="password" name="confirmMotDePasse"
-			required><br> <br> Crédit :
+		passe : <input type="password" name="password"
+			value="${model.utilisateur.motDePasse}"><br> <br>
+		Nouveau mot de passe : <input type="password" name="newMotDePasse"><br>
+		<br> Confirmation mot de passe : <input type="password"
+			name="confirmMotDePasse"><br> <br> Crédit :
 		${model.utilisateur.credit} <br> <input type="submit"
 			name="modifier" value="Enregistrer"> <br> <input
 			type="submit" name="supprimer" value="Supprimer mon compte">

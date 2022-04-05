@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,8 +53,8 @@ public class ArticleDAO implements IArticleDAO {
 				Utilisateur utilisateur = daoU.selectById(rs.getInt("no_utilisateur"));
 				Categorie categorie = daoC.selectById(rs.getInt("no_categorie"));
 				ArticleVendu articleVendu = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),
-						rs.getString("description"), rs.getDate("date_debut_encheres").toLocalDate(),
-						rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("prix_initial"),
+						rs.getString("description"), rs.getDate("date_debut_encheres").toLocalDate().format(DateTimeFormatter.ofPattern("dd MMMM yyyy")),
+						rs.getDate("date_fin_encheres").toLocalDate().format(DateTimeFormatter.ofPattern("dd MMMM yyyy")), rs.getInt("prix_initial"),
 						rs.getInt("prix_vente"), utilisateur, categorie);
 				articleVendu.setNoArticle(rs.getInt("no_article"));
 				result.add(articleVendu);
