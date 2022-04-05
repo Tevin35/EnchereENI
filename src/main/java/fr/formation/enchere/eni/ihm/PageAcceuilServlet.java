@@ -60,7 +60,7 @@ public class PageAcceuilServlet extends HttpServlet {
 			
 			request.setAttribute("modelCat", modelCat);
 			request.setAttribute("model", modelU);
-			request.setAttribute("modelA", modelA);
+			request.getSession().setAttribute("modelA", modelA);
 			request.getRequestDispatcher("/WEB-INF/PageAcceuil.jsp").forward(request, response);
 		}
 		
