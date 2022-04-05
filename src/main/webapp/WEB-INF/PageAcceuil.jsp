@@ -14,18 +14,23 @@
 			<a href="http://localhost:8080/EnchereENI/PageAcceuilServlet">ENI-Encheres</a>
 		</h1>
 		<c:if test="${!model.connecter}">
-		<p>
-			<a href="http://localhost:8080/EnchereENI/UtilisateurConnexionServlet">S'inscrire
-				- Se connecter</a>
-		</p>
+			<p>
+				<a
+					href="http://localhost:8080/EnchereENI/UtilisateurConnexionServlet">S'inscrire
+					- Se connecter</a>
+			</p>
 		</c:if>
 		<c:if test="${model.connecter}">
-		<p>
-			<a href="http://localhost:8080/EnchereENI/EnchereServlet">Enchère</a>
-			<a href="http://localhost:8080/EnchereENI/ArticleCreationServlet">Vendre un article</a>
-			<a href="http://localhost:8080/EnchereENI/UtilisateurInformationServlet">Mon profil</a>
-			<a href="http://localhost:8080/EnchereENI/PageAcceuilServlet">Déconnexion</a>
-		</p>
+			<p>
+				<a href="http://localhost:8080/EnchereENI/EnchereServlet">Enchère</a>
+				<a href="http://localhost:8080/EnchereENI/ArticleCreationServlet">Vendre
+					un article</a> <a
+					href="http://localhost:8080/EnchereENI/UtilisateurInformationServlet">Mon
+					profil</a>
+			<form action="PageAcceuilServlet" method="post">
+				<input type="submit" name="deco" value="Déconnexion">
+			</form>
+			</p>
 		</c:if>
 	</header>
 
@@ -45,8 +50,46 @@
 			</select>
 		</form>
 
-		<!-- afficher la liste des encheres en cour -->
+		<c:if test="${!model.connecter}">
+			<p>
+				<p>Liste des Encheres</p>
+				<!-- afficher la liste des encheres en tant qu'utilisateur déconnecter -->
+				<c:forEach items="${modelA.lstArticles}" var="article">
+					${article.nomArticle}<br>
+					Prix : ${article.miseAPrix}<br>
+					Fin de l'enchere : ${article.dateFinFormat}<br> 
+					Vendeur : ${article.noUtilisateur.pseudo}
+					<br>
+					<br>
+				</c:forEach>
+			</p>
+		</c:if>
+		<c:if test="${model.connecter}">
+			<p>
+				<!-- afficher la liste des enchere en tant qu'utilisateur connecter -->
+				<p>Liste des Encheres</p>
+				<!-- afficher la liste des encheres en tant qu'utilisateur déconnecter -->
+				
+					
+						<c:forEach items="${modelA.lstArticles}" var="article">
+						<a href="http://localhost:8080/EnchereENI/DetailVenteServlet">
+							<div>
+								${article.nomArticle}<br>
+								Prix : ${article.miseAPrix}<br>
+								Fin de l'enchere : ${article.dateFinFormat}<br> 
+								Vendeur : ${article.noUtilisateur.pseudo}
+								<br>
+								<br>
+							</div>
+						</a>
+						</c:forEach>
+						
+				
+			</p>
+		</c:if>
 		
+
+
 	</div>
 
 </body>

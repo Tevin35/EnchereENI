@@ -14,8 +14,6 @@ import fr.formation.enchere.eni.bll.BLLException;
 import fr.formation.enchere.eni.bll.CategorieManagerSing;
 import fr.formation.enchere.eni.bll.IArticleManager;
 import fr.formation.enchere.eni.bll.ICategorieManager;
-import fr.formation.enchere.eni.bll.IUtilisateurManager;
-import fr.formation.enchere.eni.bll.UtilisateurManagerSing;
 import fr.formation.enchere.eni.bo.ArticleVendu;
 import fr.formation.enchere.eni.bo.Categorie;
 import fr.formation.enchere.eni.bo.Utilisateur;
@@ -31,7 +29,6 @@ public class ArticleCreationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private IArticleManager managerArticle = ArticleManagerSing.getInstance();
-	private IUtilisateurManager managerUtilisateur = UtilisateurManagerSing.getInstance();
 	private ICategorieManager managerCategorie = CategorieManagerSing.getInstance();
 	ICategorieDAO daoC = DAOFact.getCategorieDAO();
 
@@ -48,7 +45,7 @@ public class ArticleCreationServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArticleModel model = new ArticleModel();
+		ArticleModel modelA = new ArticleModel();
 		UtilisateurModel modelU = (UtilisateurModel) request.getSession().getAttribute("model");
 		CategorieModel modelCat = new CategorieModel();
 		
@@ -65,35 +62,29 @@ public class ArticleCreationServlet extends HttpServlet {
 			LocalDate dateDebutEncheres = LocalDate.parse(request.getParameter("dateDebutEncheres"));
 			LocalDate dateFinEncheres = LocalDate.parse(request.getParameter("dateFinEncheres"));
 			Integer miseAPrix = Integer.parseInt(request.getParameter("miseAPrix"));
-			Integer prixVente = Integer.parseInt(request.getParameter("prixVente"));
-			Utilisateur utilisateur = null;
+			Utilisateur utilisateur = modelU.getUtilisateur();
 			Categorie categorie = null;
-			Integer noUtilisateur = modelU.getUtilisateur().getNoUtilisateur();
 			Integer noCategorie = Integer.parseInt(request.getParameter("categories"));
 			try {
-				utilisateur = managerUtilisateur.selectById(noUtilisateur);
-				System.out.println(utilisateur);
 				categorie = managerCategorie.selectById(noCategorie);
-				System.out.println(categorie);
 			} catch (BLLException e1) {
 				e1.printStackTrace();
 			}
 						
 			ArticleVendu articleVendu = new ArticleVendu(nomArticle, description, dateDebutEncheres,
-					dateFinEncheres, miseAPrix, prixVente, utilisateur, categorie);
+					dateFinEncheres, miseAPrix, utilisateur, categorie);
 
-			model.setArticleVendu(articleVendu);
-			System.out.println(articleVendu);
+			modelA.setArticleVendu(articleVendu);
 			try {
 				managerArticle.insert(articleVendu);
-				model.setMessage("Création d'article réussi");
+				modelA.setMessage("Création d'article réussi");
 			} catch (BLLException e) {
-				model.setMessage("Erreur à la création d'article");
+				modelA.setMessage("Erreur à la création d'article");
 			}
 		}
-		request.getSession().setAttribute("model", model);
+		request.getSession().setAttribute("modelA", modelA);
 		request.setAttribute("modelCat", modelCat);
-		request.setAttribute("model", modelU);
+		request.setAttribute("modelU", modelU);
 		request.getRequestDispatcher("/WEB-INF/ArticleCreation.jsp").forward(request, response);
 	}
 

@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import fr.formation.enchere.eni.bll.BLLException;
 import fr.formation.enchere.eni.bll.IUtilisateurManager;
 import fr.formation.enchere.eni.bll.UtilisateurManagerSing;
-import fr.formation.enchere.eni.bo.Utilisateur;
 
 /**
  * Servlet implementation class UtilisateurConnexionServlet
@@ -42,7 +41,6 @@ public class UtilisateurConnexionServlet extends HttpServlet {
 			String pseudo = request.getParameter("pseudo");
 			String password = request.getParameter("password");
 			try {
-				System.out.println(manager.selectLogin(pseudo, password));
 				if (manager.selectLogin(pseudo, password) != null) {
 					// Connexion reussi garder l'utlisateur connecter
 					model.setUtilisateur(manager.selectLogin(pseudo, password));

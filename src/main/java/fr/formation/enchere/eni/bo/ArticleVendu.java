@@ -22,7 +22,9 @@ public class ArticleVendu {
 	private String nomArticle;
 	private String description;
 	private LocalDate dateDebutEncheres;
+	private String dateDebutFormat;
 	private LocalDate dateFinEncheres;
+	private String dateFinFormat;
 	private Integer miseAPrix;
 	private Integer prixVente;
 	private String etatVente;
@@ -32,8 +34,42 @@ public class ArticleVendu {
 	private Retrait lieuRetrait;
 	private Utilisateur noUtilisateur;
 	private Categorie noCategorie;
+
 	/**
 	 * Constructeur.
+	 * 
+	 * @param noArticle
+	 * @param nomArticle
+	 * @param description
+	 * @param dateDebutFormat
+	 * @param dateFinFormat
+	 * @param miseAPrix
+	 * @param prixVente
+	 * @param etatVente
+	 * @param lstUtilisateurs
+	 * @param concerne
+	 * @param lstCategories
+	 * @param lieuRetrait
+	 * @param noUtilisateur
+	 * @param noCategorie
+	 */
+	public ArticleVendu(Integer noArticle, String nomArticle, String description, String dateDebutFormat,
+			String dateFinFormat, Integer miseAPrix, Integer prixVente, Utilisateur noUtilisateur, Categorie noCategorie) {
+		super();
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutFormat = dateDebutFormat;
+		this.dateFinFormat = dateFinFormat;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
+	}
+
+	/**
+	 * Constructeur.
+	 * 
 	 * @param noArticle
 	 * @param nomArticle
 	 * @param description
@@ -68,8 +104,10 @@ public class ArticleVendu {
 		this.noUtilisateur = noUtilisateur;
 		this.noCategorie = noCategorie;
 	}
+
 	/**
 	 * Constructeur.
+	 * 
 	 * @param nomArticle
 	 * @param description
 	 * @param dateDebutEncheres
@@ -90,10 +128,10 @@ public class ArticleVendu {
 		this.noUtilisateur = noUtilisateur;
 		this.noCategorie = noCategorie;
 	}
-	
-	
+
 	/**
 	 * Constructeur.
+	 * 
 	 * @param noArticle
 	 * @param nomArticle
 	 * @param description
@@ -117,12 +155,10 @@ public class ArticleVendu {
 		this.noUtilisateur = noUtilisateur;
 		this.noCategorie = noCategorie;
 	}
-	
-	
-	
-	
+
 	/**
 	 * Constructeur.
+	 * 
 	 * @param nomArticle
 	 * @param description
 	 * @param dateDebutEncheres
@@ -139,91 +175,177 @@ public class ArticleVendu {
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
 	}
-	
+
+	/**
+	 * Constructeur.
+	 * 
+	 * @param nomArticle
+	 * @param description
+	 * @param dateDebutEncheres
+	 * @param dateFinEncheres
+	 * @param miseAPrix
+	 * @param noUtilisateur
+	 * @param noCategorie
+	 */
+	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
+			Integer miseAPrix, Utilisateur noUtilisateur, Categorie noCategorie) {
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
+	}
+
 	public Integer getNoArticle() {
 		return noArticle;
 	}
+
 	public void setNoArticle(Integer noArticle) {
 		this.noArticle = noArticle;
 	}
+
 	public String getNomArticle() {
 		return nomArticle;
 	}
+
 	public void setNomArticle(String nomArticle) {
 		this.nomArticle = nomArticle;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public LocalDate getDateDebutEncheres() {
 		return dateDebutEncheres;
 	}
+
 	public void setDateDebutEncheres(LocalDate dateDebutEncheres) {
 		this.dateDebutEncheres = dateDebutEncheres;
 	}
+
+	/**
+	 * Getter pour dateDebutFormat.
+	 * 
+	 * @return the dateDebutFormat
+	 */
+	public String getDateDebutFormat() {
+		return dateDebutFormat;
+	}
+
+	/**
+	 * Setter pour dateDebutFormat.
+	 * 
+	 * @param dateDebutFormat the dateDebutFormat to set
+	 */
+	public void setDateDebutFormat(String dateDebutFormat) {
+		this.dateDebutFormat = dateDebutFormat;
+	}
+
 	public LocalDate getDateFinEncheres() {
 		return dateFinEncheres;
 	}
+
 	public void setDateFinEncheres(LocalDate dateFinEncheres) {
 		this.dateFinEncheres = dateFinEncheres;
 	}
+
+	/**
+	 * Getter pour dateFinFormat.
+	 * 
+	 * @return the dateFinFormat
+	 */
+	public String getDateFinFormat() {
+		return dateFinFormat;
+	}
+
+	/**
+	 * Setter pour dateFinFormat.
+	 * 
+	 * @param dateFinFormat the dateFinFormat to set
+	 */
+	public void setDateFinFormat(String dateFinFormat) {
+		this.dateFinFormat = dateFinFormat;
+	}
+
 	public Integer getMiseAPrix() {
 		return miseAPrix;
 	}
+
 	public void setMiseAPrix(Integer miseAPrix) {
 		this.miseAPrix = miseAPrix;
 	}
+
 	public Integer getPrixVente() {
 		return prixVente;
 	}
+
 	public void setPrixVente(Integer prixVente) {
 		this.prixVente = prixVente;
 	}
+
 	public String getEtatVente() {
 		return etatVente;
 	}
+
 	public void setEtatVente(String etatVente) {
 		this.etatVente = etatVente;
 	}
+
 	public List<Utilisateur> getLstUtilisateurs() {
 		return lstUtilisateurs;
 	}
+
 	public void setLstUtilisateurs(List<Utilisateur> lstUtilisateurs) {
 		this.lstUtilisateurs = lstUtilisateurs;
 	}
+
 	public Enchere getConcerne() {
 		return concerne;
 	}
+
 	public void setConcerne(Enchere concerne) {
 		this.concerne = concerne;
 	}
+
 	public List<Categorie> getLstCategories() {
 		return lstCategories;
 	}
+
 	public void setLstCategories(List<Categorie> lstCategories) {
 		this.lstCategories = lstCategories;
 	}
+
 	public Retrait getLieuRetrait() {
 		return lieuRetrait;
 	}
+
 	public void setLieuRetrait(Retrait lieuRetrait) {
 		this.lieuRetrait = lieuRetrait;
 	}
+
 	public Utilisateur getNoUtilisateur() {
 		return noUtilisateur;
 	}
+
 	public void setNoUtilisateur(Utilisateur noUtilisateur) {
 		this.noUtilisateur = noUtilisateur;
 	}
+
 	public Categorie getNoCategorie() {
 		return noCategorie;
 	}
+
 	public void setNoCategorie(Categorie noCategorie) {
 		this.noCategorie = noCategorie;
 	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -301,6 +423,4 @@ public class ArticleVendu {
 		return builder.toString();
 	}
 
-	
-	
 }

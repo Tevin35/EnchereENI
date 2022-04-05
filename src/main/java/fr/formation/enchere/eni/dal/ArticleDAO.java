@@ -3,12 +3,14 @@
  */
 package fr.formation.enchere.eni.dal;
 
+import java.sql.Timestamp;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +31,7 @@ import fr.formation.enchere.eni.dal.util.ConnectionProvider;
 public class ArticleDAO implements IArticleDAO {
 
 	private final String SELECT = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie FROM ARTICLES_VENDUS";
-	private final String INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	private final String INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie) VALUES (?, ?, ?, ?, ?, ?, ?)";
 	private final String UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article = ?, description = ?, date_debut_encheres = ?, date_fin_encheres = ?, prix_initial = ?, prix_vente = ?, no_utilisateur = ?, no_categorie = ? WHERE no_article = ?";
 	private final String DELETE = "DELETE INTO ARTICLES_VENDUS WHERE no_article = ?";
 	private final String SELECTBYID = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie FROM ARTICLES_VENDUS WHERE no_article = ?";
@@ -49,11 +51,13 @@ public class ArticleDAO implements IArticleDAO {
 			PreparedStatement stmt = con.prepareStatement(SELECT);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
+				Timestamp dateDebutEnchere = rs.getTimestamp("date_debut_encheres");
+				Timestamp dateFinEnchere = rs.getTimestamp("date_fin_encheres");
 				Utilisateur utilisateur = daoU.selectById(rs.getInt("no_utilisateur"));
 				Categorie categorie = daoC.selectById(rs.getInt("no_categorie"));
 				ArticleVendu articleVendu = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),
-						rs.getString("description"), rs.getDate("date_debut_encheres").toLocalDate(),
-						rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("prix_initial"),
+						rs.getString("description"), dateDebutEnchere.toLocalDateTime().format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm")),
+						dateFinEnchere.toLocalDateTime().format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm")), rs.getInt("prix_initial"),
 						rs.getInt("prix_vente"), utilisateur, categorie);
 				articleVendu.setNoArticle(rs.getInt("no_article"));
 				result.add(articleVendu);
@@ -78,16 +82,16 @@ public class ArticleDAO implements IArticleDAO {
 			stmt.setDate(3, Date.valueOf(articleVendu.getDateDebutEncheres()));
 			stmt.setDate(4, Date.valueOf(articleVendu.getDateFinEncheres()));
 			stmt.setInt(5, articleVendu.getMiseAPrix());
-			stmt.setInt(6, articleVendu.getPrixVente());
+			stmt.setInt(6, 0);
 			stmt.setInt(7, articleVendu.getNoUtilisateur().getNoUtilisateur());
 			stmt.setInt(8, articleVendu.getNoCategorie().getNoCategorie());
+
 			Integer nb = stmt.executeUpdate();
 			if (nb > 0) {
 				ResultSet rs = stmt.getGeneratedKeys();
 				if (rs.next()) {
 					articleVendu.setNoArticle((rs.getInt(1)));
 				}
-
 			}
 		} catch (SQLException e) {
 			throw new DALException("DAL - Erreur dans la fonction insert : " + e.getMessage());
@@ -146,11 +150,13 @@ public class ArticleDAO implements IArticleDAO {
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
+				Timestamp dateDebutEnchere = rs.getTimestamp("date_debut_encheres");
+				Timestamp dateFinEnchere = rs.getTimestamp("date_fin_encheres");
 				Utilisateur utilisateur = daoU.selectById(rs.getInt("no_utilisateur"));
 				Categorie categorie = daoC.selectById(rs.getInt("no_categorie"));
 				articleVendu = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),
-						rs.getString("description"), rs.getDate("date_debut_encheres").toLocalDate(),
-						rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("prix_initial"),
+						rs.getString("description"), dateDebutEnchere.toLocalDateTime().format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm")),
+						dateFinEnchere.toLocalDateTime().format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm")), rs.getInt("prix_initial"),
 						rs.getInt("prix_vente"), utilisateur, categorie);
 			}
 		} catch (SQLException e) {
