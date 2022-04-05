@@ -62,7 +62,6 @@ public class ArticleCreationServlet extends HttpServlet {
 			LocalDate dateDebutEncheres = LocalDate.parse(request.getParameter("dateDebutEncheres"));
 			LocalDate dateFinEncheres = LocalDate.parse(request.getParameter("dateFinEncheres"));
 			Integer miseAPrix = Integer.parseInt(request.getParameter("miseAPrix"));
-			Integer prixVente = Integer.parseInt(request.getParameter("prixVente"));
 			Utilisateur utilisateur = modelU.getUtilisateur();
 			Categorie categorie = null;
 			Integer noCategorie = Integer.parseInt(request.getParameter("categories"));
