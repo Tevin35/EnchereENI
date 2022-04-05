@@ -21,13 +21,38 @@ public class ArticleModel {
 	private List<ArticleVendu> lstArticles = new ArrayList<>();
 	private String message;
 	private boolean connecter;
-
+	private Integer encheres;
 
 	/**
 	 * Constructeur.
 	 */
 	public ArticleModel() {
 		super();
+	}
+
+	/**
+	 * Constructeur.
+	 * @param encheres
+	 */
+	public ArticleModel(Integer encheres) {
+		super();
+		this.encheres = encheres;
+	}
+
+	/**
+	 * Getter pour encheres.
+	 * @return the encheres
+	 */
+	public Integer getEncheres() {
+		return encheres;
+	}
+
+	/**
+	 * Setter pour encheres.
+	 * @param encheres the encheres to set
+	 */
+	public void setEncheres(Integer encheres) {
+		this.encheres = encheres;
 	}
 
 	/**

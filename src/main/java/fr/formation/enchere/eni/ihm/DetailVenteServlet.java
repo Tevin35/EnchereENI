@@ -28,6 +28,7 @@ public class DetailVenteServlet extends HttpServlet {
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public DetailVenteServlet() {
+
 		super();
 	}
 
@@ -38,17 +39,26 @@ public class DetailVenteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		ArticleModel modelA = new ArticleModel();
-		UtilisateurModel modelU = new UtilisateurModel();
+		ArticleModel modelA = (ArticleModel) request.getSession().getAttribute("modelA");
+		UtilisateurModel modelU = (UtilisateurModel) request.getSession().getAttribute("modelU");
 
 		try {
-			System.out.println(managerArticle.selectById(2));
-			modelA.setArticleVendu(managerArticle.selectById(2));
+			modelA.setArticleVendu(managerArticle.selectById(1));
+
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
+			// TODO Auto-generated catch blockb
 			e.printStackTrace();
 		}
+
+		if (request.getParameter("Encherir") != null) {
+
+			modelA.setEncheres(Integer.parseInt(request.getParameter("maproposition")));
+			request.setAttribute("modelA", modelA);
+			request.setAttribute("modelU", modelU);
+			request.getRequestDispatcher("/WEB-INF/DetailVente.jsp").forward(request, response);
+		}
 		request.setAttribute("modelA", modelA);
+		request.setAttribute("modelU", modelU);
 		request.getRequestDispatcher("/WEB-INF/DetailVente.jsp").forward(request, response);
 
 	}

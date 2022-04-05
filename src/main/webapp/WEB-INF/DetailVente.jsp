@@ -21,20 +21,18 @@
 		<p>Retrait : ${modelA.articleVendu.lieuRetrait.rue}
 			${modelA.articleVendu.lieuRetrait.codePostal}
 			${modelA.articleVendu.lieuRetrait.ville}</p>
-		<p>Vendeur : ${modelU.utliUtilisateur.noUtilisateur.nom}</p>
-		<p>${modelU.utliUtilisateur.noUtilisateur.prenom}</p>
-		<p>Ma proposition :</p>
-
-		<form>
-			<input type="button" name="Encherir" value="Encherir">
-		</form>
-
-
-
-
-
+		<p>Vendeur : ${modelU.utilisateur.noUtilisateur.nom}</p>
+		<p>${modelU.utilisateur.noUtilisateur.prenom}</p>
+		<p>Ma proposition :
+		<input type="number" name="maproposition" value="Maproposition">
 		</p>
 
+		<form>
+			<input type="button" name="encherir" value="Encherir">
+			
+			
+			
+		</form>
 
 	</header>
 </body>

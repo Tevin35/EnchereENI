@@ -59,8 +59,8 @@ public class UtilisateurModel {
 	 * 
 	 * @param utliUtilisateur the utliUtilisateur to set
 	 */
-	public void setUtilisateur(Utilisateur utliUtilisateur) {
-		this.utilisateur = utliUtilisateur;
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 
 	/**
