@@ -33,19 +33,19 @@ public class ARemporteLEnchereServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		ArticleModel model = new ArticleModel();
+		ArticleModel modelA = new ArticleModel();
 
 		try {
-			System.out.println(manager.selectById(1));
-			model.setArticleVendu(manager.selectById(1));
+			System.out.println(manager.selectById(2));
+			modelA.setArticleVendu(manager.selectById(2));
 
 		} catch (Exception e) {
 			e.printStackTrace();
 
 		}
 
-		request.setAttribute("model", model);
-		request.getRequestDispatcher("/WEB-INF/ARemporteLEnchereServlet.jsp").forward(request, response);
+		request.setAttribute("modelA", modelA);
+		request.getRequestDispatcher("/WEB-INF/ARemporteLEnchere.jsp").forward(request, response);
 	}
 
 	/**
