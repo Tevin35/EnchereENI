@@ -3,7 +3,7 @@
 .enchere
 {
 	border: black solid 3px;
-	height: 100%;
+	height: auto;
 	display: flex;
 	flex-direction: column;
 	
