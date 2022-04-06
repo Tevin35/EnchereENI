@@ -27,8 +27,6 @@ public interface IUtilisateurManager {
 	
 	public Utilisateur selectLogin(String pseudo, String mdp) throws BLLException;
 	
-	public void delete(Utilisateur utilisateur) throws BLLException;
-	
 	public Utilisateur selectById(Utilisateur utilisateur) throws BLLException;
 
 	/**
@@ -38,5 +36,12 @@ public interface IUtilisateurManager {
 	 * @throws BLLException
 	 */
 	Utilisateur selectPseudo(String pseudo) throws BLLException;
+
+	/**
+	 * Méthode en charge de 
+	 * @param id
+	 * @throws BLLException
+	 */
+	void delete(Integer id) throws BLLException;
 
 }

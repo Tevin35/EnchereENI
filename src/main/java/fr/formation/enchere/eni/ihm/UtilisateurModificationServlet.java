@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.formation.enchere.eni.bll.ArticleManagerSing;
 import fr.formation.enchere.eni.bll.BLLException;
+import fr.formation.enchere.eni.bll.IArticleManager;
 import fr.formation.enchere.eni.bll.IUtilisateurManager;
 import fr.formation.enchere.eni.bll.UtilisateurManagerSing;
 import fr.formation.enchere.eni.bo.Utilisateur;
@@ -19,7 +21,8 @@ import fr.formation.enchere.eni.bo.Utilisateur;
 public class UtilisateurModificationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	IUtilisateurManager manager = UtilisateurManagerSing.getInstance();
+	IUtilisateurManager managerU = UtilisateurManagerSing.getInstance();
+	IArticleManager managerA = ArticleManagerSing.getInstance();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -34,8 +37,9 @@ public class UtilisateurModificationServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		UtilisateurModel model = (UtilisateurModel) request.getSession().getAttribute("model");
-
+		UtilisateurModel modelU = (UtilisateurModel) request.getSession().getAttribute("modelU");
+		
+		
 		// update
 		if (request.getParameter("modifier") != null) {
 
@@ -49,11 +53,11 @@ public class UtilisateurModificationServlet extends HttpServlet {
 			String ville = request.getParameter("ville");
 			String motDePasse = request.getParameter("newMotDePasse");
 
-			Utilisateur utilisateur = new Utilisateur(model.getUtilisateur().getNoUtilisateur(), pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
-					motDePasse, model.getUtilisateur().getCredit(), model.getUtilisateur().isAdministrateur());
+			Utilisateur utilisateur = new Utilisateur(modelU.getUtilisateur().getNoUtilisateur(), pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
+					motDePasse, modelU.getUtilisateur().getCredit(), modelU.getUtilisateur().isAdministrateur());
 
 			try {
-				manager.update(utilisateur);
+				managerU.update(utilisateur);
 			} catch (BLLException e) {
 
 			}
@@ -62,21 +66,19 @@ public class UtilisateurModificationServlet extends HttpServlet {
 		// delete
 		if (request.getParameter("supprimer") != null) {
 
-			String pseudo = request.getParameter("pseudo");
-			String nom = request.getParameter("nom");
-			String prenom = request.getParameter("prenom");
-			String email = request.getParameter("email");
-			String telephone = request.getParameter("telephone");
-			String rue = request.getParameter("rue");
-			String codePostal = request.getParameter("codePostal");
-			String ville = request.getParameter("ville");
-			String motDePasse = request.getParameter("newPassword");
-
-			Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
-					motDePasse, model.getUtilisateur().getCredit(), model.getUtilisateur().isAdministrateur());
+//			String pseudo = request.getParameter("pseudo");
+//			String nom = request.getParameter("nom");
+//			String prenom = request.getParameter("prenom");
+//			String email = request.getParameter("email");
+//			String telephone = request.getParameter("telephone");
+//			String rue = request.getParameter("rue");
+//			String codePostal = request.getParameter("codePostal");
+//			String ville = request.getParameter("ville");
+//			String motDePasse = request.getParameter("newPassword");
 
 			try {
-				manager.delete(utilisateur);
+				managerA.deleteUtilisateur(modelU.getUtilisateur().getNoUtilisateur());
+				managerU.delete(modelU.getUtilisateur().getNoUtilisateur());
 			} catch (BLLException e) {
 
 			}
