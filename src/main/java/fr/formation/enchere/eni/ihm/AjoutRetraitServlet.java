@@ -66,9 +66,9 @@ public class AjoutRetraitServlet extends HttpServlet {
 			modelR.setRetrait(retrait);
 			try {
 				managerRetrait.insert(retrait);
-				modelA.setMessage("Création du retrait réussi");
+				modelR.setMessage("Création du retrait réussi");
 			} catch (BLLException e) {
-				modelA.setMessage("Erreur à la création du retrait");
+				modelR.setMessage("Erreur à la création du retrait");
 			}
 		}
 		request.getSession().setAttribute("modelA", modelA);
