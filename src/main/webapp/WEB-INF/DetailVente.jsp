@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/DetailVentes.css" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +13,9 @@
 		<h1>
 			<a href="http://localhost:8080/EnchereENI/PageAcceuilServlet">ENI-Encheres</a>
 		</h1>
+	</header>
+	<div class="detail">
+	
 		<p>${modelA.articleVendu.nomArticle}</p>
 		<p>Description : ${modelA.articleVendu.description}</p>
 		<p>Categorie : ${modelA.articleVendu.noCategorie.libelle }</p>
@@ -33,7 +38,7 @@
 			
 			
 		</form>
-
-	</header>
+	</div>	
+	
 </body>
 </html>
