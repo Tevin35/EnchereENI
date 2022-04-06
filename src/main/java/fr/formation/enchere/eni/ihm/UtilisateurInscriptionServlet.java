@@ -35,7 +35,7 @@ public class UtilisateurInscriptionServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		UtilisateurModel model = new UtilisateurModel();
+		UtilisateurModel modelU = new UtilisateurModel();
 
 		if (request.getParameter("creer") != null) {
 			String pseudo = request.getParameter("pseudo");
@@ -51,18 +51,18 @@ public class UtilisateurInscriptionServlet extends HttpServlet {
 			Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
 					motDePasse, 1000, false);
 
-			model.setUtilisateur(utilisateur);
-			model.setConnecter(true);
-			if (model.isConnecter()) {
-				request.getSession().setAttribute("modelU", model);
+			modelU.setUtilisateur(utilisateur);
+			modelU.setConnecter(true);
+			if (modelU.isConnecter()) {
+				request.getSession().setAttribute("modelU", modelU);
 				request.getRequestDispatcher("PageAcceuilServlet").forward(request, response);
 			}
 
 			try {
 				manager.insert(utilisateur);
-				model.setMessage("Inscription réussi");
+				modelU.setMessage("Inscription réussi");
 			} catch (BLLException e) {
-				model.setMessage("Erreur à l'inscription");
+				modelU.setMessage("Erreur à l'inscription");
 			}
 		}
 

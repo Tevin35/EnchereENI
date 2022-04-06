@@ -50,6 +50,20 @@ public class ArticleManager implements IArticleManager {
 		}
 		
 	}
+	
+	/**
+	*{@inheritedDoc}
+	*/
+	@Override
+	public void deleteUtilisateur(Integer id) throws BLLException {
+		
+		try {
+			dao.delete(id);
+		} catch (DALException e) {
+			throw new BLLException("BLL - erreur dans la fonction delete : " + e.getMessage());
+		}
+		
+	}
 
 	/**
 	*{@inheriteDoc}

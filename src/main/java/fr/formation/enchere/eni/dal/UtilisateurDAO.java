@@ -31,7 +31,7 @@ public class UtilisateurDAO implements IUtilisateurDAO {
 	private final String SELECTBYPSEUDO = "SELECT  no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE pseudo = ?";
 	private final String INSERT = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private final String UPDATE = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?, mot_de_passe = ? WHERE no_utilisateur = ?";
-	private final String DELETE = "DELETE INTO UTILISATEURS WHERE no_utilisateur = ?";
+	private final String DELETE = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
 
 	/**
 	 * {@inheritedDoc}
