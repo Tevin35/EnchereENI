@@ -42,6 +42,8 @@ public class DetailVenteServlet extends HttpServlet {
 		ArticleModel modelA = (ArticleModel) request.getSession().getAttribute("modelA");
 		UtilisateurModel modelU = (UtilisateurModel) request.getSession().getAttribute("modelU");
 
+		Integer noArticle =  Integer.parseInt(request.getParameter("noArticle"));
+		System.out.println(noArticle);
 		try {
 			modelA.setArticleVendu(managerArticle.selectById(1));
 

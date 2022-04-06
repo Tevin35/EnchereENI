@@ -115,7 +115,7 @@
 						<c:forEach items="${modelA.lstArticles}" var="article">
 						
 							<div>
-								<a href="http://localhost:8080/EnchereENI/DetailVenteServlet">${article.nomArticle}</a><br>
+								<a href="http://localhost:8080/EnchereENI/DetailVenteServlet?noArticle=${article.noArticle}">${article.nomArticle}</a><br>
 								Prix : ${article.miseAPrix}<br>
 								Fin de l'enchere : ${article.dateFinFormat}<br> 
 								Vendeur : <a href="http://localhost:8080/EnchereENI/UtilisateurInformationServlet">${article.noUtilisateur.pseudo}</a>
