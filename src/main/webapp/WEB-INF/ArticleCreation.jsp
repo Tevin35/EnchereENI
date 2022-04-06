@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,14 +14,14 @@
 		<h1>
 			<a href="http://localhost:8080/EnchereENI/PageAcceuilServlet">ENI-Encheres</a>
 		</h1>
-		<c:if test="${!model.connecter}">
+		<c:if test="${!modelU.connecter}">
 			<p>
 				<a
 					href="http://localhost:8080/EnchereENI/UtilisateurConnexionServlet">S'inscrire
 					- Se connecter</a>
 			</p>
 		</c:if>
-		<c:if test="${model.connecter}">
+		<c:if test="${modelU.connecter}">
 			<p>
 				<a href="http://localhost:8080/EnchereENI/EnchereServlet">Enchère</a>
 				<a href="http://localhost:8080/EnchereENI/ArticleCreationServlet">Vendre
