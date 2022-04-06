@@ -34,7 +34,7 @@ public class UtilisateurConnexionServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		UtilisateurModel model = new UtilisateurModel();
+		UtilisateurModel modelU = new UtilisateurModel();
 
 		if (request.getParameter("connexion") != null) {
 			// verification que l'utlisateur existe sinon lui demander de s'inscrire
@@ -43,26 +43,26 @@ public class UtilisateurConnexionServlet extends HttpServlet {
 			try {
 				if (manager.selectLogin(pseudo, password) != null) {
 					// Connexion reussi garder l'utlisateur connecter
-					model.setUtilisateur(manager.selectLogin(pseudo, password));
-					model.setConnecter(true);
+					modelU.setUtilisateur(manager.selectLogin(pseudo, password));
+					modelU.setConnecter(true);
 					// retour page d'acceuil
-					request.getSession().setAttribute("model", model);
+					request.getSession().setAttribute("modelU", modelU);
 					request.getRequestDispatcher("PageAcceuilServlet").forward(request, response);
 
 				} else {
-					model.setMessage("Mot de passe incorrecte ou compte inexistant.");
-					request.getSession().setAttribute("model", model);
+					modelU.setMessage("Mot de passe incorrecte ou compte inexistant.");
+					request.getSession().setAttribute("modelU", modelU);
 					request.getRequestDispatcher("/WEB-INF/UtilisateurConnexion.jsp").forward(request, response);
 				}
 
 			} catch (BLLException e) {
-				model.setMessage("Erreur Select");
+				modelU.setMessage("Erreur Select");
 			}
 
 		} else if (request.getParameter("inscription") != null) {
 			request.getRequestDispatcher("UtilisateurInscriptionServlet").forward(request, response);
 		} else {
-			request.getSession().setAttribute("modelU", model);
+			request.getSession().setAttribute("modelU", modelU);
 			request.getRequestDispatcher("/WEB-INF/UtilisateurConnexion.jsp").forward(request, response);
 		}
 

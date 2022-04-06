@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css" />
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Mon Profil</title>
+<title>Information du Vendeur</title>
 </head>
 <body>
+
 	<header>
 		<h1 class="acceuil">
 			<a href="http://localhost:8080/EnchereENI/PageAcceuilServlet">ENI-Encheres</a>
@@ -26,8 +26,6 @@
 		${modelU.utilisateur.ville}<br> <br> Crédit :
 		${modelU.utilisateur.credit}
 	</p>
-	
-	<a href="http://localhost:8080/EnchereENI/UtilisateurModificationServlet">Modifier</a>
 
 </body>
 </html>

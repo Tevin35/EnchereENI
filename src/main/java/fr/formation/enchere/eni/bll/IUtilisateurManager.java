@@ -31,4 +31,12 @@ public interface IUtilisateurManager {
 	
 	public Utilisateur selectById(Utilisateur utilisateur) throws BLLException;
 
+	/**
+	 * Méthode en charge de 
+	 * @param pseudo
+	 * @return
+	 * @throws BLLException
+	 */
+	Utilisateur selectPseudo(String pseudo) throws BLLException;
+
 }

@@ -91,7 +91,20 @@ public class UtilisateurManager implements IUtilisateurManager {
 		try {
 			return dao.selectLogin(pseudo, mdp);
 		} catch (DALException e) {
-			throw new BLLException("BLL - erreur dans la fonction selectById  : " + e.getMessage());
+			throw new BLLException("BLL - erreur dans la fonction selectLogin  : " + e.getMessage());
+		}
+	}
+	
+	/**
+	*{@inheriteDoc}
+	*/
+	@Override
+	public Utilisateur selectPseudo(String pseudo) throws BLLException {
+		
+		try {
+			return dao.selectPseudo(pseudo);
+		} catch (DALException e) {
+			throw new BLLException("BLL - erreur dans la fonction selectPseudo  : " + e.getMessage());
 		}
 	}
 	

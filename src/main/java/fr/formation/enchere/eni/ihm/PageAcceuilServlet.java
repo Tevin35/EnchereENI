@@ -8,10 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.formation.enchere.eni.dal.DALException;
-import fr.formation.enchere.eni.dal.DAOFact;
-import fr.formation.enchere.eni.dal.IArticleDAO;
-import fr.formation.enchere.eni.dal.ICategorieDAO;
+import fr.formation.enchere.eni.bll.ArticleManagerSing;
+import fr.formation.enchere.eni.bll.BLLException;
+import fr.formation.enchere.eni.bll.CategorieManagerSing;
+import fr.formation.enchere.eni.bll.IArticleManager;
+import fr.formation.enchere.eni.bll.ICategorieManager;
+
 
 /**
  * Servlet implementation class PageAcceuilServlet
@@ -20,8 +22,8 @@ import fr.formation.enchere.eni.dal.ICategorieDAO;
 public class PageAcceuilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	ICategorieDAO daoC = DAOFact.getCategorieDAO();
-	IArticleDAO daoA = DAOFact.getArticleDAO();
+	ICategorieManager managerC = CategorieManagerSing.getInstance();
+	IArticleManager managerA = ArticleManagerSing.getInstance();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -35,15 +37,13 @@ public class PageAcceuilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		UtilisateurModel modelU = (UtilisateurModel) request.getSession().getAttribute("model");
+		UtilisateurModel modelU = (UtilisateurModel) request.getSession().getAttribute("modelU");
 		CategorieModel modelCat = new CategorieModel();
 		ArticleModel modelA = new ArticleModel();
 		
-		
-		
 		try {
-			modelCat.setLstCategories(daoC.selectAll());
-		} catch (DALException e) {
+			modelCat.setLstCategories(managerC.selectAll());
+		} catch (BLLException e) {
 			modelCat.setMessage("Impossible de récupérer les categories");
 		}
 		if (request.getParameter("deco") != null) {
@@ -53,13 +53,13 @@ public class PageAcceuilServlet extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/PageAcceuil.jsp").forward(request, response);
 		}else {
 			try {
-				modelA.setLstArticles(daoA.selectAll());
-			} catch (DALException e) {
+				modelA.setLstArticles(managerA.selectAll());
+			} catch (BLLException e) {
 				System.out.println("erreur de select : " + e.getMessage());
 			}
 			
 			request.setAttribute("modelCat", modelCat);
-			request.setAttribute("model", modelU);
+			request.setAttribute("modelU", modelU);
 			request.getSession().setAttribute("modelA", modelA);
 			request.getRequestDispatcher("/WEB-INF/PageAcceuil.jsp").forward(request, response);
 		}

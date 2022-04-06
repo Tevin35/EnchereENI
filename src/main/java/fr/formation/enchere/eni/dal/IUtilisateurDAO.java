@@ -30,4 +30,12 @@ public interface IUtilisateurDAO {
 	public Utilisateur selectById(Utilisateur utilisateur) throws DALException;
 	
 	public void delete(Integer id) throws DALException;
+
+	/**
+	 * Méthode en charge de 
+	 * @param pseudo
+	 * @return
+	 * @throws DALException
+	 */
+	Utilisateur selectPseudo(String pseudo) throws DALException;
 }
