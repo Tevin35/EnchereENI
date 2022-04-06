@@ -29,7 +29,7 @@ public class CategorieDAO implements ICategorieDAO {
 	private final String SELECTALL = "SELECT no_categorie, libelle FROM CATEGORIES";
 	private final String INSERT = "INSERT INTO CATEGORIES (libelle) VALUES (?)";
 	private final String UPDATE = "UPDATE CATEGORIES SET libelle = ?, WHERE no_categorie = ?";
-	private final String DELETE = "DELETE INTO CATEGORIES WHERE no_categorie = ?";
+	private final String DELETE = "DELETE INTO CATEGORIES FROM no_categorie = ?";
 	private final String SELECTBYID = "SELECT no_categorie, libelle FROM CATEGORIES WHERE no_categorie = ?";
 
 	/**

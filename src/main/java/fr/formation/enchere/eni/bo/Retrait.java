@@ -14,7 +14,7 @@ import java.util.Arrays;
  *
  */
 public class Retrait {
-	
+	private ArticleVendu noArticle; 
 	private String rue;
 	private String codePostal;
 	private String ville;
@@ -33,6 +33,23 @@ public class Retrait {
 		this.ville = ville;
 		this.articleVendu = articleVendu;
 	}
+	
+	
+	/**
+	 * Constructeur.
+	 * @param noArticle
+	 * @param rue
+	 * @param codePostal
+	 * @param ville
+	 */
+	public Retrait(ArticleVendu noArticle, String rue, String codePostal, String ville) {
+		this.noArticle = noArticle;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+	}
+
+
 	/**
 	 * Getter pour rue.
 	 * @return the rue
@@ -89,13 +106,22 @@ public class Retrait {
 	public void setArticleVendu(ArticleVendu[] articleVendu) {
 		this.articleVendu = articleVendu;
 	}
-	/**
-	*{@inheritedDoc}
-	*/
+	
+	public ArticleVendu getNoArticle() {
+		return noArticle;
+	}
+	public void setNoArticle(ArticleVendu noArticle) {
+		this.noArticle = noArticle;
+	}
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Retrait [");
+		if (noArticle != null) {
+			builder.append("noArticle=");
+			builder.append(noArticle);
+			builder.append(", ");
+		}
 		if (rue != null) {
 			builder.append("rue=");
 			builder.append(rue);
