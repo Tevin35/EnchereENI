@@ -33,7 +33,7 @@
 	</header>
 	<form action="ArticleCreationServlet" method="post">
 		Nom de l'article : <input type="text" name="nomArticle"><br>
-		<br> Description : <input type="text" name="description"><br>
+		<br> Description : <br><textarea name="description" rows="5" cols="50">Description décrivant votre joli produit</textarea><br>
 		<br> Date de début de l'enchère : <input type="date"
 			name="dateDebutEncheres"><br> <br> Date de fin de
 		l'enchère : <input type="date" name="dateFinEncheres"><br>
