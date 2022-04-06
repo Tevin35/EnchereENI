@@ -24,7 +24,7 @@
 		${modelU.utilisateur.rue}<br> <br> Code Postal :
 		${modelU.utilisateur.codePostal}<br> <br> Ville :
 		${modelU.utilisateur.ville}<br> <br> Crédit :
-		${modelU.utilisateur.credit} <img alt="Credit" src="${pageContext.request.contextPath}/src/main/webapp/images/stonk.png">
+		${modelU.utilisateur.credit} <img alt="Credits" src="${pageContext.request.contextPath}/images/stonk.png">
 	</p>
 	
 	<a href="http://localhost:8080/EnchereENI/UtilisateurModificationServlet">Modifier</a>
