@@ -1,9 +1,12 @@
 @charset "UTF-8";
 
 P {
-	text-align: center
+	text-align: justify
+	
 }
 
 body {
 	background-color: skyblue
+	
 }
+
