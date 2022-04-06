@@ -35,7 +35,7 @@ public class UtilisateurInscriptionServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		UtilisateurModel model = new UtilisateurModel();
+		UtilisateurModel modelU = new UtilisateurModel();
 
 		if (request.getParameter("creer") != null) {
 			String pseudo = request.getParameter("pseudo");
@@ -47,28 +47,34 @@ public class UtilisateurInscriptionServlet extends HttpServlet {
 			String codePostal = request.getParameter("codePostal");
 			String ville = request.getParameter("ville");
 			String motDePasse = request.getParameter("motDePasse");
+			String confirmation = request.getParameter("confirmMotDePasse");
 
 			Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
 					motDePasse, 1000, false);
 
-			model.setUtilisateur(utilisateur);
-			model.setConnecter(true);
-			if (model.isConnecter()) {
-				request.getSession().setAttribute("modelU", model);
-				request.getRequestDispatcher("PageAcceuilServlet").forward(request, response);
+			modelU.setUtilisateur(utilisateur);
+
+			if (motDePasse.equals(confirmation)) {
+				try {
+					manager.insert(utilisateur);
+					modelU.setConnecter(true);
+					if (modelU.isConnecter()) {
+						request.getSession().setAttribute("modelU", modelU);
+						request.getRequestDispatcher("PageAcceuilServlet").forward(request, response);
+					}
+				} catch (BLLException e) {
+					modelU.setMessage("Erreur à l'inscription");
+				}
+			}else {
+				modelU.setMessage("Les mot de passe ne coresponde pas");
 			}
 
-			try {
-				manager.insert(utilisateur);
-				model.setMessage("Inscription réussi");
-			} catch (BLLException e) {
-				model.setMessage("Erreur à l'inscription");
-			}
 		}
 
 		if (request.getParameter("annuler") != null) {
 			request.getRequestDispatcher("PageAcceuilServlet").forward(request, response);
 		}
+		request.getSession().setAttribute("modelU", modelU);
 		request.getRequestDispatcher("/WEB-INF/UtilisateurInscription.jsp").forward(request, response);
 	}
 

@@ -23,7 +23,7 @@
 			<input type="submit" name="inscription" value="Créer un compte">
 		</form>
 		
-		<h4 style="color:red">${model.message}</h4>
+		<h4 style="color:red">${modelU.message}</h4>
 	</div>
 	
 

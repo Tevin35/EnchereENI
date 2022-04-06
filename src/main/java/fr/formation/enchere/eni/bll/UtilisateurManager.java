@@ -42,11 +42,8 @@ public class UtilisateurManager implements IUtilisateurManager {
 	 * {@inheritedDoc}
 	 */
 	@Override
-	public void delete(Utilisateur utilisateur) throws BLLException {
+	public void delete(Integer id) throws BLLException {
 
-		
-		Integer id = utilisateur.getNoUtilisateur();
-		
 		try {
 			dao.delete(id);
 		} catch (DALException e) {

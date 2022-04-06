@@ -26,5 +26,12 @@ public interface IArticleDAO  {
 	public ArticleVendu selectById(Integer id) throws DALException;
 	
 	public void delete(Integer id) throws DALException;
+
+	/**
+	 * Méthode en charge de 
+	 * @param idUti
+	 * @throws DALException
+	 */
+	void deleteUtilisateur(Integer idUti) throws DALException;
 	
 }

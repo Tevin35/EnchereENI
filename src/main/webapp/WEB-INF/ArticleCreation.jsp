@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,25 +11,31 @@
 </head>
 <body>
 	<header>
-		<h1>
+		<h1 class="acceuil">
 			<a href="http://localhost:8080/EnchereENI/PageAcceuilServlet">ENI-Encheres</a>
 		</h1>
-		<c:if test="${!model.connecter}">
-			<p>
-				<a
-					href="http://localhost:8080/EnchereENI/UtilisateurConnexionServlet">S'inscrire
-					- Se connecter</a>
-			</p>
+		<c:if test="${!modelU.connecter}">
+			<div class="deconnecter">
+				<p>
+					<a
+						href="http://localhost:8080/EnchereENI/UtilisateurConnexionServlet">S'inscrire
+						- Se connecter</a>
+				</p>
+			</div>
 		</c:if>
-		<c:if test="${model.connecter}">
-			<p>
-				<a href="http://localhost:8080/EnchereENI/EnchereServlet">Enchère</a>
-				<a href="http://localhost:8080/EnchereENI/ArticleCreationServlet">Vendre
-					un article</a> <a
-					href="http://localhost:8080/EnchereENI/UtilisateurInformationServlet">Mon
-					profil</a> <a
-					href="http://localhost:8080/EnchereENI/PageAcceuilServlet">Déconnexion</a>
-			</p>
+		<c:if test="${modelU.connecter}">
+			<div class="connecter">
+				<p>
+					<a href="http://localhost:8080/EnchereENI/EnchereServlet">Enchère</a>
+					<a href="http://localhost:8080/EnchereENI/ArticleCreationServlet">Vendre
+						un article</a> <a
+						href="http://localhost:8080/EnchereENI/UtilisateurInformationServlet">Mon
+						profil</a>
+				<form action="PageAcceuilServlet" method="post">
+					<input type="submit" name="deco" value="Déconnexion">
+				</form>
+				</p>
+			</div>
 		</c:if>
 	</header>
 	<form action="ArticleCreationServlet" method="post">
