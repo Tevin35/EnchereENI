@@ -37,6 +37,6 @@
 	</form>
 
 
-	<h3>${model.message}</h3>
+	<h3>${modelU.message}</h3>
 </body>
 </html>

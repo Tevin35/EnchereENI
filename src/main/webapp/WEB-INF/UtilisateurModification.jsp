@@ -40,6 +40,6 @@
 			type="submit" name="supprimer" value="Supprimer mon compte">
 
 	</form>
-
+	<p>${modelU.message}
 </body>
 </html>

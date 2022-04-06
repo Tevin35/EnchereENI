@@ -58,17 +58,19 @@
 				</select>
 			</form>
 
-			<p>
+			<div class=lstenchere>
 			<p>Liste des Encheres</p>
 			<c:forEach items="${modelA.lstArticles}" var="article">
+			<div class="uneEnchere">
 					${article.nomArticle}<br>
 					Prix : ${article.miseAPrix}<br>
 					Fin de l'enchere : ${article.dateFinFormat}<br> 
 					Vendeur : ${article.noUtilisateur.pseudo}
 					<br>
 				<br>
+				</div>
 			</c:forEach>
-			</p>
+			</div>
 		</c:if>
 
 
