@@ -30,7 +30,7 @@ public class EnchereDAO implements IEnchereDAO {
 
 	private String INSERT = "INSERT INTO ENCHERES (date_enchere, montant_enchere, no_articles, no_utilisateur) VALUES (?, ?, ?, ?)";
 	private String UPDATE = "UPDATE ENCHERES SET date_enchere = ?, montant_enchere = ?, no_articles = ?, no_utilisateur = ? WHERE no_enchere = ?";
-	private String DELETE = "DELETE INTO ENCHERES WHERE no_enchere = ?";
+	private String DELETE = "DELETE INTO ENCHERES FROM no_enchere = ?";
 	private String SELECTALL = "SELECT date_enchere, montant_enchere, no_articles, no_utilisateur FROM ENCHERES";
 	private String SELECTBYID = "SELECT date_enchere, montant_enchere, no_articles, no_utilisateur FROM ENCHERES WHERE no_enchere = ?";
 
