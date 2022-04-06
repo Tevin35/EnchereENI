@@ -42,27 +42,41 @@ public class AjoutRetraitServlet extends HttpServlet {
 		RetraitModel modelR = (RetraitModel) request.getSession().getAttribute("model");
 		
 		if (request.getParameter("valider") != null) {
-			ArticleVendu articleVendu = null;
-			ArticleVendu noArticle = modelA.getArticleVendu();
-			Integer noArticle = Integer.parseInt(request.getParameter("articleVendu"));
+			ArticleVendu articleVendu = modelA.getArticleVendu();
+			Integer noArticle = Integer.parseInt(request.getParameter("noArticle"));
 			try {
 				articleVendu = managerArticle.selectById(articleVendu);
 			} catch (BLLException e1) {
 				e1.printStackTrace();
 			}
+			
 			String rue = request.getParameter("rue");
 			String codePostal = request.getParameter("codePostal");
 			String ville = request.getParameter("ville");
 			
-			Retrait retrait = new Retrait(noArticle, rue, codePostal, ville);
+			Retrait retrait = null;
+			try {
+				retrait = new Retrait(managerArticle.selectById(noArticle), rue, codePostal, ville);
+			} catch (BLLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			System.out.println(retrait);
 			
+			modelR.setRetrait(retrait);
+			try {
+				managerRetrait.insert(retrait);
+				modelA.setMessage("Création du retrait réussi");
+			} catch (BLLException e) {
+				modelA.setMessage("Erreur à la création du retrait");
+			}
+		}
 		request.getSession().setAttribute("modelA", modelA);
 		request.setAttribute("modelU", modelU);
 		request.getRequestDispatcher("/WEB-INF/AjoutRetrait.jsp").forward(request, response);
-
 	}
-
+		
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
