@@ -46,7 +46,7 @@ public class ArticleCreationServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArticleModel modelA = new ArticleModel();
-		UtilisateurModel modelU = (UtilisateurModel) request.getSession().getAttribute("model");
+		UtilisateurModel modelU = (UtilisateurModel) request.getSession().getAttribute("modelU");
 		CategorieModel modelCat = new CategorieModel();
 		
 		try {

@@ -39,7 +39,7 @@ public class AjoutRetraitServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArticleModel modelA = new ArticleModel();
 		UtilisateurModel modelU = (UtilisateurModel) request.getSession().getAttribute("model");
-		RetraitModel modelR = (RetraitModel) request.getSession().getAttribute("model");
+		RetraitModel modelR = new RetraitModel();
 		
 		if (request.getParameter("valider") != null) {
 			ArticleVendu articleVendu = modelA.getArticleVendu();

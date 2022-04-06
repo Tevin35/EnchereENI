@@ -7,9 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import fr.formation.enchere.eni.bo.ArticleVendu;
@@ -101,15 +99,15 @@ public class RetraitDAO implements IRetraitDAO {
 
 	public void insert(Retrait retrait) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
-			ArticleVendu[] articleVendus = new ArticleVendu[1];
-			Integer id = null;
-			ArticleVendu[] article = retrait.getArticleVendu();
-			for (ArticleVendu articleVendu : article) {
-				id = articleVendu.getNoArticle();
-			}
+//			ArticleVendu[] articleVendus = new ArticleVendu[1];
+//			Integer id = null;
+//			ArticleVendu[] article = retrait.getArticleVendu();
+//			for (ArticleVendu articleVendu : article) {
+//				id = articleVendu.getNoArticle();
+//			}
 			PreparedStatement stmt = cnx.prepareStatement(INSERT);
 
-			stmt.setInt(1, id);
+			stmt.setInt(1, retrait.getNoArticle().getNoArticle());
 			stmt.setString(2, retrait.getRue());
 			stmt.setString(3, retrait.getCodePostal());
 			stmt.setString(4, retrait.getVille());
