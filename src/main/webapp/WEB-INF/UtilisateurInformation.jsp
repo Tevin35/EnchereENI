@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/information.css" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,19 +16,19 @@
 
 	</header>
 
-	<p>
-		Pseudo : ${modelU.utilisateur.pseudo}<br> <br> Nom :
-		${modelU.utilisateur.nom}<br> <br> Prenom :
-		${modelU.utilisateur.prenom}<br> <br> Email :
-		${modelU.utilisateur.email}<br> <br> Telephone :
-		${modelU.utilisateur.telephone}<br> <br> Rue :
-		${modelU.utilisateur.rue}<br> <br> Code Postal :
-		${modelU.utilisateur.codePostal}<br> <br> Ville :
-		${modelU.utilisateur.ville}<br> <br> Crédit :
-		${modelU.utilisateur.credit} <img alt="Credits" src="${pageContext.request.contextPath}/images/stonk.png">
-	</p>
+	<div class="form">
+		<p>Pseudo : ${modelU.utilisateur.pseudo}</p>
+		<p>Nom : ${modelU.utilisateur.nom}</p>
+		<p>Prenom : ${modelU.utilisateur.prenom}</p>
+		<p>Email : ${modelU.utilisateur.email} </p>
+		<p>Telephone :	${modelU.utilisateur.telephone}</p>
+		<p>Rue : ${modelU.utilisateur.rue}</p>
+		<p>Code Postal : ${modelU.utilisateur.codePostal} </p>
+		<p>Ville :	${modelU.utilisateur.ville} </p>
+		<p>Crédit : ${modelU.utilisateur.credit} <img alt="Credits" src="${pageContext.request.contextPath}/images/stonk.png"></p>
 	
-	<a href="http://localhost:8080/EnchereENI/UtilisateurModificationServlet">Modifier</a>
+		<p><a href="http://localhost:8080/EnchereENI/UtilisateurModificationServlet">Modifier</a></p>
+	</div>
 
 </body>
 </html>

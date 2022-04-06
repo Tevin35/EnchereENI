@@ -11,13 +11,14 @@
 </head>
 <body>
 	<header>
+
 		<h1 class="acceuil">
 			<a href="http://localhost:8080/EnchereENI/PageAcceuilServlet">ENI-Encheres</a>
 		</h1>
 		<c:if test="${!modelU.connecter}">
 			<div class="deconnecter">
 				<p>
-					<a
+					<a class="nav"
 						href="http://localhost:8080/EnchereENI/UtilisateurConnexionServlet">S'inscrire
 						- Se connecter</a>
 				</p>
@@ -26,18 +27,28 @@
 		<c:if test="${modelU.connecter}">
 			<div class="connecter">
 				<p>
-					<a href="http://localhost:8080/EnchereENI/EnchereServlet">Enchère</a>
-					<a href="http://localhost:8080/EnchereENI/ArticleCreationServlet">Vendre
-						un article</a> <a
+					<a class="nav"
+						href="http://localhost:8080/EnchereENI/EnchereServlet">Enchère</a>
+				</p>
+				<p>
+					<a class="nav"
+						href="http://localhost:8080/EnchereENI/ArticleCreationServlet">Vendre
+						un article</a>
+				</p>
+				<p>
+					<a class="nav"
 						href="http://localhost:8080/EnchereENI/UtilisateurInformationServlet">Mon
 						profil</a>
-				<form action="PageAcceuilServlet" method="post">
-					<input type="submit" name="deco" value="Déconnexion">
+				</p>
+				<p>
+				<form class="margin" action="PageAcceuilServlet" method="post">
+					<input class="nav" type="submit" name="deco" value="Déconnexion">
 				</form>
 				</p>
 			</div>
 		</c:if>
 	</header>
+	
 	<form action="ArticleCreationServlet" method="post">
 		Nom de l'article : <input type="text" name="nomArticle"><br>
 		<br> Description : <br><textarea name="description" rows="5" cols="50" placeholder="Description décrivant votre joli produit"></textarea><br>

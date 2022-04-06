@@ -2,8 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/pageAcceuil.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/styles/main.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/styles/pageAcceuil.css" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +21,7 @@
 		<c:if test="${!modelU.connecter}">
 			<div class="deconnecter">
 				<p>
-					<a
+					<a class="nav"
 						href="http://localhost:8080/EnchereENI/UtilisateurConnexionServlet">S'inscrire
 						- Se connecter</a>
 				</p>
@@ -28,13 +30,22 @@
 		<c:if test="${modelU.connecter}">
 			<div class="connecter">
 				<p>
-					<a href="http://localhost:8080/EnchereENI/EnchereServlet">Enchère</a>
-					<a href="http://localhost:8080/EnchereENI/ArticleCreationServlet">Vendre
-						un article</a> <a
+					<a class="nav"
+						href="http://localhost:8080/EnchereENI/EnchereServlet">Enchère</a>
+				</p>
+				<p>
+					<a class="nav"
+						href="http://localhost:8080/EnchereENI/ArticleCreationServlet">Vendre
+						un article</a>
+				</p>
+				<p>
+					<a class="nav"
 						href="http://localhost:8080/EnchereENI/UtilisateurInformationServlet">Mon
 						profil</a>
-				<form action="PageAcceuilServlet" method="post">
-					<input type="submit" name="deco" value="Déconnexion">
+				</p>
+				<p>
+				<form class="margin" action="PageAcceuilServlet" method="post">
+					<input class="nav" type="submit" name="deco" value="Déconnexion">
 				</form>
 				</p>
 			</div>
@@ -48,28 +59,27 @@
 
 			<p>Filtres :</p>
 			<form action="PageAcceuilServlet" method="post">
-				<input type="text" name="filtre"> <input type="submit"
-					name="submit" value="Rechercher"> Categories : <select
-					name="categories" id="categories-select">
+				<input type="text" name="filtre" placeholder="Recherche">  
+				Categories : <select name="categories" id="categories-select">
 					<option value="">--choisir une catégorie--</option>
 					<c:forEach items="${modelCat.lstCategories}" var="cat">
 						<option value="${cat.libelle}">${cat.libelle}</option>
 					</c:forEach>
 				</select>
+				<input type="submit" name="submit" value="Rechercher">
 			</form>
 
 			<div class=lstenchere>
-			<p>Liste des Encheres</p>
-			<c:forEach items="${modelA.lstArticles}" var="article">
-			<div class="uneEnchere">
-					${article.nomArticle}<br>
-					Prix : ${article.miseAPrix}<br>
-					Fin de l'enchere : ${article.dateFinFormat}<br> 
-					Vendeur : ${article.noUtilisateur.pseudo}
-					<br>
-				<br>
-				</div>
-			</c:forEach>
+				<p>Liste des Encheres</p>
+				<c:forEach items="${modelA.lstArticles}" var="article">
+					<div class="uneEnchere">
+						<p class="strong">${article.nomArticle}</p> 
+						<p>Prix : ${article.miseAPrix}</p>
+						<p>Fin de l'enchere : ${article.dateFinFormat}</p>
+						<p>Vendeur : ${article.noUtilisateur.pseudo}</p>
+						
+					</div>
+				</c:forEach>
 			</div>
 		</c:if>
 
@@ -98,8 +108,7 @@
 							type="checkbox" id="mesEncheres" name="mesEncheres"> <label
 							for="mesEncheres">Mes enchères</label><br> <input
 							type="checkbox" id="remporte" name="remporte"> <label
-							for="remporte">Mes enchères remportées</label> <br>
-						<br>
+							for="remporte">Mes enchères remportées</label> <br> <br>
 						<br>
 
 					</div>
@@ -123,16 +132,16 @@
 				<c:forEach items="${modelA.lstArticles}" var="article">
 
 					<div class="uneEnchere">
-						<a href="http://localhost:8080/EnchereENI/DetailVenteServlet?noArticle=${article.noArticle}">${article.nomArticle}</a><br>
-						Prix : ${article.miseAPrix}<br> Fin de l'enchere :
-						${article.dateFinFormat}<br> Vendeur : <a
-							href="http://localhost:8080/EnchereENI/VendeurInformationServlet?pseudo=${article.noUtilisateur.pseudo}">${article.noUtilisateur.pseudo}</a>
-						<br> <br>
+						<p class="strong"><a href="http://localhost:8080/EnchereENI/DetailVenteServlet?noArticle=${article.noArticle}">${article.nomArticle}</a></p>
+						<p>Prix : ${article.miseAPrix}</p>
+						<p>Fin de l'enchere : ${article.dateFinFormat}</p>				
+						<p>Vendeur : <a href="http://localhost:8080/EnchereENI/VendeurInformationServlet?pseudo=${article.noUtilisateur.pseudo}">${article.noUtilisateur.pseudo}</p>
+						
 					</div>
 
 				</c:forEach>
 			</div>
-				
+
 		</c:if>
 	</div>
 </body>
