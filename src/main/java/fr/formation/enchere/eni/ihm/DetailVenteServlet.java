@@ -43,16 +43,16 @@ public class DetailVenteServlet extends HttpServlet {
 		UtilisateurModel modelU = (UtilisateurModel) request.getSession().getAttribute("modelU");
 
 		Integer noArticle =  Integer.parseInt(request.getParameter("noArticle"));
-		System.out.println(noArticle);
+		//System.out.println(request.getParameter("noArticle"));
 		try {
-			modelA.setArticleVendu(managerArticle.selectById(1));
+			modelA.setArticleVendu(managerArticle.selectById(noArticle));
 
 		} catch (BLLException e) {
 			// TODO Auto-generated catch blockb
 			e.printStackTrace();
 		}
 
-		if (request.getParameter("Encherir") != null) {
+		if (request.getParameter("encherir") != null) {
 
 			modelA.setEncheres(Integer.parseInt(request.getParameter("maproposition")));
 			request.setAttribute("modelA", modelA);

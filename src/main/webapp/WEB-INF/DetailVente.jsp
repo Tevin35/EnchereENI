@@ -26,8 +26,8 @@
 		<p>Retrait : ${modelA.articleVendu.lieuRetrait.rue}
 			${modelA.articleVendu.lieuRetrait.codePostal}
 			${modelA.articleVendu.lieuRetrait.ville}</p>
-		<p>Vendeur : ${modelU.utilisateur.noUtilisateur.nom}</p>
-		<p>${modelU.utilisateur.noUtilisateur.prenom}</p>
+		<p>Vendeur : ${modelA.articleVendu.noUtilisateur.nom}
+		${modelA.articleVendu.noUtilisateur.prenom}</p>
 		<p>Ma proposition :
 		<input type="number" name="maproposition" value="Maproposition">
 		</p>
