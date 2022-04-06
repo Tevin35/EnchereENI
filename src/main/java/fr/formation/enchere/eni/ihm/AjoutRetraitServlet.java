@@ -34,9 +34,12 @@ public class AjoutRetraitServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArticleModel modelA = new ArticleModel();
+		UtilisateurModel modelU = (UtilisateurModel) request.getSession().getAttribute("model");
 
-		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getSession().setAttribute("modelA", modelA);
+		request.setAttribute("modelU", modelU);
+		request.getRequestDispatcher("/WEB-INF/AjoutRetrait.jsp").forward(request, response);
+
 	}
 
 	/**
