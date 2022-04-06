@@ -116,7 +116,7 @@
 					</div>
 				</form>
 			</div>
-5			<div class="lstenchere">
+			<div class="lstenchere">
 				<p>Liste des Encheres</p>
 
 
