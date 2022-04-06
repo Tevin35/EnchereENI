@@ -66,19 +66,12 @@ public class UtilisateurModificationServlet extends HttpServlet {
 		// delete
 		if (request.getParameter("supprimer") != null) {
 
-//			String pseudo = request.getParameter("pseudo");
-//			String nom = request.getParameter("nom");
-//			String prenom = request.getParameter("prenom");
-//			String email = request.getParameter("email");
-//			String telephone = request.getParameter("telephone");
-//			String rue = request.getParameter("rue");
-//			String codePostal = request.getParameter("codePostal");
-//			String ville = request.getParameter("ville");
-//			String motDePasse = request.getParameter("newPassword");
-
 			try {
 				managerA.deleteUtilisateur(modelU.getUtilisateur().getNoUtilisateur());
 				managerU.delete(modelU.getUtilisateur().getNoUtilisateur());
+				modelU.setUtilisateur(null);
+				modelU.setConnecter(false);
+				request.getRequestDispatcher("PageAcceuilServlet").forward(request, response);
 			} catch (BLLException e) {
 
 			}
