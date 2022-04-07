@@ -89,7 +89,7 @@
 
 			<p>Filtres :</p>
 			<form action="PageAcceuilServlet" method="post">
-				<input type="text" name="recherche" placeholder="Recherche">  
+				<input type="text" name="recherche" placeholder="Recherche" value="">  
 				Categories : <select name="categories" id="categories-select">
 					<option value="">--choisir une catégorie--</option>
 					<c:forEach items="${modelCat.lstCategories}" var="cat">

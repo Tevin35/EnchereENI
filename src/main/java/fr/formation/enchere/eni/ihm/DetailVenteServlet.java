@@ -43,25 +43,29 @@ public class DetailVenteServlet extends HttpServlet {
 		UtilisateurModel modelU = (UtilisateurModel) request.getSession().getAttribute("modelU");
 
 		Integer noArticle =  Integer.parseInt(request.getParameter("noArticle"));
-		//System.out.println(request.getParameter("noArticle"));
+		
+		String destination = "/WEB-INF/DetailVente.jsp";
+		
 		try {
 			modelA.setArticleVendu(managerArticle.selectById(noArticle));
-
 		} catch (BLLException e) {
-			// TODO Auto-generated catch blockb
-			e.printStackTrace();
+			modelA.setMessage("erreur dans le select");
+		}
+		if (request.getParameter("encherir") != null) {
+			System.out.println("blop");
 		}
 
-		if (request.getParameter("encherir") != null) {
-
+		if (request.getParameter("submit") != null) {
+			System.out.println(request.getParameter("maproposition"));
 			modelA.setEncheres(Integer.parseInt(request.getParameter("maproposition")));
 			request.setAttribute("modelA", modelA);
 			request.setAttribute("modelU", modelU);
-			request.getRequestDispatcher("/WEB-INF/DetailVente.jsp").forward(request, response);
+			request.getRequestDispatcher(destination).forward(request, response);
 		}
+		
 		request.setAttribute("modelA", modelA);
 		request.setAttribute("modelU", modelU);
-		request.getRequestDispatcher("/WEB-INF/DetailVente.jsp").forward(request, response);
+		request.getRequestDispatcher(destination).forward(request, response);
 
 	}
 
@@ -71,7 +75,6 @@ public class DetailVenteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

@@ -41,24 +41,24 @@
 	</header>
 	<div class="detail">
 	
-		<p>${modelA.articleVendu.nomArticle}</br>
-		Description : ${modelA.articleVendu.description}</br>
-		Categorie : ${modelA.articleVendu.noCategorie.libelle }</br>
+		<p>${modelA.articleVendu.nomArticle}</p>
+		<p>Description : ${modelA.articleVendu.description}</p>
+		<p>Categorie : ${modelA.articleVendu.noCategorie.libelle }</p>
 
-		Meilleure offre :
-		Mise à prix : ${modelA.articleVendu.miseAPrix }</br>
-		Fin de l'enchère : ${modelA.articleVendu.dateFinEncheres }</br>
-		Retrait : ${modelA.articleVendu.lieuRetrait.rue}
+		<p>Meilleure offre :</p>
+		<p>Mise à prix : ${modelA.articleVendu.miseAPrix }</p>
+		<p>Fin de l'enchère : ${modelA.articleVendu.dateFinEncheres }</p>
+		<p>Retrait : ${modelA.articleVendu.lieuRetrait.rue}
 			${modelA.articleVendu.lieuRetrait.codePostal}
-			${modelA.articleVendu.lieuRetrait.ville}</br>
-		Vendeur : ${modelA.articleVendu.noUtilisateur.nom}
-		${modelA.articleVendu.noUtilisateur.prenom}</br>
-		Ma proposition :
+			${modelA.articleVendu.lieuRetrait.ville}</p>
+		<p>Vendeur : ${modelA.articleVendu.noUtilisateur.nom}
+		${modelA.articleVendu.noUtilisateur.prenom}</p>
+		<p>Ma proposition :
+		<form action="DetailVenteServlet" method="post">
 		<input type="number" name="maproposition" value="Maproposition">
-		<form>
-			<input type="button" name="encherir" value="Encherir">
-		</form>
-		</p>
+			<input type="button" name="submit" value="Encherir">
+		</form></p>
+		
 	</div>	
 	
 </body>

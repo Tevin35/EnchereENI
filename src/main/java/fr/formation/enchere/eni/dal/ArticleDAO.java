@@ -124,7 +124,6 @@ public class ArticleDAO implements IArticleDAO {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
 			PreparedStatement stmt = cnx.prepareStatement(DELETEUTILISATEUR);
-			System.out.println(idUti);
 			stmt.setInt(1, idUti);
 
 			stmt.executeUpdate();
@@ -162,7 +161,6 @@ public class ArticleDAO implements IArticleDAO {
 	@Override
 	public ArticleVendu selectById(Integer id) throws DALException {
 		ArticleVendu articleVendu = null;
-		System.out.println(id);
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECTBYID);
 			stmt.setInt(1, id);

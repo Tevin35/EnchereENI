@@ -43,7 +43,7 @@
 	
 	<div class="login">
 		<form action="UtilisateurConnexionServlet" method="post">
-			<p>Identifiant : <input type="text" name="pseudo"></p>
+			<p>Identifiant : <input type="text" name="pseudo" autofocus></p>
 			<p>Mot de passe : <input type="password" name="password"></p>
 			<p><input class="btn" type="submit" name="connexion" value="Connexion">
 			<input type="checkbox" id="saveSelect" name="save">

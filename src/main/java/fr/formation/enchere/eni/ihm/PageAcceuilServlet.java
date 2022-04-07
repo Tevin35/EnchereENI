@@ -68,7 +68,7 @@ public class PageAcceuilServlet extends HttpServlet {
 			if (request.getParameter("submit") != null) {
 
 				
-				if (request.getParameter("recherche") != null) {
+				if (!request.getParameter("recherche").equals("")) {
 					rechercher = request.getParameter("recherche");
 				}
 				
@@ -81,8 +81,8 @@ public class PageAcceuilServlet extends HttpServlet {
 				String remporte = request.getParameter("remporte");
 				String enCour = request.getParameter("enCour");
 				String debute = request.getParameter("debute");
-				String termine = request.getParameter("termine");				
-
+				String termine = request.getParameter("termine");
+				
 			}
 			try {
 				if (rechercher != null && categorie != null) {
@@ -93,16 +93,19 @@ public class PageAcceuilServlet extends HttpServlet {
 								lstArticleVendus.add(rech);
 								modelA.setLstArticles(lstArticleVendus);
 								modelCat.setLstCategories(managerC.selectAll());
+								rechercher = null;
+								categorie = null;
 							}
 						}
 					}
 				} else if (rechercher != null) {
 					modelA.setLstArticles(managerA.filtreRecherche(rechercher));
 					modelCat.setLstCategories(managerC.selectAll());
+					rechercher = null;
 				}else if (categorie != null){
-					
 					modelA.setLstArticles(managerA.filtreCat(categorie));
 					modelCat.setLstCategories(managerC.selectAll());
+					categorie = null;
 				}else {
 					modelCat.setLstCategories(managerC.selectAll());
 					modelA.setLstArticles(managerA.selectAll());

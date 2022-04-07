@@ -61,7 +61,6 @@ public class AjoutRetraitServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			System.out.println(retrait);
 			
 			modelR.setRetrait(retrait);
 			try {

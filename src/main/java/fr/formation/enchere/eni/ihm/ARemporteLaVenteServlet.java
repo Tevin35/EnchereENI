@@ -36,7 +36,6 @@ public class ARemporteLaVenteServlet extends HttpServlet {
 		ArticleModel modelA = new ArticleModel();
 
 		try {
-			System.out.println(manager.selectById(1));
 			modelA.setArticleVendu(manager.selectById(1));
 
 		} catch (BLLException e) {

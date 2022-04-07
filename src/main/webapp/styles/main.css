@@ -1,30 +1,28 @@
 @charset "UTF-8";
 
-:root {
-    --background-color: #fff;
-    --text-color: #000;
-  }
+:root { -
+	-background-color: #fff; -
+	-text-color: #000;
+}
 
-  body {
-    background-color: var(--background-color);
-    color: var(--text-color);
-  }
-  
-  [data-theme="dark"] {
-    --background-color: #3F3F3F;
-    --text-color: #fff;
-  }
+body {
+	background-color: var(- -background-color);
+	color: var(- -text-color);
+}
 
-header
-{
+[data-theme="dark"] { -
+	-background-color: #3F3F3F; -
+	-text-color: #fff;
+}
+
+header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	background-color: white;
 }
 
-.nav
-{
+.nav {
 	text-decoration: none;
 	width: 200px;
 	height: 50px;
@@ -36,11 +34,10 @@ header
 	display: flex;
 	justify-content: center;
 	align-items: center;
- 	transition-duration: 0.4s;
+	transition-duration: 0.4s;
 }
 
-.fa-lightbulb
-{
+.fa-lightbulb {
 	text-decoration: none;
 	width: 25px;
 	height: 50px;
@@ -52,56 +49,54 @@ header
 	display: flex;
 	justify-content: center;
 	align-items: center;
- 	transition-duration: 0.4s; 
+	transition-duration: 0.4s;
 	text-align: center;
 	display: space-around;
 }
 
 td i {
-    text-align:center;
+	text-align: center;
 }
 
-button{
+button {
 	border: none;
 	background: none;
 	text-align: center;
 	display: space-around;
 }
 
-.lumiere{
+.lumiere {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	display: space-around;
 }
 
 .nav:hover {
-  background-color: blue;
-  color: white;
+	background-color: blue;
+	color: white;
 }
 
-.acceuil
-{
-	
+.acceuil {
 	width: 300px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-.acceuil a
-{
+.acceuil a {
 	text-decoration: none;
 	color: black;
 }
 
-.deconnecter
-{
-	width: 200px;
+.deconnecter {
+	width: auto;
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
 	align-items: center;
 }
 
-.connecter
-{
+.connecter {
 	width: auto;
 	display: flex;
 	flex-direction: row;
@@ -109,8 +104,6 @@ button{
 	text-align: center;
 }
 
-.margin
-{
+.margin {
 	margin: 16px 0px 0px 0px;
 }
-
