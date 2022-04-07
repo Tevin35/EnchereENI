@@ -27,7 +27,6 @@ public class EnchereManager implements IEnchereManager{
 	*/
 	@Override
 	public void insert(Enchere enchere) throws BLLException {
-		
 		try {
 			dao.insert(enchere);
 		} catch (DALException e) {

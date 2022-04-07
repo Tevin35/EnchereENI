@@ -47,7 +47,7 @@
 	
 	<div class="form">
 		<form action="UtilisateurInscriptionServlet" method="post">
-			<p>Pseudo : <input type="text" name="pseudo" pattern="[a-zA-Z0-9]+"></p>
+			<p>Pseudo : <input type="text" name="pseudo" pattern="[a-zA-Z0-9]+" autofocus></p>
 			<p>Nom : <input type="text" name="nom"></p>
 			<p>Prenom : <input type="text" name="prenom"></p>
 			<p>Email : <input type="email" name="email"></p>

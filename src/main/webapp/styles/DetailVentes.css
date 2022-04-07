@@ -1,12 +1,16 @@
 @charset "UTF-8";
 
-P {
-	text-align: center
-	
-	
+.detail{
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-body {
-	background-color: skyblue
-}
 
+.detail p {
+	color: black;
+	font-size: 1em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
