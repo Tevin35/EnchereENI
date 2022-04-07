@@ -6,6 +6,7 @@
 	href="${pageContext.request.contextPath}/styles/main.css" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/styles/pageAcceuil.css" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,6 +34,7 @@
           }
         });
   </script>
+  <script src="https://kit.fontawesome.com/c1c5cfe2d5.js" crossorigin="anonymous"></script>
 </head>
 <body>
 	<header>
@@ -48,7 +50,7 @@
 						- Se connecter</a>
 				</p>
 				<p>
-					<button id="theme-switcher">Switch</button>
+					<button id="theme-switcher"><i class="fa-solid fa-lightbulb"></i></button>
 				</p>
 			</div>
 		</c:if>
@@ -74,7 +76,7 @@
 				</form>
 				</p>
 				<p>
-					<button id="theme-switcher">Switch</button>
+					<button id="theme-switcher" class="lumiere"><i class="fa-solid fa-lightbulb"></i></button>
 				</p>
 			</div>
 		</c:if>

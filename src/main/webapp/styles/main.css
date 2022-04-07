@@ -39,6 +39,28 @@ header
  	transition-duration: 0.4s;
 }
 
+.fa-lightbulb
+{
+	text-decoration: none;
+	width: 50px;
+	border: 1px solid black;
+	border-radius: 8px;
+	color: black;
+	background: skyblue;
+	font-size: 2em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+ 	transition-duration: 0.4s; 
+	text-align: center;
+	display: inline-block;
+}
+
+button{
+	border: none;
+	background: none;
+}
+
 .nav:hover {
   background-color: blue;
   color: white;
