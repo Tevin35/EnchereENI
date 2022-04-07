@@ -48,7 +48,7 @@
 			<p><input class="btn" type="submit" name="connexion" value="Connexion">
 			<input type="checkbox" id="saveSelect" name="save">
 			<label for="saveSelect">Se souvenir de moi</label></p>
-			<p><a href="http://localhost:8080/EnchereENI/MotDePasseOublier">Mot de passe oublier</a>
+			<p><a href="http://localhost:8080/EnchereENI/MotDePasseOublier">Mot de passe oublié</a>
 			</p>
 			<p><input class="btn" type="submit" name="inscription" value="Créer un compte"></p>
 		</form>

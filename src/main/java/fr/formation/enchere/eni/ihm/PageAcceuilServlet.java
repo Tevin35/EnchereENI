@@ -59,8 +59,8 @@ public class PageAcceuilServlet extends HttpServlet {
 				modelCat.setLstCategories(managerC.selectAll());
 				modelA.setLstArticles(managerA.selectAll());
 			} catch (BLLException e) {
-				System.out.println("il y a pas d'erreur balec");
-			}
+				System.out.println("Il y a pas d'erreur balec");
+			}				
 			request.setAttribute("modelCat", modelCat);
 			request.setAttribute("modelU", modelU);
 			request.getSession().setAttribute("modelA", modelA);
