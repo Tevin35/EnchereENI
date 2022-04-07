@@ -11,6 +11,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Page d'acceuil</title>
+<script type="text/javascript">
+	// Wait for document to load
+	document.addEventListener("DOMContentLoaded", function(event) {
+          document.documentElement.setAttribute("data-theme", "dark");
+      
+          // Get our button switcher
+          var themeSwitcher = document.getElementById("theme-switcher");
+      
+          // When our button gets clicked
+          themeSwitcher.onclick = function() {
+            // Get the current selected theme, on the first run
+            // it should be `light`
+            var currentTheme = document.documentElement.getAttribute("data-theme");
+      
+            // Switch between `dark` and `light`
+            var switchToTheme = currentTheme === "dark" ? "light" : "dark"
+      
+            // Set our currenet theme to the new one
+            document.documentElement.setAttribute("data-theme", switchToTheme);
+          }
+        });
+  </script>
 </head>
 <body>
 	<header>
@@ -24,6 +46,9 @@
 					<a class="nav"
 						href="http://localhost:8080/EnchereENI/UtilisateurConnexionServlet">S'inscrire
 						- Se connecter</a>
+				</p>
+				<p>
+					<button id="theme-switcher">Switch</button>
 				</p>
 			</div>
 		</c:if>
@@ -48,6 +73,9 @@
 					<input class="nav" type="submit" name="deco" value="Déconnexion">
 				</form>
 				</p>
+				<p>
+					<button id="theme-switcher">Switch</button>
+				</p>
 			</div>
 		</c:if>
 	</header>
@@ -59,11 +87,11 @@
 
 			<p>Filtres :</p>
 			<form action="PageAcceuilServlet" method="post">
-				<input type="text" name="filtre" placeholder="Recherche">  
+				<input type="text" name="recherche" placeholder="Recherche">  
 				Categories : <select name="categories" id="categories-select">
 					<option value="">--choisir une catégorie--</option>
 					<c:forEach items="${modelCat.lstCategories}" var="cat">
-						<option value="${cat.libelle}">${cat.libelle}</option>
+						<option value="${cat.noCategorie}">${cat.libelle}</option>
 					</c:forEach>
 				</select>
 				<input type="submit" name="submit" value="Rechercher">
@@ -89,40 +117,40 @@
 			<div class="filtre">
 				<p>Filtres :</p>
 				<form action="PageAcceuilServlet" method="post">
-					<input type="text" name="filtre"> <input type="submit"
-						name="submit" value="Rechercher"> Categories : <select
-						name="categories" id="categories-select">
+					<input type="text" name="rechercher" placeholder="Rechercher">  
+					Categories : <select name="categories" id="categories-select">
 						<option value="">--choisir une catégorie--</option>
 						<c:forEach items="${modelCat.lstCategories}" var="cat">
-							<option value="${cat.libelle}">${cat.libelle}</option>
+							<option value="${cat.noCategorie}">${cat.libelle}</option>
 						</c:forEach>
 					</select>
-				</form>
 
-				<form action="PageAcceuilServlet" method="post" class="form">
+				<div class="form">
 					<div class="achat">
 						<input type="radio" id="achatSelect" name="filtre" value="email">
-						<label for="contactChoice1">Achat</label><br> <input
-							type="checkbox" id="ouvertes" name="ouvertes"> <label
-							for="ouvertes">Enchères ouvertes</label><br> <input
-							type="checkbox" id="mesEncheres" name="mesEncheres"> <label
-							for="mesEncheres">Mes enchères</label><br> <input
-							type="checkbox" id="remporte" name="remporte"> <label
-							for="remporte">Mes enchères remportées</label> <br> <br>
+							<label for="achatSelect">Achat</label><br> 
+						<input type="checkbox" id="ouvertes" name="ouvertes"> 
+							<label for="ouvertes">Enchères ouvertes</label><br> 
+						<input type="checkbox" id="mesEncheres" name="mesEncheres"> 
+							<label for="mesEncheres">Mes enchères</label><br> 
+						<input type="checkbox" id="remporte" name="remporte">
+							<label for="remporte">Mes enchères remportées</label> <br> <br>
 						<br>
 
 					</div>
 					<div class="ventes">
 						<input type="radio" id="ventesSelect" name="filtre" value="Ventes">
-						<label for="ventesSelect">Ventes</label><br> <input
-							type="checkbox" id="enCour" name="enCour"> <label
-							for="enCour">Mes ventes en cours</label><br> <input
-							type="checkbox" id="debute" name="debute"> <label
-							for="debute">Ventes débutées</label><br> <input
-							type="checkbox" id="termine" name="termine"> <label
-							for="termine">Ventes terminées</label><br>
+							<label for="ventesSelect">Ventes</label><br> 
+						<input type="checkbox" id="enCour" name="enCour"> 
+							<label for="enCour">Mes ventes en cours</label><br> 
+						<input type="checkbox" id="debute" name="debute"> 
+							<label for="debute">Ventes débutées</label><br>
+						<input type="checkbox" id="termine" name="termine"> 
+							<label for="termine">Ventes terminées</label><br>
 
 					</div>
+					</div>
+					<input type="submit" name="submit" value="Rechercher">
 				</form>
 			</div>
 			<div class="lstenchere">

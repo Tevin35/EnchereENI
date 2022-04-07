@@ -69,7 +69,7 @@ public class UtilisateurModificationServlet extends HttpServlet {
 					}
 				}
 			}else {
-				modelU.setMessage("Les mot de passe ne coresponde pas");
+				modelU.setMessage("Les mots de passe ne corespondent pas");
 			}
 		}
 
