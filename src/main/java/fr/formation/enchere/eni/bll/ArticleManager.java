@@ -3,6 +3,7 @@
  */
 package fr.formation.enchere.eni.bll;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.formation.enchere.eni.bo.ArticleVendu;
@@ -114,5 +115,30 @@ public class ArticleManager implements IArticleManager {
 		return null;
 	}
 
+	
+	public List<ArticleVendu> filtreCat(Integer noCat) throws BLLException {
+		List<ArticleVendu> lstArticle = new ArrayList<ArticleVendu>();
+		List<ArticleVendu> lstFiltre = new ArrayList<ArticleVendu>();
+
+		try {
+			lstArticle = selectAll();
+			
+			for (ArticleVendu articleVendu : lstArticle) {
+				if (articleVendu.getNoCategorie().getNoCategorie() == noCat) {
+					lstFiltre.add(articleVendu);
+				}
+			}
+			
+		} catch (BLLException e) {
+			throw new BLLException("erreur dans le filtre categorie");
+		}
+		return lstFiltre;
+	}
+	
+	public List<ArticleVendu> filtreRecherche(String recherche){
+		List<ArticleVendu> lstFiltre = new ArrayList<ArticleVendu>();
+		
+		return lstFiltre;
+	}
 	
 }
