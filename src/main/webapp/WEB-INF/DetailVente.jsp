@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/DetailVentes.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/information.css" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +39,8 @@
 			<button id="theme-switcher">Switch</button>
 		</p>
 	</header>
-	<div class="detail">
+	
+	<div class="form">
 	
 		<p>${modelA.articleVendu.nomArticle}</p>
 		<p>Description : ${modelA.articleVendu.description}</p>
@@ -55,8 +56,9 @@
 		${modelA.articleVendu.noUtilisateur.prenom}</p>
 		<p>Ma proposition :
 		<form action="DetailVenteServlet" method="post">
-		<input type="number" name="maproposition" value="Maproposition">
-			<input type="button" name="submit" value="Encherir">
+			<input type="number" name="maproposition">
+			<input type="hidden" name="noArticle" value="${modelA.articleVendu.noArticle}">
+			<input type="submit" name="submit" value="Encherir">
 		</form></p>
 		
 	</div>	

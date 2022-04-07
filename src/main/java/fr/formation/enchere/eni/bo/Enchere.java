@@ -24,6 +24,24 @@ public class Enchere {
 	private List<Utilisateur> lstUtilisateurs = new ArrayList<Utilisateur>();
 	private List<ArticleVendu> lstArticleVendus = new ArrayList<ArticleVendu>();
 
+	
+	
+	/**
+	 * Constructeur.
+	 * @param dateEnchere
+	 * @param montantEnchere
+	 * @param lstUtilisateurs
+	 * @param lstArticleVendus
+	 */
+	public Enchere(LocalDate dateEnchere, Integer montantEnchere, List<Utilisateur> lstUtilisateurs,
+			List<ArticleVendu> lstArticleVendus) {
+		super();
+		this.dateEnchere = dateEnchere;
+		this.montantEnchere = montantEnchere;
+		this.lstUtilisateurs = lstUtilisateurs;
+		this.lstArticleVendus = lstArticleVendus;
+	}
+
 	/**
 	 * Constructeur.
 	 * 

@@ -52,7 +52,7 @@
 			<p>Rue : <input type="text" name="rue" value="${modelU.utilisateur.rue}"></p>
 			<p>Code postal : <input type="text" name="codePostal" value="${modelU.utilisateur.codePostal}"></p>
 			<p>Ville : <input type="text" name="ville"	value="${modelU.utilisateur.ville}"></p>
-			<p>Mot de passe : <input type="password" name="password" value=""></p>
+			<p>Mot de passe : <input type="password" name="password" value="" autofocus></p>
 			<p>Nouveau mot de passe : <input type="password" name="newMotDePasse" required></p>
 			<p>Confirmation mot de passe : <input type="password" name="confirmMotDePasse"	required></p>
 			<p>Crédit : ${modelU.utilisateur.credit}</p>

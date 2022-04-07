@@ -28,7 +28,7 @@ import fr.formation.enchere.eni.dal.util.ConnectionProvider;
  */
 public class EnchereDAO implements IEnchereDAO {
 
-	private String INSERT = "INSERT INTO ENCHERES (date_enchere, montant_enchere, no_articles, no_utilisateur) VALUES (?, ?, ?, ?)";
+	private String INSERT = "INSERT INTO ENCHERES (date_enchere, montant_enchere, no_article, no_utilisateur) VALUES (?, ?, ?, ?)";
 	private String UPDATE = "UPDATE ENCHERES SET date_enchere = ?, montant_enchere = ?, no_articles = ?, no_utilisateur = ? WHERE no_enchere = ?";
 	private String DELETE = "DELETE INTO ENCHERES FROM no_enchere = ?";
 	private String SELECTALL = "SELECT date_enchere, montant_enchere, no_articles, no_utilisateur FROM ENCHERES";
@@ -45,13 +45,13 @@ public class EnchereDAO implements IEnchereDAO {
 	@Override
 	public void insert(Enchere enchere) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
-
+			System.out.println(enchere);
 			PreparedStatement stmt = cnx.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
 
 			stmt.setDate(1, Date.valueOf(enchere.getDateEnchere()));
 			stmt.setInt(2, enchere.getMontantEnchere());
-			stmt.setInt(3, enchere.getLstArticleVendus().get(0).getNoArticle());
-			stmt.setInt(4, enchere.getLstUtilisateurs().get(0).getNoUtilisateur());
+			stmt.setInt(3, enchere.getLstUtilisateurs().get(0).getNoUtilisateur());
+			stmt.setInt(4, enchere.getLstArticleVendus().get(0).getNoArticle());
 
 			Integer nb = stmt.executeUpdate();
 			if (nb > 0) {
