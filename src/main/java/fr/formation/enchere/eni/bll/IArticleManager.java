@@ -43,4 +43,6 @@ public interface IArticleManager {
 	void deleteUtilisateur(Integer id) throws BLLException;
 
 	public List<ArticleVendu> filtreCat(Integer noCat) throws BLLException;
+	
+	public List<ArticleVendu> filtreRecherche(String recherche) throws BLLException;
 }

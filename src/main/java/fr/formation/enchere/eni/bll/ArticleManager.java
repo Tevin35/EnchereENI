@@ -135,8 +135,25 @@ public class ArticleManager implements IArticleManager {
 		return lstFiltre;
 	}
 	
-	public List<ArticleVendu> filtreRecherche(String recherche){
+	public List<ArticleVendu> filtreRecherche(String recherche) throws BLLException{
+		List<ArticleVendu> lstArticle = new ArrayList<ArticleVendu>();
 		List<ArticleVendu> lstFiltre = new ArrayList<ArticleVendu>();
+		try {
+			lstArticle = selectAll();
+			
+			//nom article
+			for (ArticleVendu articleVendu : lstArticle) {
+				if (articleVendu.getNomArticle().contains(recherche)) {
+					lstFiltre.add(articleVendu);
+				}
+			}
+		} catch (BLLException e) {
+			throw new BLLException("erreur dans le filtre recherche");
+		}
+		
+		//nom vendeur
+		
+		//description
 		
 		return lstFiltre;
 	}
