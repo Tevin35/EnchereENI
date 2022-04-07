@@ -11,6 +11,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Page d'acceuil</title>
+<script type="text/javascript">
+	// Wait for document to load
+	document.addEventListener("DOMContentLoaded", function(event) {
+          document.documentElement.setAttribute("data-theme", "light");
+      
+          // Get our button switcher
+          var themeSwitcher = document.getElementById("theme-switcher");
+      
+          // When our button gets clicked
+          themeSwitcher.onclick = function() {
+            // Get the current selected theme, on the first run
+            // it should be `light`
+            var currentTheme = document.documentElement.getAttribute("data-theme");
+      
+            // Switch between `dark` and `light`
+            var switchToTheme = currentTheme === "dark" ? "light" : "dark"
+      
+            // Set our currenet theme to the new one
+            document.documentElement.setAttribute("data-theme", switchToTheme);
+          }
+        });
+  </script>
 </head>
 <body>
 	<header>
@@ -24,6 +46,9 @@
 					<a class="nav"
 						href="http://localhost:8080/EnchereENI/UtilisateurConnexionServlet">S'inscrire
 						- Se connecter</a>
+				</p>
+				<p>
+					<button id="theme-switcher">Switch</button>
 				</p>
 			</div>
 		</c:if>
@@ -47,6 +72,9 @@
 				<form class="margin" action="PageAcceuilServlet" method="post">
 					<input class="nav" type="submit" name="deco" value="Déconnexion">
 				</form>
+				</p>
+				<p>
+					<button id="theme-switcher">Switch</button>
 				</p>
 			</div>
 		</c:if>
