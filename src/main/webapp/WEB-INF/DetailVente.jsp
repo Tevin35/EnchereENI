@@ -29,6 +29,8 @@
           }
         });
   </script>
+   <script src="https://kit.fontawesome.com/c1c5cfe2d5.js" crossorigin="anonymous"></script>
+  
 </head>
 <body>
 	<header>
@@ -36,7 +38,7 @@
 			<a href="http://localhost:8080/EnchereENI/PageAcceuilServlet">ENI-Encheres</a>
 		</h1>
 		<p>
-			<button id="theme-switcher">Switch</button>
+			<button id="theme-switcher" class="lumiere"><i class="fa-solid fa-lightbulb"></i></button>
 		</p>
 	</header>
 	<div class="detail">
@@ -56,8 +58,9 @@
 		<p>Ma proposition :
 		<form action="DetailVenteServlet" method="post">
 		<input type="number" name="maproposition" value="Maproposition">
-			<input type="button" name="submit" value="Encherir">
-		</form></p>
+		<input type="button" name="submit" value="Encherir">
+		</form>
+		</p>
 		
 	</div>	
 	

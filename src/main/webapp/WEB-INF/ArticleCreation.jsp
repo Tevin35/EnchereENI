@@ -45,7 +45,7 @@
 						- Se connecter</a>
 				</p>
 				<p>
-					<button id="theme-switcher">Switch</button>
+					<button id="theme-switcher" class="lumiere"><i class="fa-solid fa-lightbulb"></i></button>
 				</p>
 			</div>
 		</c:if>
@@ -66,7 +66,7 @@
 						profil</a>
 				</p>
 				<p>
-					<button id="theme-switcher">Switch</button>
+					<button id="theme-switcher" class="lumiere"><i class="fa-solid fa-lightbulb"></i></button>
 				</p>
 				<p>
 				<form class="margin" action="PageAcceuilServlet" method="post">

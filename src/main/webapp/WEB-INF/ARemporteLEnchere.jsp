@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>a remporté l'enchère</title>
+<script src="https://kit.fontawesome.com/c1c5cfe2d5.js" crossorigin="anonymous"></script>
 </head>
 <body>
 	<header>
