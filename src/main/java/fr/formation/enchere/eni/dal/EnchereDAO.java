@@ -45,7 +45,6 @@ public class EnchereDAO implements IEnchereDAO {
 	@Override
 	public void insert(Enchere enchere) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
-			System.out.println(enchere);
 			PreparedStatement stmt = cnx.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
 
 			stmt.setDate(1, Date.valueOf(enchere.getDateEnchere()));
